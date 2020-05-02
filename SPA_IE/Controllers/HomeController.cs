@@ -33,5 +33,7 @@ namespace SPA_IE.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        //This is a test for CI
     }
 }
