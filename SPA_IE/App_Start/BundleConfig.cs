@@ -20,11 +20,20 @@ namespace SPA_IE
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                        "~/Scripts/js/jquery.js",
+                        "~/Scripts/js/bootstrap.min.js",
+                        "~/Scripts/js/owl.carousel.min.js",
+                        "~/Scripts/js/smoothscroll.js",
+                        "~/Scripts/js/custom.js"
+
+                      ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                        "~/Content/css/bootstrap.min.css",
+                        "~/Content/css/font-awesome.min.css",
+                        "~/Content/css/owl.carousel.css",
+                        "~/Content/css/owl.theme.default.min.css",
+                        "~/Content/css/templatemo-style.css"));
         }
     }
 }
