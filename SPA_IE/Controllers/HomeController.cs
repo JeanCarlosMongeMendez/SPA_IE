@@ -9,6 +9,8 @@ namespace SPA_IE.Controllers
     //test
     public class HomeController : Controller
     {
+
+   
         public ActionResult Index()
         {
             return View();
