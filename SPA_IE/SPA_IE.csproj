@@ -215,7 +215,6 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
-    <Content Include="Content\Site.css" />
     <Content Include="Models\Data\Beauty_Solutions_ADO.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Beauty_Solutions_ADO.edmx</DependentUpon>
@@ -226,8 +225,6 @@
       <DependentUpon>Beauty_Solutions_ADO.edmx</DependentUpon>
       <LastGenOutput>Beauty_Solutions_ADO.cs</LastGenOutput>
     </Content>
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\Data\Beauty_Solutions_ADO.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Beauty_Solutions_ADO.Designer.cs</LastGenOutput>
@@ -235,11 +232,20 @@
     <Content Include="Models\Data\Beauty_Solutions_ADO.edmx.diagram">
       <DependentUpon>Beauty_Solutions_ADO.edmx</DependentUpon>
     </Content>
-    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.4.1.js" />
-    <Content Include="Scripts\jquery-3.4.1.min.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\dataTables.bootstrap.js" />
+    <Content Include="Scripts\dataTables.bootstrap4.js" />
+    <Content Include="Scripts\dataTables.foundation.js" />
+    <Content Include="Scripts\dataTables.jqueryui.js" />
+    <Content Include="Scripts\datatables.js" />
+    <Content Include="Scripts\dataTables.semanticui.js" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery.dataTables.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -264,8 +270,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\.vs\Base\v16\" />
-    <Folder Include="Models\" />
-    <Folder Include="Scripts\" />
     <Folder Include="Models\Domain\" />
   </ItemGroup>
   <ItemGroup>
@@ -279,6 +283,8 @@
     <Content Include="Content\.vs\VSWorkspaceState.json" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="packages\Microsoft.CodeAnalysis.BannedApiAnalyzers.3.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.BannedApiAnalyzers.dll" />
