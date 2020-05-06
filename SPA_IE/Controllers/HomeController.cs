@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using SPA_IE.Models;
+using System.Web;
+using System.Web.Mvc;
 
 namespace SPA_IE.Controllers
 {
     public class HomeController : Controller
     {
+<<<<<<< HEAD
         private readonly ILogger<HomeController> _logger;
 
         /// <summary>
@@ -23,22 +21,25 @@ namespace SPA_IE.Controllers
         }
 
         public IActionResult Index()
+=======
+        public ActionResult Index()
+>>>>>>> 88c736a2f0e438f231fa3a9f746db20bae9cc5c7
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public ActionResult About()
         {
+            ViewBag.Message = "Your application description page.";
+
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public ActionResult Contact()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+            ViewBag.Message = "Your contact page.";
 
-        //This is a test for CI
-        //This is a test for CI
+            return View();
+        }
     }
 }
