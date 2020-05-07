@@ -12,7 +12,6 @@ namespace SPA_IE.Models.Data.Data
         {
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities())
             {
-
                 var userProfiles = (from userProfile in context.UserProfile
                                     join province in context.Province on userProfile.idProvince equals province.idProvince
                                     join canton in context.Canton on userProfile.idCanton equals canton.idCanton
@@ -38,8 +37,6 @@ namespace SPA_IE.Models.Data.Data
                                         creationDate = (DateTime)userProfile.creationDate,
                                       }).ToList();
                 return userProfiles;
-
-
             }
         }
 
@@ -72,29 +69,9 @@ namespace SPA_IE.Models.Data.Data
                                            nameDistrict = district.name,
                                            usernameCreator = creatorBy.username,
                                            creationDate = (DateTime)userProfile.creationDate,
-
-
                                        }).Where(x => x.idUserProfile== id).Single();
-
-
                 return studentToReturn;
-
-
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

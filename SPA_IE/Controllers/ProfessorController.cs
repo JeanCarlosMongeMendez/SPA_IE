@@ -19,8 +19,6 @@ namespace SPA_IE.Controllers
         }
         public ActionResult Create()
         {
-
-
             return View();
         }
 

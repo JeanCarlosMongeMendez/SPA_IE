@@ -23,12 +23,5 @@ namespace SPA_IE.Models.Domain.DTO
         public string nameDistrict { get; set; }
         public string usernameCreator { get; set; }
         public DateTime creationDate { get; set; }
-
-
-
-
-
-
-
     }
 }
