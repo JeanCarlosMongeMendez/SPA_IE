@@ -1,30 +1,43 @@
 ﻿@model IEnumerable<SPA_IE.Models.Domain.DTO.ProfessorDTO>
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.idUserProfile)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdProfessor)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Degree)
         </th>
+       
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.idUserProfile)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.username)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.creationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdProfessor)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Degree)
@@ -32,10 +45,9 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new {id = item.IdProfessor}) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.IdProfessor})
+            @Html.ActionLink("Delete", "Delete", new { id = item.IdProfessor })
         </td>
     </tr>
 }
-
 
 </table>

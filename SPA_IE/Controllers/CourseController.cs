@@ -1,9 +1,7 @@
 ﻿using SPA_IE.Models.Data;
 using SPA_IE.Models.Data.Data;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SPA_IE.Controllers
@@ -17,11 +15,11 @@ namespace SPA_IE.Controllers
             IEnumerable<Course> courses = courseData.ListAllCourseSP();
 
             return View(courses);
-          
+
         }
         public ActionResult Create()
         {
-       
+
             return View();
         }
 
@@ -37,7 +35,7 @@ namespace SPA_IE.Controllers
 
             Course course = courseData.GetByIdCourse(id);
 
-       
+
 
             return View(course);
         }

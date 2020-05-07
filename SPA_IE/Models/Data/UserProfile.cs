@@ -14,18 +14,46 @@ namespace SPA_IE.Models.Data
     
     public partial class UserProfile
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public UserProfile()
+        {
+            this.Course = new HashSet<Course>();
+            this.Professor = new HashSet<Professor>();
+            this.Professor1 = new HashSet<Professor>();
+            this.Student = new HashSet<Student>();
+            this.Student1 = new HashSet<Student>();
+            this.UserProfile1 = new HashSet<UserProfile>();
+        }
+    
         public int idUserProfile { get; set; }
         public string username { get; set; }
         public string password { get; set; }
         public string userPhoto { get; set; }
         public string interests { get; set; }
         public string email { get; set; }
-        public bool isAdmin { get; set; }
-        public bool isEnable { get; set; }
-        public int idCanton { get; set; }
-        public int idProvince { get; set; }
-        public int idDistrict { get; set; }
-        public Nullable<int> createBy { get; set; }
+        public Nullable<bool> isAdmin { get; set; }
+        public Nullable<bool> isEnable { get; set; }
+        public Nullable<int> idCanton { get; set; }
+        public Nullable<int> idProvince { get; set; }
+        public Nullable<int> idDistrict { get; set; }
         public Nullable<System.DateTime> creationDate { get; set; }
+        public Nullable<int> createBy { get; set; }
+    
+        public virtual Canton Canton { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Course> Course { get; set; }
+        public virtual District District { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Professor> Professor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Professor> Professor1 { get; set; }
+        public virtual Province Province { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Student> Student { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Student> Student1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserProfile> UserProfile1 { get; set; }
+        public virtual UserProfile UserProfile2 { get; set; }
     }
 }

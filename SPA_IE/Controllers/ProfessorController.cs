@@ -1,9 +1,7 @@
 ﻿using SPA_IE.Models.Data.Data;
 using SPA_IE.Models.Domain.DTO;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SPA_IE.Controllers
@@ -12,6 +10,9 @@ namespace SPA_IE.Controllers
     {
         // GET: Professor
         ProfessorData professorData = new ProfessorData();
+        ProvinceData provinceData = new ProvinceData();
+        CantonData cantonData = new CantonData();
+        DistrictData districtData = new DistrictData();
         public ActionResult Index()
         {
             IEnumerable<ProfessorDTO> professors = professorData.ListAllProfessor();
@@ -19,6 +20,14 @@ namespace SPA_IE.Controllers
         }
         public ActionResult Create()
         {
+            var provinces = new SelectList(provinceData.ListAllProvince(), "IdProvince", "Name");
+            ViewData["provinces"] = provinces;
+
+            var cantons = new SelectList(cantonData.ListAllCanton(), "IdCanton", "Name");
+            ViewData["cantons"] = cantons;
+            var districts = new SelectList(districtData.ListAllDistrict(), "IdDistrict", "Name");
+            ViewData["districts"] = districts;
+
             return View();
         }
 
@@ -26,6 +35,7 @@ namespace SPA_IE.Controllers
         public ActionResult Create(ProfessorDTO professor)
         {
             professorData.Add(professor);
+           
 
             return View("Index", professorData.ListAllProfessor().AsEnumerable());
         }
@@ -34,7 +44,23 @@ namespace SPA_IE.Controllers
 
             ProfessorDTO professor = professorData.GetById(id);
 
+
+
+            var provinces = new SelectList(provinceData.ListAllProvince(), "IdProvince", "Name");
+            ViewData["provinces"] = provinces;
+
+            var cantons = new SelectList(cantonData.ListAllCanton(), "IdCanton", "Name");
+            ViewData["cantons"] = cantons;
+
+            var districts = new SelectList(districtData.ListAllDistrict(), "IdDistrict", "Name");
+            ViewData["districts"] = districts;
+
+            ViewData["idProvince"] = professor.idProvince;
+            ViewData["idCanton"] = professor.idDistrict;
+            ViewData["idDistrict"] = professor.idDistrict;
+
             return View(professor);
+
         }
 
         [HttpPost]

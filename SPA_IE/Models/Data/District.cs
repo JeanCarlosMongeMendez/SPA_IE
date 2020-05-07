@@ -14,7 +14,16 @@ namespace SPA_IE.Models.Data
     
     public partial class District
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public District()
+        {
+            this.UserProfile = new HashSet<UserProfile>();
+        }
+    
         public int idDistrict { get; set; }
         public string name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserProfile> UserProfile { get; set; }
     }
 }

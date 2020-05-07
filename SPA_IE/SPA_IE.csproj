@@ -140,6 +140,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Data\BeautySolutions_ADO.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BeautySolutions_ADO.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Data\BeautySolutions_ADO.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Data\BeautySolutions_ADO.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BeautySolutions_ADO.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Data\Beauty_Solutions_ADO.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -161,10 +176,10 @@
       <DependentUpon>Beauty_Solutions_ADO.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\Canton.cs">
-      <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\Course.cs">
-      <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\Data\CantonData.cs" />
     <Compile Include="Models\Data\Data\CourseData.cs" />
@@ -174,25 +189,25 @@
     <Compile Include="Models\Data\Data\StudentData.cs" />
     <Compile Include="Models\Data\Data\UserProfileData.cs" />
     <Compile Include="Models\Data\District.cs">
-      <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\GetByIdCourse_Result.cs">
-      <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\Professor.cs">
-      <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\Province.cs">
-      <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\SelectCourse_Result.cs">
-      <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\Student.cs">
-      <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\UserProfile.cs">
-      <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Domain\DTO\CantonDTO.cs" />
     <Compile Include="Models\Domain\DTO\DistrictDTO.cs" />
@@ -242,6 +257,16 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Models\Data\BeautySolutions_ADO.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BeautySolutions_ADO.edmx</DependentUpon>
+      <LastGenOutput>BeautySolutions_ADO.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Data\BeautySolutions_ADO.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BeautySolutions_ADO.edmx</DependentUpon>
+      <LastGenOutput>BeautySolutions_ADO.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\Data\Beauty_Solutions_ADO.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Beauty_Solutions_ADO.edmx</DependentUpon>
@@ -267,6 +292,13 @@
     <Content Include="Scripts\dataTables.jqueryui.js" />
     <Content Include="Scripts\datatables.js" />
     <Content Include="Scripts\dataTables.semanticui.js" />
+    <EntityDeploy Include="Models\Data\BeautySolutions_ADO.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BeautySolutions_ADO.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Data\BeautySolutions_ADO.edmx.diagram">
+      <DependentUpon>BeautySolutions_ADO.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -307,7 +339,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\.vs\Base\v16\" />
-    <Folder Include="Models\Domain\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

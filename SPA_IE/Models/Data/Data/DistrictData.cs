@@ -1,8 +1,6 @@
 ﻿using SPA_IE.Models.Domain.DTO;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace SPA_IE.Models.Data.Data
 {
@@ -12,7 +10,7 @@ namespace SPA_IE.Models.Data.Data
         {
             List<DistrictDTO> districts = null;
 
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities())
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 districts = context.District
                   .Select(districtItem => new DistrictDTO()
@@ -32,7 +30,7 @@ namespace SPA_IE.Models.Data.Data
 
         public DistrictDTO GetById(int id)
         {
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities())
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
 
                 var districtToReturn = (from districtItem in context.District

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace SPA_IE.Models.Data.Data
 {
@@ -10,7 +8,7 @@ namespace SPA_IE.Models.Data.Data
 
         public List<Course> ListAllCourseSP()
         {
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities())
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 return context.SelectCourseSP().ToList();
 
@@ -22,9 +20,9 @@ namespace SPA_IE.Models.Data.Data
         {
             int resultToReturn;
 
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities())
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
-                resultToReturn = context.InsertUpdateCourseSP(course.idCourse,course.name,course.state,course.semestrer, course.description, "Insert");
+                resultToReturn = context.InsertUpdateCourseSP(course.idCourse, course.name, course.state, course.semestrer, course.description, "Insert");
             }
 
             return resultToReturn;
@@ -35,9 +33,9 @@ namespace SPA_IE.Models.Data.Data
         {
             int resultToReturn;
 
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities())
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
-                resultToReturn = context.InsertUpdateCourseSP(course.idCourse, course.name, course.state, course.semestrer, course.description,"Update");
+                resultToReturn = context.InsertUpdateCourseSP(course.idCourse, course.name, course.state, course.semestrer, course.description, "Update");
             }
 
             return resultToReturn;
@@ -46,7 +44,7 @@ namespace SPA_IE.Models.Data.Data
         public Course GetByIdCourse(int id)
         {
 
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities())
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 var course = context.GetByIdCourseSP(id).Single();
 
@@ -58,7 +56,7 @@ namespace SPA_IE.Models.Data.Data
         public int Delete(int id)
         {
 
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities())
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 var resultToReturn = context.deleteCourseSP(id);
 
