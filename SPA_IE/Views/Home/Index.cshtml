@@ -38,3 +38,741 @@
 }
 
 </table>
+=======
+﻿@{
+    ViewBag.Title = "L";
+}
+
+
+<!-- PRE LOADER -->
+@*<section class="preloader">
+        <div class="spinner">
+
+            <span class="spinner-rotate"></span>
+
+        </div>
+    </section>*@
+
+
+<!-- MENU -->
+<section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+            </button>
+
+            <!-- lOGO TEXT HERE -->
+            <a href="#" class="navbar-brand">UCR</a>
+        </div>
+
+        <!-- MENU LINKS -->
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-nav-first">
+                <li><a href="#top" class="smoothScroll">¿Quiénes somos?</a></li>
+                <li><a href="#about" class="smoothScroll">Beneficios</a></li>
+                <li><a href="#team" class="smoothScroll">Nuestros cursos</a></li>
+                <li><a href="#courses" class="smoothScroll">Noticias</a></li>
+                <li><a href="#testimonial" class="smoothScroll">Consultas</a></li>
+                <li><a href="#contact" class="smoothScroll">Mensaje privado</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <!-- Trigger the modal with a button -->
+                <li><a font="Helvetica" class="fa fa-user" data-toggle="modal" data-target="#loginModal"> Iniciar sesión</a></li>
+                <li><a class="fa fa-user-plus" data-toggle="modal" data-target="#registerModal"> Registrarme</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- HOME -->
+<section id="home">
+    <div class="row">
+        <div class="owl-carousel owl-theme home-slider">
+            <div class="item item-first">
+                <div class="caption">
+                    <div class="container">
+                        <div class="col-md-6 col-sm-12">
+                            <h1>¡Bienvenido a Informática Empresarial!</h1>
+                            <h3>Somos una carrera con una amplia gama de áreas de especialización y muchos retos.</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--     <div class="item item-second">
+                      <div class="caption">
+                           <div class="container">
+                                <div class="col-md-6 col-sm-12">
+                                     <h1>Have your first approach to laboral world.</h1>
+                                     <h3>Our preparation with excellent professors, ensures wide helpful teaching.</h3>
+                                     <a href="#courses" class="section-btn btn btn-default smoothScroll">Take a course</a>
+                                </div>
+                           </div>
+                      </div>
+                 </div>
+            -->
+
+        </div>
+    </div>
+
+    <!-- Modal Login -->
+    <div id="loginModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">¡Bienvenido!</h4>
+                </div>
+                <div class="divImgLogin">
+                    <img class="imgLogin" src="~/Content/images/login.jpg" alt="">
+
+                </div>
+
+                <div class="container">
+                    <input type="text" placeholder="Enter Username" name="uname" required>
+                    <input type="password" placeholder="Enter Password" name="psw" required>
+                    <button type="submit" class="button">Ingresar</button>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="cancelbtn" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="container">
+                    <label>Llenar con su información personal...</label>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="cancelbtn" data-dismiss="modal">Cerrar</button>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="col-md-12 col-sm-12">
+            <div class="section-title">
+                <br /><br />
+                <h2>
+                    ¿Quiénes somos?
+                </h2>
+                <p align="justify">
+                    &nbsp;&nbsp;&nbsp;&nbsp; Nuestra carrera forma cada año profesionales con capacidad para el desarrollo y la administración de proyectos
+                    informáticos tendientes a organizar sistemas, recursos y finanzas en la empresa, al optimizar el  acceso, la sistematización y la organización
+                    de la información. Llegando a ser parte importante en diversas empresas y sectores, formando parte activa en el desarrollo del país.
+                </p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12">
+
+                <div class="section-title">
+                    <h2>Beneficios <small>Conozca algunos de los beneficios con los que cuenta nuestra carrera</small></h2>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="feature-thumb">
+                    <span>01</span>
+                    <h3>Cursos Actualizados</h3>
+                    <div class="feature-thumb-text">
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp; Nuestros cursos están enfocados en el aprendizaje y la implementacion de soluciones a través de diversas tecnologías presentes en el mercado actual. esto es pura parla para ver cómo se corta el texto muajajaja</p>
+                    </div>
+                    <div class="feature-thumb-image">
+                        <img class="img-responsive" src="~/Content/images/trending.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-4 col-sm-4">
+                <div class="feature-thumb">
+                    <span>02</span>
+                    <h3>Amplias Bibliotecas</h3>
+                    <div class="feature-thumb-text">
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp; Contamos con el (SIBDI) Sistema de Bibliotecas, Documentación e información, como biblioteca virtual, así como bibliotecas en cada sede y recinto.</p>
+                    </div>
+
+                    <div class="feature-thumb-image">
+                        <img class="img-responsive" src="~/Content/images/books.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="feature-thumb">
+                    <span>03</span>
+                    <h3>Profesores Certificados</h3>
+                    <div class="feature-thumb-text">
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp; Dentro del equipo de enseñanza se encuentran docentes con un alto nivel de preparación y experiencia en los diversos campos que abarca la carrera.</p>
+                    </div>
+
+                    <div class="feature-thumb-image">
+                        <img class="img-responsive" src="~/Content/images/professor.jpeg" alt="">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- Courses -->
+<section id="team">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12">
+                <div class="section-title">
+                    <h2>Nuestros Cursos <small>Conozca nuestros cursos</small></h2>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="team-thumb">
+                    <div class="alignBtn">
+                        <button class="btnUpdateCourse" data-toggle="modal" data-target="#addCourseModal">Modificar</button>
+                        <button class="btnDeleteCourse" data-toggle="modal" data-target="#confirmDeleteModal">x</button>
+                    </div>
+                    <div class="courses-top">
+                        <div class="team-image">
+                            <img class="img-course" src="~/Content/images/courses-image1.jpg">
+                        </div>
+                        <div class="courses-date">
+                            <span><i class="fa fa-check"></i>Disponible</span>
+                        </div>
+                    </div>
+
+                    <div class="team-info">
+                        <h3>Lenguajes para aplicaciones comerciales</h3>
+
+
+                    </div>
+                    <div class="team-info-text">
+                        <span> &nbsp;&nbsp; Este curso está enfocado en el desarrollo de aplicaciones comerciales, basadas en diversos lenguajes de programación. este texto es extra para probar que no se salga del modál ni haya inconvenientes</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="team-thumb">
+                    <div class="alignBtn">
+                        <button class="btnUpdateCourse" data-toggle="modal" data-target="#addCourseModal">Modificar</button>
+                        <button class="btnDeleteCourse" data-toggle="modal" data-target="#confirmDeleteModal">x</button>
+                    </div>
+                    <div class="courses-top">
+                        <div class="team-image">
+                            <img class="img-course" src="~/Content/images/courses-image2.jpg">
+
+                        </div>
+                        <div class="courses-date">
+                            <span><i class="fa fa-check"></i>No Disponible</span>
+                        </div>
+                    </div>
+
+                    <div class="team-info">
+                        <h3>Estadística para informáticos</h3>
+                    </div>
+                    <div class="team-info-text">
+                        <span>&nbsp;&nbsp; El objetivo de este curso es introducir al informático en el maravilloso mundo de las finanzas, usando herramientas especializadas.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="team-thumb">
+                    <div class="alignBtn">
+                        <button class="btnUpdateCourse" data-toggle="modal" data-target="#addCourseModal">Modificar</button>
+                        <button class="btnDeleteCourse" data-toggle="modal" data-target="#confirmDeleteModal">x</button>
+                    </div>
+                    <div class="courses-top">
+                        <div class="team-image">
+                            <img class="img-course" src="~/Content/images/courses-image3.jpg">
+
+                        </div>
+                        <div class="courses-date">
+                            <span><i class="fa fa-check"></i>Disponible</span>
+                        </div>
+                    </div>
+
+                    <div class="team-info">
+                        <h3>Redes y comunicaciones de datos</h3>
+                    </div>
+                    <div class="team-info-text">
+                        <span> &nbsp;&nbsp; El objetivo es introducir al estudiante al campo de las redes, desde los conceptos más basicos a los avanzados.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="team-thumb">
+                    <div class="alignBtn">
+                        <button class="btnUpdateCourse" data-toggle="modal" data-target="#addCourseModal">Modificar</button>
+                        <button class="btnDeleteCourse" data-toggle="modal" data-target="#confirmDeleteModal">x</button>
+                    </div>
+                    <div class="courses-top">
+                        <div class="team-image">
+                            <img class="img-course" src="~/Content/images/courses-image4.jpg">
+
+                        </div>
+                        <div class="courses-date">
+                            <span><i class="fa fa-check"></i>Disponible</span>
+                        </div>
+                    </div>
+
+                    <div class="team-info">
+                        <h3>Administración de bases de datos</h3>
+                    </div>
+                    <div class="team-info-text">
+                        <span> &nbsp;&nbsp; Este curso está dirigido a la enseñanza modular y práctica en el uso, administración y mantenimiento de bases de datos, similar a la vida real.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divAddCourse">
+            <button data-toggle="modal" data-target="#addCourseModal">Agregar Nuevo Curso</button>
+        </div>
+    </div>
+
+    <!-- Modal Add Course -->
+    <div id="addCourseModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Agregar/Modificar Curso</h4>
+                </div>
+
+                <div class="container">
+                    <input type="text" placeholder="Nombre del curso" name="name" required>
+                    <br>
+                    <br>
+                    <select class="btn btn-default" id="semester">
+                        <option selected="selected">Seleccione el semestre...</option>
+                        <option value="saab">I Semestre 2020</option>
+                        <option value="opel">II Semestre 2020</option>
+                        <option value="audi">III Semestre 2020</option>
+                    </select>
+                    <br>
+                    <br>
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-default " data-toggle="dropdown">
+                            Días consulta <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" style="padding: 10px" id="myDiv">
+                            <li><p><input type="checkbox" value="1">Lunes</p></li>
+                            <li><p><input type="checkbox" value="2">Martes</p></li>
+                            <li><p><input type="checkbox" value="3">Miércoles</p></li>
+                            <li><p><input type="checkbox" value="4">Jueves</p></li>
+                            <li><p><input type="checkbox" value="5">Viernes</p></li>
+                            <li><p><input type="checkbox" value="6">Sábado</p></li>
+                        </ul>
+                    </div>
+
+                    <br>
+
+                    <br>
+                    <input type="checkbox" id="state" name="state" value="disponible">
+                    <label for="state">Disponible</label>
+                    <br>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="button">Agregar</button>
+                    <button type="button" class="cancelbtn" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--- End Modal -->
+    <!-- Modal ConfirmDelete-->
+    <div class="modal fade" id="confirmDeleteModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Eliminar</h4>
+                </div>
+                <div class="modal-body">
+                    <p>¿Está seguro de eliminar este curso?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button">Aceptar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- News -->
+<section id="courses">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12">
+                <div class="section-title">
+                    <h2>Noticias<small>En esta sección, encontrará noticias sobre temas de su interés.</small></h2>
+                </div>
+
+                <div class="owl-carousel owl-theme owl-courses">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="item">
+                            <div class="courses-thumb">
+                                <div class="courses-top">
+                                    <div class="courses-image">
+
+
+                                        <img class="img-responsive" src="~/Content/images/courses-image7.jpg" alt="">
+                                    </div>
+                                    <div class="courses-date">
+                                        <span><i class="fa fa-calendar"></i> 20/3/2020</span>
+                                    </div>
+                                </div>
+
+                                <div class="courses-detail">
+                                    <h3><a href="#">Compañía busca desarrollador junior</a></h3>
+                                    <p>Compañía Anonima está buscando nuevos desarrolladores junior con conocimientos en Java,por un proyecto temporal.</p>
+
+                                    <div class="footer-info">
+                                        <textarea class="form-control" name="comment" rows="5" cols="7" placeholder="Comenta esto..."></textarea>
+                                        <button type="button" class="button">Enviar</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                        <div class="item">
+                            <div class="courses-thumb">
+                                <div class="courses-top">
+                                    <div class="courses-image">
+
+                                        <img class="img-responsive" src="~/Content/images/courses-image8.jpg" alt="">
+
+                                    </div>
+                                    <div class="courses-date">
+                                        <span><i class="fa fa-calendar"></i> 29/4/2020</span>
+                                    </div>
+                                </div>
+
+                                <div class="courses-detail">
+                                    <h3><a href="#">¡Buenas Noticias!</a></h3>
+                                    <p>Nuestra carrera ha aprobado el proceso de acreditación de SINAES.</p>
+                                    <div class="footer-info">
+                                        <textarea class="form-control" name="comment" rows="5" cols="7" placeholder="Comenta esto..."></textarea>
+                                        <button type="button" class="button">Enviar</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                        <div class="item">
+                            <div class="courses-thumb">
+                                <div class="courses-top">
+                                    <div class="courses-image">
+                                        <img class="img-responsive" src="~/Content/images/courses-image9.jpg" alt="">
+
+                                    </div>
+                                    <div class="courses-date">
+                                        <span><i class="fa fa-calendar"></i> 20/4/2020</span>
+                                    </div>
+                                </div>
+
+                                <div class="courses-detail">
+                                    <h3><a href="#">Cambio de horarios</a></h3>
+                                    <p>El curso de bases de datos tendrá nuevo horario a partir del mes de mayo, será de 9 a 12am.</p>
+                                    <div class="footer-info">
+                                        <textarea class="form-control" name="comment" rows="5" cols="7" placeholder="Comenta esto..."></textarea>
+                                        <button type="button" class="button">Enviar</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                        <div class="item">
+                            <div class="courses-thumb">
+                                <div class="courses-top">
+                                    <div class="courses-image">
+
+                                        <img class="img-responsive" src="~/Content/images/courses-image10.jpg" alt="">
+
+                                    </div>
+                                    <div class="courses-date">
+                                        <span><i class="fa fa-calendar"></i> 08/3/2020</span>
+                                    </div>
+                                </div>
+
+                                <div class="courses-detail">
+                                    <h3><a href="#">Suspensión de evaluaciones</a></h3>
+                                    <p>Recordar que durante la próxima semana, no se podrá realizar ningún tipo de evaluaciones, debido a semana U.</p>
+                                    <div class="footer-info">
+                                        <textarea class="form-control" name="comment" rows="5" cols="7" placeholder="Comenta esto..."></textarea>
+                                        <button type="button" class="button">Enviar</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                        <div class="item">
+                            <div class="courses-thumb">
+                                <div class="courses-top">
+                                    <div class="courses-image">
+                                        <img class="img-responsive" src="~/Content/images/courses-image6.jpg" alt="">
+
+                                    </div>
+                                    <div class="courses-date">
+                                        <span><i class="fa fa-calendar"></i> 08/3/2020</span>
+                                    </div>
+                                </div>
+
+                                <div class="courses-detail">
+                                    <h3><a href="#">Objetos perdidos</a></h3>
+                                    <p>Si ha perdido algún objeto personal, usted puede ir a la asosiación de estudiantes y preguntar por él.</p>
+                                    <div class="footer-info">
+                                        <textarea class="form-control" name="comment" rows="5" cols="7" placeholder="Comenta esto..."></textarea>
+                                        <button type="button" class="button">Enviar</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Queries -->
+<section id="testimonial">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12">
+                <div class="section-title">
+                    <h2>Consultas<small>de todos los cursos</small></h2>
+                </div>
+
+                <div class="owl-carousel owl-theme owl-client">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="item">
+                            <div class="tst-image">
+                                <img class="img-responsive" src="~/Content/images/tst-image4.jpg" alt="">
+
+                            </div>
+                            <div class="tst-author">
+                                <h4>Maria Mora</h4>
+                            </div>
+                            <p>
+                                Hola, buenas tardes.
+                                ¿Alguno sabe si la universidad está abierta?, pregunto por el tema de la cuarentena. Por favor, necesito urgentemente esta información.
+                                Aprecio cualquier ayuda que puedan brindarme.
+                            </p>
+
+                            <div class="footer-info">
+                                <textarea class="form-control" name="comment" rows="3" cols="7" placeholder="Responder"></textarea>
+                                <button type="button" class="button">Send</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                        <div class="item">
+                            <div class="tst-image">
+                                <img class="img-responsive" src="~/Content/images/tst-image3.jpg" alt="">
+
+                            </div>
+                            <div class="tst-author">
+                                <h4>Andrés Rosales </h4>
+                            </div>
+                            <p>Compañeros, en martes 3 de abril perdí mi cuaderno en el laboratorio 17 (en el segundo piso), si alguno lo vio por favor contactarme.</p>
+                            <div class="footer-info">
+                                <textarea class="form-control" name="comment" rows="3" cols="7" placeholder="Responder"></textarea>
+                                <button type="button" class="button">Enviar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                        <div class="item">
+                            <div class="tst-image">
+                                <img class="img-responsive" src="~/Content/images/tst-image1.jpg" alt="">
+
+                            </div>
+                            <div class="tst-author">
+                                <h4>Mario Villanueva</h4>
+                            </div>
+                            <p>
+                                Amigos, espero que estén teniendo un buen día.
+                                Necesito contactar con el coordinador de la carrera, yo tengo su correo pero el no me contesta, ¿saben en dónde puedo encontrarlo?.
+                            </p>
+                            <div class="footer-info">
+                                <textarea class="form-control" name="comment" rows="3" cols="7" placeholder="Responder"></textarea>
+                                <button type="button" class="button">Enviar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                        <div class="item">
+                            <div class="tst-image">
+
+                                <img class="img-responsive" src="~/Content/images/tst-image2.jpg" alt="">
+                            </div>
+                            <div class="tst-author">
+                                <h4>Susana Distancia </h4>
+                            </div>
+                            <p>
+                                ¡Hola! Para el curso de algoritmos estoy teniendo serios problemas para comprender el material que nos provee el profesor, ¿existe alguna ayuda
+                                que pueda brindarme la universidad, o mi única opción es dejar el curso?
+                            </p>
+                            <div class="footer-info">
+                                <textarea class="form-control" name="comment" rows="3" cols="7" placeholder="Responder"></textarea>
+                                <button type="button" class="button">Enviar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4 col-sm-6">
+                <div class="footer-info">
+                    <div class="section-title">
+                        <h2>Universidad de Costa Rica</h2>
+                    </div>
+                    <address>
+                        <p>1.5 km sur del parque de Paraíso de Cartago</p>
+                    </address>
+
+                    <ul class="social-icon">
+                        <li><a href="https://www.facebook.com/ParaisoUCR/" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                        <li><a href="https://twitter.com/UniversidadCR/status/808753358072848385" class="fa fa-twitter"></a></li>
+                        <li><a href="https://www.instagram.com/explore/locations/236609576/ucr-recinto-paraiso-de-cartago?hl=es" class="fa fa-instagram"></a></li>
+                    </ul>
+
+                    <div class="copyright-text">
+                        <p>Copyright &copy; 2019</p>
+
+                        <p>Design: Lyka</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+                <div class="footer-info">
+                    <div class="section-title">
+                        <h2>Información de contacto</h2>
+                    </div>
+                    <address>
+                        <p>Teléfono de la secretaría <br> 2575-4000</p>
+                        <p><a href="mailto:youremail.co">www.ucr.ac.cr</a></p>
+                    </address>
+
+                    <div class="footer_menu">
+                        <h2>Links rápidos</h2>
+                        <ul>
+                            <li><a href="#">Career</a></li>
+                            <li><a href="#">Investor</a></li>
+                            <li><a href="#">Terms & Conditions</a></li>
+                            <li><a href="#">Refund Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-12">
+                <div class="footer-info newsletter-form">
+                    <div class="section-title">
+                        <h2>Newsletter Signup</h2>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <form action="#" method="get">
+                                <input type="email" class="form-control" placeholder="Enter your email" name="email" id="email" required="">
+                                <input type="submit" class="form-control" name="submit" id="form-submit" value="Send me">
+                            </form>
+                            <span><sup>*</sup> Please note - we do not spam your email.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+
+<script src="~/Content/js/jquery.js"></script>
+<script src="~/Content/js/bootstrap.min.js"></script>
+<script src="~/Content/js/owl.carousel.min.js"></script>
+<script src="~/Content/js/smoothscroll.js"></script>
+
+
+<script src="~/Content/js/custom.js"></script>
