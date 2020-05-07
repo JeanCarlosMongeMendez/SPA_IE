@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -154,10 +155,18 @@
     <Compile Include="Models\Data\Course.cs">
       <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Data\Data\CantonData.cs" />
+    <Compile Include="Models\Data\Data\DistrictData.cs" />
+    <Compile Include="Models\Data\Data\ProvinceData.cs" />
+    <Compile Include="Models\Data\Data\UserProfileData.cs" />
     <Compile Include="Models\Data\District.cs">
       <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Data\DTO\StudentDTO.cs" />
+    <Compile Include="Models\Domain\DTO\CantonDTO.cs" />
+    <Compile Include="Models\Domain\DTO\DistrictDTO.cs" />
+    <Compile Include="Models\Domain\DTO\ProfessorDTO.cs" />
+    <Compile Include="Models\Domain\DTO\ProvinceDTO.cs" />
+    <Compile Include="Models\Domain\DTO\StudentDTO.cs" />
     <Compile Include="Models\Data\Professor.cs">
       <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
     </Compile>
@@ -170,6 +179,7 @@
     <Compile Include="Models\Data\UserProfile.cs">
       <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Domain\DTO\UserProfileDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -225,10 +235,10 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\UserProfile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Domain\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

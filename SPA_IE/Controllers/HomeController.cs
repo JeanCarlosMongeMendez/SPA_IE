@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SPA_IE.Models.Data.Data;
+using SPA_IE.Models.Data.DTO;
+using SPA_IE.Models.Domain.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,12 +11,20 @@ namespace SPA_IE.Controllers
 {
     public class HomeController : Controller
     {
+        CantonData cantonData = new CantonData();
+        ProvinceData provinceData = new ProvinceData();
+        UserProfileData userProfileData = new UserProfileData();
 
-   
+
+
         public ActionResult Index()
         {
-            return View();
+            IEnumerable<ProvinceDTO> userProfiles = provinceData.ListAllProvince();
+            return View(userProfiles);
+           
         }
+
+
 
         public ActionResult About()
         {
@@ -28,5 +39,7 @@ namespace SPA_IE.Controllers
 
             return View();
         }
+
+        
     }
 }

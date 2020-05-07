@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="255c647b39834bc9afb625da4fdbfd13" Name="Diagram1">
         <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model.Canton" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model.Course" Width="1.5" PointX="2.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model.Course" Width="1.5" PointX="2.75" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model.District" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model.Professor" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model.Province" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
@@ -17,6 +17,10 @@
         <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model.FK__Professor__idUse__245D67DE" ManuallyRouted="false" />
         <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model.FK__UserProfi__idPro__1DB06A4F" ManuallyRouted="false" />
         <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model.FK__Student__idUserP__2739D489" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model.FK__Course__createBy__503BEA1C" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model.FK__Professor__creat__4E53A1AA" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model.FK__Student__createB__4F47C5E3" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model.FK__UserProfi__creat__4D5F7D71" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
