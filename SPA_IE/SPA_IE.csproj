@@ -129,6 +129,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfessorController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
@@ -163,6 +164,7 @@
       <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\Data\CantonData.cs" />
+    <Compile Include="Models\Data\Data\CourseData.cs" />
     <Compile Include="Models\Data\Data\DistrictData.cs" />
     <Compile Include="Models\Data\Data\ProfessorData.cs" />
     <Compile Include="Models\Data\Data\ProvinceData.cs" />
@@ -171,10 +173,16 @@
     <Compile Include="Models\Data\District.cs">
       <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Data\GetByIdCourse_Result.cs">
+      <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Data\Professor.cs">
       <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\Province.cs">
+      <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Data\SelectCourse_Result.cs">
       <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\Student.cs">
@@ -251,6 +259,9 @@
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Student\Create.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
+    <Content Include="Views\Course\Index.cshtml" />
+    <Content Include="Views\Course\Create.cshtml" />
+    <Content Include="Views\Course\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

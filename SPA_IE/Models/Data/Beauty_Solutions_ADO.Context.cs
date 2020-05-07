@@ -138,5 +138,123 @@ namespace SPA_IE.Models.Data
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deleteStudentSP", idStudentParameter);
         }
+    
+        public virtual int deleteCourse(Nullable<int> idCourse)
+        {
+            var idCourseParameter = idCourse.HasValue ?
+                new ObjectParameter("idCourse", idCourse) :
+                new ObjectParameter("idCourse", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deleteCourse", idCourseParameter);
+        }
+    
+        public virtual ObjectResult<GetByIdCourse_Result> GetByIdCourse(Nullable<int> idCourse)
+        {
+            var idCourseParameter = idCourse.HasValue ?
+                new ObjectParameter("idCourse", idCourse) :
+                new ObjectParameter("idCourse", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetByIdCourse_Result>("GetByIdCourse", idCourseParameter);
+        }
+    
+        public virtual int InsertUpdateCourse(Nullable<int> idCourse, string name, Nullable<bool> state, string semestrer, string description, string action)
+        {
+            var idCourseParameter = idCourse.HasValue ?
+                new ObjectParameter("idCourse", idCourse) :
+                new ObjectParameter("idCourse", typeof(int));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var stateParameter = state.HasValue ?
+                new ObjectParameter("state", state) :
+                new ObjectParameter("state", typeof(bool));
+    
+            var semestrerParameter = semestrer != null ?
+                new ObjectParameter("semestrer", semestrer) :
+                new ObjectParameter("semestrer", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("description", description) :
+                new ObjectParameter("description", typeof(string));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("Action", action) :
+                new ObjectParameter("Action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertUpdateCourse", idCourseParameter, nameParameter, stateParameter, semestrerParameter, descriptionParameter, actionParameter);
+        }
+    
+        public virtual ObjectResult<SelectCourse_Result> SelectCourse()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectCourse_Result>("SelectCourse");
+        }
+    
+        public virtual ObjectResult<Course> GetByIdCourseSP(Nullable<int> idCourse)
+        {
+            var idCourseParameter = idCourse.HasValue ?
+                new ObjectParameter("idCourse", idCourse) :
+                new ObjectParameter("idCourse", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Course>("GetByIdCourseSP", idCourseParameter);
+        }
+    
+        public virtual ObjectResult<Course> GetByIdCourseSP(Nullable<int> idCourse, MergeOption mergeOption)
+        {
+            var idCourseParameter = idCourse.HasValue ?
+                new ObjectParameter("idCourse", idCourse) :
+                new ObjectParameter("idCourse", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Course>("GetByIdCourseSP", mergeOption, idCourseParameter);
+        }
+    
+        public virtual int InsertUpdateCourseSP(Nullable<int> idCourse, string name, Nullable<bool> state, string semestrer, string description, string action)
+        {
+            var idCourseParameter = idCourse.HasValue ?
+                new ObjectParameter("idCourse", idCourse) :
+                new ObjectParameter("idCourse", typeof(int));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var stateParameter = state.HasValue ?
+                new ObjectParameter("state", state) :
+                new ObjectParameter("state", typeof(bool));
+    
+            var semestrerParameter = semestrer != null ?
+                new ObjectParameter("semestrer", semestrer) :
+                new ObjectParameter("semestrer", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("description", description) :
+                new ObjectParameter("description", typeof(string));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("Action", action) :
+                new ObjectParameter("Action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertUpdateCourseSP", idCourseParameter, nameParameter, stateParameter, semestrerParameter, descriptionParameter, actionParameter);
+        }
+    
+        public virtual int deleteCourseSP(Nullable<int> idCourse)
+        {
+            var idCourseParameter = idCourse.HasValue ?
+                new ObjectParameter("idCourse", idCourse) :
+                new ObjectParameter("idCourse", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deleteCourseSP", idCourseParameter);
+        }
+    
+        public virtual ObjectResult<Course> SelectCourseSP()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Course>("SelectCourseSP");
+        }
+    
+        public virtual ObjectResult<Course> SelectCourseSP(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Course>("SelectCourseSP", mergeOption);
+        }
     }
 }

@@ -187,11 +187,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="deleteCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="idCourse" Type="int" Mode="In" />
+        </Function>
         <Function Name="deleteProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
           <Parameter Name="idProfessor" Type="int" Mode="In" />
         </Function>
         <Function Name="deleteStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
           <Parameter Name="idStudent" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetByIdCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="idCourse" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertUpdateCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="idCourse" Type="int" Mode="In" />
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+          <Parameter Name="state" Type="bit" Mode="In" />
+          <Parameter Name="semestrer" Type="nvarchar" Mode="In" />
+          <Parameter Name="description" Type="nvarchar" Mode="In" />
+          <Parameter Name="Action" Type="varchar" Mode="In" />
         </Function>
         <Function Name="InsertUpdateProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
           <Parameter Name="idProfessor" Type="int" Mode="In" />
@@ -203,6 +217,7 @@
           <Parameter Name="identificationCard" Type="nvarchar" Mode="In" />
           <Parameter Name="Action" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SelectCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020" />
         <EntityContainer Name="IF4101_BeatySolutions_ISem_2020ModelStoreContainer">
           <EntitySet Name="Canton" EntityType="Self.Canton" Schema="BS_ISem_2020" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="BS_ISem_2020" store:Type="Tables" />
@@ -463,6 +478,36 @@
           <FunctionImport Name="deleteStudentSP">
           <Parameter Name="idStudent" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="deleteCourse">
+            <Parameter Name="idCourse" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetByIdCourse" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model.GetByIdCourse_Result)">
+            <Parameter Name="idCourse" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertUpdateCourse">
+            <Parameter Name="idCourse" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="state" Mode="In" Type="Boolean" />
+            <Parameter Name="semestrer" Mode="In" Type="String" />
+            <Parameter Name="description" Mode="In" Type="String" />
+            <Parameter Name="Action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SelectCourse" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model.SelectCourse_Result)" />
+          <FunctionImport Name="GetByIdCourseSP" EntitySet="Course" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model.Course)">
+            <Parameter Name="idCourse" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertUpdateCourseSP">
+            <Parameter Name="idCourse" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="state" Mode="In" Type="Boolean" />
+            <Parameter Name="semestrer" Mode="In" Type="String" />
+            <Parameter Name="description" Mode="In" Type="String" />
+            <Parameter Name="Action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="deleteCourseSP">
+            <Parameter Name="idCourse" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SelectCourseSP" EntitySet="Course" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model.Course)" />
         </EntityContainer>
         <Association Name="FK__Course__createBy__503BEA1C">
           <End Type="IF4101_BeatySolutions_ISem_2020Model.UserProfile" Role="UserProfile" Multiplicity="0..1" />
@@ -512,6 +557,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="GetByIdCourse_Result">
+          <Property Type="Int32" Name="idCourse" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="state" Nullable="false" />
+          <Property Type="String" Name="semestrer" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="description" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="image" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="createBy" Nullable="true" />
+          <Property Type="DateTime" Name="creationDate" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SelectCourse_Result">
+          <Property Type="Int32" Name="idCourse" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="state" Nullable="false" />
+          <Property Type="String" Name="semestrer" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="description" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="image" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="createBy" Nullable="true" />
+          <Property Type="DateTime" Name="creationDate" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -607,6 +672,40 @@
           <FunctionImportMapping FunctionImportName="InsertUpdateStudent" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.InsertUpdateStudent" />
           <FunctionImportMapping FunctionImportName="InsertUpdateStudentSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.InsertUpdateStudent" />
           <FunctionImportMapping FunctionImportName="deleteStudentSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.deleteStudent" />
+          <FunctionImportMapping FunctionImportName="deleteCourse" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.deleteCourse" />
+          <FunctionImportMapping FunctionImportName="GetByIdCourse" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.GetByIdCourse">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model.GetByIdCourse_Result">
+                <ScalarProperty Name="idCourse" ColumnName="idCourse" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="semestrer" ColumnName="semestrer" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="createBy" ColumnName="createBy" />
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InsertUpdateCourse" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.InsertUpdateCourse" />
+          <FunctionImportMapping FunctionImportName="SelectCourse" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.SelectCourse">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model.SelectCourse_Result">
+                <ScalarProperty Name="idCourse" ColumnName="idCourse" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="semestrer" ColumnName="semestrer" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="createBy" ColumnName="createBy" />
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetByIdCourseSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.GetByIdCourse" />
+          <FunctionImportMapping FunctionImportName="InsertUpdateCourseSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.InsertUpdateCourse" />
+          <FunctionImportMapping FunctionImportName="deleteCourseSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.deleteCourse" />
+          <FunctionImportMapping FunctionImportName="SelectCourseSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.SelectCourse" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
