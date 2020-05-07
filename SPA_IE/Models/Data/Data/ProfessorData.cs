@@ -1,9 +1,7 @@
 ﻿using SPA_IE.Models.Domain.DTO;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Web;
 
 namespace SPA_IE.Models.Data.Data
 {
@@ -11,7 +9,7 @@ namespace SPA_IE.Models.Data.Data
     {
         public List<ProfessorDTO> ListAllProfessor()
         {
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities())
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 var professors = (from professor in context.Professor
                                   join userProfile in context.UserProfile on professor.idUserProfile equals userProfile.idUserProfile
@@ -23,7 +21,12 @@ namespace SPA_IE.Models.Data.Data
                                       IdProfessor = professor.idProfessor,
                                       Degree = professor.degree,
                                       username = userProfile.username,
-                                      idUserProfile = userProfile.idUserProfile
+                                      idUserProfile = userProfile.idUserProfile,
+                                      creationDate = (DateTime)userProfile.creationDate,
+
+
+
+
                                   }).ToList();
                 return professors;
             }
@@ -31,7 +34,7 @@ namespace SPA_IE.Models.Data.Data
 
         public ProfessorDTO GetById(int id)
         {
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities())
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 var professorToReturn = (from professor in context.Professor
                                          join userProfile in context.UserProfile on professor.idUserProfile equals userProfile.idUserProfile
@@ -43,7 +46,17 @@ namespace SPA_IE.Models.Data.Data
                                              IdProfessor = professor.idProfessor,
                                              Degree = professor.degree,
                                              username = userProfile.username,
-                                             idUserProfile = userProfile.idUserProfile
+                                             idUserProfile = userProfile.idUserProfile,
+                                             password = userProfile.password,
+                                             interests = userProfile.interests,
+                                             email = userProfile.email,
+                                             nameProvince = province.name,
+                                             idCanton = canton.idCanton,
+                                             nameCanton = canton.name,
+                                             nameDistrict = district.name,
+
+
+
                                          }).Where(x => x.IdProfessor == id).Single();
                 return professorToReturn;
             }
@@ -51,19 +64,19 @@ namespace SPA_IE.Models.Data.Data
 
         public void Update(ProfessorDTO professorDTO)
         {
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities())
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 var userProfile = context.UserProfile.First<UserProfile>(user => user.idUserProfile.Equals(professorDTO.idUserProfile));
                 userProfile.username = professorDTO.username;
-                userProfile.password = "pass";
+                userProfile.password = professorDTO.password;
                 userProfile.userPhoto = "photo";
-                userProfile.interests = "Games";
-                userProfile.email = "@";
+                userProfile.interests = professorDTO.interests;
+                userProfile.email = professorDTO.email;
                 userProfile.isAdmin = false;
                 userProfile.isEnable = true;
-                userProfile.idCanton = 1;
-                userProfile.idDistrict = 1;
-                userProfile.idProvince = 1;
+                userProfile.idCanton = professorDTO.idCanton;
+                userProfile.idProvince = professorDTO.idProvince;
+                userProfile.idDistrict = professorDTO.idDistrict;
                 userProfile.creationDate = DateTime.Now;
                 userProfile.createBy = null;
                 context.SaveChanges();
@@ -76,19 +89,19 @@ namespace SPA_IE.Models.Data.Data
 
         public void Add(ProfessorDTO professorDTO)
         {
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities())
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 UserProfile userProfile = new UserProfile();
                 userProfile.username = professorDTO.username;
                 userProfile.password = "pass";
-                userProfile.userPhoto = "photo";
-                userProfile.interests = "Games";
-                userProfile.email = "@";
-                userProfile.isAdmin = false;
+                userProfile.userPhoto = null;
+                userProfile.interests = null;
+                userProfile.email = professorDTO.email;
+                userProfile.isAdmin = professorDTO.isAdmin;
                 userProfile.isEnable = true;
-                userProfile.idCanton = 1;
-                userProfile.idDistrict = 1;
-                userProfile.idProvince = 1;
+                userProfile.idCanton = professorDTO.idCanton;
+                userProfile.idDistrict = professorDTO.idProvince;
+                userProfile.idProvince = professorDTO.idDistrict;
                 userProfile.creationDate = DateTime.Now;
                 userProfile.createBy = null;
                 context.UserProfile.Add(userProfile);
@@ -103,7 +116,7 @@ namespace SPA_IE.Models.Data.Data
 
         public int Delete(int id)
         {
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities())
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 var resultToReturn = context.deleteProfessorSP(id);
                 return resultToReturn;

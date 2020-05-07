@@ -1,8 +1,5 @@
 ﻿using SPA_IE.Models.Domain.DTO;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace SPA_IE.Models.Data.DTO
 {
@@ -10,5 +7,9 @@ namespace SPA_IE.Models.Data.DTO
     {
         public int IdStudent { get; set; }
         public string IdentificationCard { get; set; }
+
+        public Nullable<bool> isASIP { get; set; }
+        public Nullable<bool> isActive { get; set; }
+
     }
 }

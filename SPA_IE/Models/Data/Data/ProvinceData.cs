@@ -1,8 +1,6 @@
 ﻿using SPA_IE.Models.Domain.DTO;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace SPA_IE.Models.Data.Data
 {
@@ -12,7 +10,7 @@ namespace SPA_IE.Models.Data.Data
         {
             List<ProvinceDTO> provinces = null;
 
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities())
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 provinces = context.Province
                   .Select(provinceItem => new ProvinceDTO()
@@ -32,15 +30,15 @@ namespace SPA_IE.Models.Data.Data
 
         public ProvinceDTO GetById(int id)
         {
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities())
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
 
                 var provinceToReturn = (from provinceItem in context.Province
-                                      select new ProvinceDTO
-                                      {
-                                          IdProvince = provinceItem.idProvince,
-                                          Name = provinceItem.name,
-                                      }).Where(x => x.IdProvince == id).Single();
+                                        select new ProvinceDTO
+                                        {
+                                            IdProvince = provinceItem.idProvince,
+                                            Name = provinceItem.name,
+                                        }).Where(x => x.IdProvince == id).Single();
 
 
                 return provinceToReturn;

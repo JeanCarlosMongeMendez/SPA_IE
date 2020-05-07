@@ -14,7 +14,16 @@ namespace SPA_IE.Models.Data
     
     public partial class Canton
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Canton()
+        {
+            this.UserProfile = new HashSet<UserProfile>();
+        }
+    
         public int idCanton { get; set; }
         public string name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserProfile> UserProfile { get; set; }
     }
 }

@@ -1,9 +1,7 @@
 ﻿using SPA_IE.Models.Data.Data;
 using SPA_IE.Models.Data.DTO;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SPA_IE.Controllers
@@ -12,6 +10,9 @@ namespace SPA_IE.Controllers
     {
         // GET: Student
         StudentData studentData = new StudentData();
+        ProvinceData provinceData = new ProvinceData();
+        CantonData cantonData = new CantonData();
+        DistrictData districtData = new DistrictData();
         public ActionResult Index()
         {
             IEnumerable<StudentDTO> students = studentData.ListAllStudents();
@@ -19,7 +20,14 @@ namespace SPA_IE.Controllers
         }
         public ActionResult Create()
         {
+            var provinces = new SelectList(provinceData.ListAllProvince(), "IdProvince", "Name");
+            ViewData["provinces"] = provinces;
 
+            var cantons = new SelectList(cantonData.ListAllCanton(), "IdCanton", "Name");
+            ViewData["cantons"] = provinces;
+
+            var districts = new SelectList(districtData.ListAllDistrict(), "IdDistrict", "Name");
+            ViewData["districts"] = districts;
 
             return View();
         }
@@ -29,14 +37,31 @@ namespace SPA_IE.Controllers
         {
             studentData.Add(student);
 
-            return View("Index", studentData.ListAllStudents().AsEnumerable());
+
+            return View("Index",studentData.ListAllStudents().AsEnumerable());
         }
         public ActionResult Edit(int id)
         {
 
-            StudentDTO student= studentData.GetById(id);
+            StudentDTO student = studentData.GetById(id);
+
+
+
+            var provinces = new SelectList(provinceData.ListAllProvince(), "IdProvince", "Name");
+            ViewData["provinces"] = provinces;
+
+            var cantons = new SelectList(cantonData.ListAllCanton(), "IdCanton", "Name");
+            ViewData["cantons"] = cantons;
+
+            var districts = new SelectList(districtData.ListAllDistrict(), "IdDistrict", "Name");
+            ViewData["districts"] = districts;
+
+            ViewData["idProvince"] = student.idProvince;
+            ViewData["idCanton"] = student.idDistrict;
+            ViewData["idDistrict"] = student.idDistrict;
 
             return View(student);
+
         }
 
         [HttpPost]
@@ -51,6 +76,5 @@ namespace SPA_IE.Controllers
             studentData.Delete(id);
             return View("Index", studentData.ListAllStudents().AsEnumerable());
         }
-
     }
 }

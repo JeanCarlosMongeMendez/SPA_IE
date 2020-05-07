@@ -10,20 +10,16 @@
 namespace SPA_IE.Models.Data
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class District
+    public partial class GetByIdCourse_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public District()
-        {
-            this.UserProfile = new HashSet<UserProfile>();
-        }
-    
-        public int idDistrict { get; set; }
+        public int idCourse { get; set; }
         public string name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserProfile> UserProfile { get; set; }
+        public bool state { get; set; }
+        public string semestrer { get; set; }
+        public string description { get; set; }
+        public string image { get; set; }
+        public Nullable<int> createBy { get; set; }
+        public Nullable<System.DateTime> creationDate { get; set; }
     }
 }

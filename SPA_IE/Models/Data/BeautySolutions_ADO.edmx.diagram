@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6b274e2e26c241a19ca0ff997e8e01ed" Name="Diagram1">
+        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.Canton" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.Course" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.District" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.Professor" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.Province" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.Student" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.UserProfile" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__idCan__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Course__createBy__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__idDis__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Professor__creat__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Professor__idUse__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__idPro__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__createB__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__idUserP__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__creat__31EC6D26" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
