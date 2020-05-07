@@ -56,8 +56,8 @@
           <Property Name="idStudent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="identificationCard" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="idUserProfile" Type="int" Nullable="false" />
-          <Property Name="isASIP" Type="bit" Nullable="false" />
-          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isASIP" Type="bit" />
+          <Property Name="isActive" Type="bit" />
           <Property Name="createBy" Type="int" />
           <Property Name="creationDate" Type="date" />
         </EntityType>
@@ -187,6 +187,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="deleteProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="idProfessor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="deleteStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="idStudent" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertUpdateProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="idProfessor" Type="int" Mode="In" />
+          <Parameter Name="degree" Type="nvarchar" Mode="In" />
+          <Parameter Name="Action" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="InsertUpdateStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="idStudent" Type="int" Mode="In" />
+          <Parameter Name="identificationCard" Type="nvarchar" Mode="In" />
+          <Parameter Name="Action" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="IF4101_BeatySolutions_ISem_2020ModelStoreContainer">
           <EntitySet Name="Canton" EntityType="Self.Canton" Schema="BS_ISem_2020" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="BS_ISem_2020" store:Type="Tables" />
@@ -271,10 +287,8 @@
           <Property Name="idProfessor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="degree" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="idUserProfile" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="UserProfile" Relationship="Self.FK__Professor__idUse__245D67DE" FromRole="Professor" ToRole="UserProfile" />
           <Property Name="createBy" Type="Int32" />
           <Property Name="creationDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="UserProfile1" Relationship="IF4101_BeatySolutions_ISem_2020Model.FK__Professor__creat__4E53A1AA" FromRole="Professor" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="Province">
           <Key>
@@ -290,12 +304,10 @@
           <Property Name="idStudent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="identificationCard" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="idUserProfile" Type="Int32" Nullable="false" />
-          <Property Name="isASIP" Type="Boolean" Nullable="false" />
-          <Property Name="isActive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="UserProfile" Relationship="Self.FK__Student__idUserP__2739D489" FromRole="Student" ToRole="UserProfile" />
+          <Property Name="isASIP" Type="Boolean" />
+          <Property Name="isActive" Type="Boolean" />
           <Property Name="createBy" Type="Int32" />
           <Property Name="creationDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="UserProfile1" Relationship="IF4101_BeatySolutions_ISem_2020Model.FK__Student__createB__4F47C5E3" FromRole="Student" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
@@ -340,8 +352,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Professor__idUse__245D67DE">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
-          <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
+          <End Type="Self.UserProfile" Multiplicity="1" Role="UserProfile" />
+          <End Type="Self.Professor" Multiplicity="*" Role="Professor" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
               <PropertyRef Name="idUserProfile" />
@@ -364,8 +376,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Student__idUserP__2739D489">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
-          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <End Type="Self.UserProfile" Multiplicity="1" Role="UserProfile" />
+          <End Type="Self.Student" Multiplicity="*" Role="Student" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
               <PropertyRef Name="idUserProfile" />
@@ -392,16 +404,16 @@
             <End Role="UserProfile" EntitySet="UserProfile" />
           </AssociationSet>
           <AssociationSet Name="FK__Professor__idUse__245D67DE" Association="Self.FK__Professor__idUse__245D67DE">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="Professor" EntitySet="Professor" />
+            <End EntitySet="UserProfile" Role="UserProfile" />
+            <End EntitySet="Professor" Role="Professor" />
           </AssociationSet>
           <AssociationSet Name="FK__UserProfi__idPro__1DB06A4F" Association="Self.FK__UserProfi__idPro__1DB06A4F">
             <End Role="Province" EntitySet="Province" />
             <End Role="UserProfile" EntitySet="UserProfile" />
           </AssociationSet>
           <AssociationSet Name="FK__Student__idUserP__2739D489" Association="Self.FK__Student__idUserP__2739D489">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="Student" EntitySet="Student" />
+            <End EntitySet="UserProfile" Role="UserProfile" />
+            <End EntitySet="Student" Role="Student" />
           </AssociationSet>
           <AssociationSet Name="FK__Course__createBy__503BEA1C" Association="IF4101_BeatySolutions_ISem_2020Model.FK__Course__createBy__503BEA1C">
             <End Role="UserProfile" EntitySet="UserProfile" />
@@ -419,6 +431,38 @@
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="UserProfile1" EntitySet="UserProfile" />
           </AssociationSet>
+          <FunctionImport Name="InsertUpdateProfessor">
+            <Parameter Name="idProfessor" Mode="In" Type="Int32" />
+            <Parameter Name="degree" Mode="In" Type="String" />
+            <Parameter Name="Action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertUpdateProfessorSP">
+            <Parameter Name="idProfessor" Mode="In" Type="Int32" />
+            <Parameter Name="degree" Mode="In" Type="String" />
+            <Parameter Name="Action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="deleteProfessor">
+          <Parameter Name="idProfessor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="deleteProfessorSP">
+          <Parameter Name="idProfessor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="deleteStudent">
+          <Parameter Name="idStudent" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertUpdateStudent">
+            <Parameter Name="idStudent" Mode="In" Type="Int32" />
+            <Parameter Name="identificationCard" Mode="In" Type="String" />
+            <Parameter Name="Action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertUpdateStudentSP">
+            <Parameter Name="idStudent" Mode="In" Type="Int32" />
+            <Parameter Name="identificationCard" Mode="In" Type="String" />
+            <Parameter Name="Action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="deleteStudentSP">
+          <Parameter Name="idStudent" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <Association Name="FK__Course__createBy__503BEA1C">
           <End Type="IF4101_BeatySolutions_ISem_2020Model.UserProfile" Role="UserProfile" Multiplicity="0..1" />
@@ -555,6 +599,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="InsertUpdateProfessor" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.InsertUpdateProfessor" />
+          <FunctionImportMapping FunctionImportName="InsertUpdateProfessorSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.InsertUpdateProfessor" />
+          <FunctionImportMapping FunctionImportName="deleteProfessor" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.deleteProfessor" />
+          <FunctionImportMapping FunctionImportName="deleteProfessorSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.deleteProfessor" />
+          <FunctionImportMapping FunctionImportName="deleteStudent" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.deleteStudent" />
+          <FunctionImportMapping FunctionImportName="InsertUpdateStudent" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.InsertUpdateStudent" />
+          <FunctionImportMapping FunctionImportName="InsertUpdateStudentSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.InsertUpdateStudent" />
+          <FunctionImportMapping FunctionImportName="deleteStudentSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.deleteStudent" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

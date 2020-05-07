@@ -7,8 +7,8 @@ namespace SPA_IE.Models.Data.DTO
 {
     public class CantonDTO
     {
-        public int idCanton { get; set; }
-        public string name { get; set; }
+        public int IdCanton { get; set; }
+        public string Name { get; set; }
 
 
     }

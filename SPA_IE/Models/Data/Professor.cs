@@ -19,8 +19,5 @@ namespace SPA_IE.Models.Data
         public int idUserProfile { get; set; }
         public Nullable<int> createBy { get; set; }
         public Nullable<System.DateTime> creationDate { get; set; }
-    
-        public virtual UserProfile UserProfile { get; set; }
-        public virtual UserProfile UserProfile1 { get; set; }
     }
 }

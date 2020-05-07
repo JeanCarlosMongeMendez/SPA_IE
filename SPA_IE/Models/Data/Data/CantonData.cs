@@ -18,8 +18,8 @@ namespace SPA_IE.Models.Data.Data
                     cantons = context.Canton
                       .Select(cantonItem => new CantonDTO()
                       {
-                          idCanton = cantonItem.idCanton,
-                          name = cantonItem.name,
+                          IdCanton = cantonItem.idCanton,
+                          Name = cantonItem.name,
 
 
 
@@ -39,9 +39,9 @@ namespace SPA_IE.Models.Data.Data
                 var cantonToReturn = (from cantonItem in context.Canton
                                        select new CantonDTO
                                        {
-                                          idCanton = cantonItem.idCanton,
-                                          name = cantonItem.name,
-                                       }).Where(x => x.idCanton == id).Single();
+                                          IdCanton = cantonItem.idCanton,
+                                          Name = cantonItem.name,
+                                       }).Where(x => x.IdCanton == id).Single();
 
 
                 return cantonToReturn;

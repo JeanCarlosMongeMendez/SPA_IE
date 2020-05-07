@@ -14,9 +14,9 @@
         <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model.UserProfile" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
         <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model.FK__UserProfi__idCan__1CBC4616" ManuallyRouted="false" />
         <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model.FK__UserProfi__idDis__1EA48E88" ManuallyRouted="false" />
-        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model.FK__Professor__idUse__245D67DE" ManuallyRouted="false" />
+        <AssociationConnector ManuallyRouted="false" Association="IF4101_BeatySolutions_ISem_2020Model.FK__Professor__idUse__245D67DE" />
         <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model.FK__UserProfi__idPro__1DB06A4F" ManuallyRouted="false" />
-        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model.FK__Student__idUserP__2739D489" ManuallyRouted="false" />
+        <AssociationConnector ManuallyRouted="false" Association="IF4101_BeatySolutions_ISem_2020Model.FK__Student__idUserP__2739D489" />
         <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model.FK__Course__createBy__503BEA1C" />
         <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model.FK__Professor__creat__4E53A1AA" />
         <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model.FK__Student__createB__4F47C5E3" />

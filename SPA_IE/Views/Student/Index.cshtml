@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SPA_IE.Models.Domain.DTO.ProvinceDTO>
+﻿@model IEnumerable<SPA_IE.Models.Data.DTO.StudentDTO>
 
 @{
     ViewBag.Title = "Index";
@@ -13,10 +13,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.IdProvince)
+            @Html.DisplayNameFor(model => model.IdStudent)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.IdentificationCard)
         </th>
         <th></th>
     </tr>
@@ -24,15 +24,15 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.IdProvince)
+            @Html.DisplayFor(modelItem => item.IdStudent)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.IdentificationCard)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.IdStudent}) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Delete", "Delete", new { id = item.IdStudent })
         </td>
     </tr>
 }

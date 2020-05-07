@@ -17,8 +17,8 @@ namespace SPA_IE.Models.Data.Data
                 districts = context.District
                   .Select(districtItem => new DistrictDTO()
                   {
-                      idDistrict = districtItem.idDistrict,
-                      name = districtItem.name,
+                      IdDistrict = districtItem.idDistrict,
+                      Name = districtItem.name,
 
 
 
@@ -38,9 +38,9 @@ namespace SPA_IE.Models.Data.Data
                 var districtToReturn = (from districtItem in context.District
                                         select new DistrictDTO
                                         {
-                                            idDistrict = districtItem.idDistrict,
-                                            name = districtItem.name,
-                                        }).Where(x => x.idDistrict == id).Single();
+                                            IdDistrict = districtItem.idDistrict,
+                                            Name = districtItem.name,
+                                        }).Where(x => x.IdDistrict == id).Single();
 
 
                 return districtToReturn;

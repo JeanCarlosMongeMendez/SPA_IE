@@ -7,7 +7,7 @@ namespace SPA_IE.Models.Domain.DTO
 {
     public class DistrictDTO
     {
-        public int idDistrict { get; set; }
-        public string name { get; set; }
+        public int IdDistrict { get; set; }
+        public string Name { get; set; }
     }
 }
