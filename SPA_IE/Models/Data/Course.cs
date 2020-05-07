@@ -20,5 +20,9 @@ namespace SPA_IE.Models.Data
         public string semestrer { get; set; }
         public string description { get; set; }
         public string image { get; set; }
+        public Nullable<int> createBy { get; set; }
+        public Nullable<System.DateTime> creationDate { get; set; }
+    
+        public virtual UserProfile UserProfile { get; set; }
     }
 }

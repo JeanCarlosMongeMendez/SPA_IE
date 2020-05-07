@@ -133,6 +133,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfessorController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -151,16 +154,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Beauty_Solutions_ADO.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Data\Beauty_Solutions_ADO1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Beauty_Solutions_ADO.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Data\Canton.cs">
       <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\Course.cs">
       <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Data\Data\CantonData.cs" />
+    <Compile Include="Models\Data\Data\DistrictData.cs" />
+    <Compile Include="Models\Data\Data\ProfessorData.cs" />
+    <Compile Include="Models\Data\Data\ProvinceData.cs" />
+    <Compile Include="Models\Data\Data\StudentData.cs" />
+    <Compile Include="Models\Data\Data\UserProfileData.cs" />
     <Compile Include="Models\Data\District.cs">
       <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Data\DTO\StudentDTO.cs" />
     <Compile Include="Models\Data\Professor.cs">
       <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
     </Compile>
@@ -173,6 +186,12 @@
     <Compile Include="Models\Data\UserProfile.cs">
       <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Domain\DTO\CantonDTO.cs" />
+    <Compile Include="Models\Domain\DTO\DistrictDTO.cs" />
+    <Compile Include="Models\Domain\DTO\ProfessorDTO.cs" />
+    <Compile Include="Models\Domain\DTO\ProvinceDTO.cs" />
+    <Compile Include="Models\Domain\DTO\StudentDTO.cs" />
+    <Compile Include="Models\Domain\DTO\UserProfileDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -227,7 +246,7 @@
     </Content>
     <EntityDeploy Include="Models\Data\Beauty_Solutions_ADO.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Beauty_Solutions_ADO.Designer.cs</LastGenOutput>
+      <LastGenOutput>Beauty_Solutions_ADO1.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Models\Data\Beauty_Solutions_ADO.edmx.diagram">
       <DependentUpon>Beauty_Solutions_ADO.edmx</DependentUpon>
@@ -266,6 +285,13 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\UserProfile\Index.cshtml" />
+    <Content Include="Views\Professor\Index.cshtml" />
+    <Content Include="Views\Professor\Create.cshtml" />
+    <Content Include="Views\Professor\Edit.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Student\Create.cshtml" />
+    <Content Include="Views\Student\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

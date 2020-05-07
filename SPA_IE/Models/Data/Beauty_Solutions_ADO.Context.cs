@@ -12,6 +12,8 @@ namespace SPA_IE.Models.Data
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class IF4101_BeatySolutions_ISem_2020Entities : DbContext
     {
@@ -32,5 +34,109 @@ namespace SPA_IE.Models.Data
         public virtual DbSet<Province> Province { get; set; }
         public virtual DbSet<Student> Student { get; set; }
         public virtual DbSet<UserProfile> UserProfile { get; set; }
+    
+        public virtual int InsertUpdateProfessor(Nullable<int> idProfessor, string degree, string action)
+        {
+            var idProfessorParameter = idProfessor.HasValue ?
+                new ObjectParameter("idProfessor", idProfessor) :
+                new ObjectParameter("idProfessor", typeof(int));
+    
+            var degreeParameter = degree != null ?
+                new ObjectParameter("degree", degree) :
+                new ObjectParameter("degree", typeof(string));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("Action", action) :
+                new ObjectParameter("Action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertUpdateProfessor", idProfessorParameter, degreeParameter, actionParameter);
+        }
+    
+        public virtual int InsertUpdateProfessorSP(Nullable<int> idProfessor, string degree, string action)
+        {
+            var idProfessorParameter = idProfessor.HasValue ?
+                new ObjectParameter("idProfessor", idProfessor) :
+                new ObjectParameter("idProfessor", typeof(int));
+    
+            var degreeParameter = degree != null ?
+                new ObjectParameter("degree", degree) :
+                new ObjectParameter("degree", typeof(string));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("Action", action) :
+                new ObjectParameter("Action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertUpdateProfessorSP", idProfessorParameter, degreeParameter, actionParameter);
+        }
+    
+        public virtual int deleteProfessor(Nullable<int> idProfessor)
+        {
+            var idProfessorParameter = idProfessor.HasValue ?
+                new ObjectParameter("idProfessor", idProfessor) :
+                new ObjectParameter("idProfessor", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deleteProfessor", idProfessorParameter);
+        }
+    
+        public virtual int deleteProfessorSP(Nullable<int> idProfessor)
+        {
+            var idProfessorParameter = idProfessor.HasValue ?
+                new ObjectParameter("idProfessor", idProfessor) :
+                new ObjectParameter("idProfessor", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deleteProfessorSP", idProfessorParameter);
+        }
+    
+        public virtual int deleteStudent(Nullable<int> idStudent)
+        {
+            var idStudentParameter = idStudent.HasValue ?
+                new ObjectParameter("idStudent", idStudent) :
+                new ObjectParameter("idStudent", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deleteStudent", idStudentParameter);
+        }
+    
+        public virtual int InsertUpdateStudent(Nullable<int> idStudent, string identificationCard, string action)
+        {
+            var idStudentParameter = idStudent.HasValue ?
+                new ObjectParameter("idStudent", idStudent) :
+                new ObjectParameter("idStudent", typeof(int));
+    
+            var identificationCardParameter = identificationCard != null ?
+                new ObjectParameter("identificationCard", identificationCard) :
+                new ObjectParameter("identificationCard", typeof(string));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("Action", action) :
+                new ObjectParameter("Action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertUpdateStudent", idStudentParameter, identificationCardParameter, actionParameter);
+        }
+    
+        public virtual int InsertUpdateStudentSP(Nullable<int> idStudent, string identificationCard, string action)
+        {
+            var idStudentParameter = idStudent.HasValue ?
+                new ObjectParameter("idStudent", idStudent) :
+                new ObjectParameter("idStudent", typeof(int));
+    
+            var identificationCardParameter = identificationCard != null ?
+                new ObjectParameter("identificationCard", identificationCard) :
+                new ObjectParameter("identificationCard", typeof(string));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("Action", action) :
+                new ObjectParameter("Action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertUpdateStudentSP", idStudentParameter, identificationCardParameter, actionParameter);
+        }
+    
+        public virtual int deleteStudentSP(Nullable<int> idStudent)
+        {
+            var idStudentParameter = idStudent.HasValue ?
+                new ObjectParameter("idStudent", idStudent) :
+                new ObjectParameter("idStudent", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deleteStudentSP", idStudentParameter);
+        }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="IF4101_BeatySolutions_ISem_2020Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="IF4101_BeatySolutions_ISem_2020Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Canton">
           <Key>
             <PropertyRef Name="idCanton" />
@@ -22,6 +22,8 @@
           <Property Name="semestrer" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="description" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="image" Type="nvarchar" MaxLength="200" />
+          <Property Name="createBy" Type="int" />
+          <Property Name="creationDate" Type="date" />
         </EntityType>
         <EntityType Name="District">
           <Key>
@@ -37,6 +39,8 @@
           <Property Name="idProfessor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="degree" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="idUserProfile" Type="int" Nullable="false" />
+          <Property Name="createBy" Type="int" />
+          <Property Name="creationDate" Type="date" />
         </EntityType>
         <EntityType Name="Province">
           <Key>
@@ -52,8 +56,10 @@
           <Property Name="idStudent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="identificationCard" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="idUserProfile" Type="int" Nullable="false" />
-          <Property Name="isASIP" Type="bit" Nullable="false" />
-          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isASIP" Type="bit" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="createBy" Type="int" />
+          <Property Name="creationDate" Type="date" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
@@ -70,7 +76,33 @@
           <Property Name="idCanton" Type="int" Nullable="false" />
           <Property Name="idProvince" Type="int" Nullable="false" />
           <Property Name="idDistrict" Type="int" Nullable="false" />
+          <Property Name="createBy" Type="int" />
+          <Property Name="creationDate" Type="datetime" />
         </EntityType>
+        <Association Name="FK__Course__createBy__503BEA1C">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="idUserProfile" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="createBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Professor__creat__4E53A1AA">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+          <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="idUserProfile" />
+            </Principal>
+            <Dependent Role="Professor">
+              <PropertyRef Name="createBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Professor__idUse__245D67DE">
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
           <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
@@ -83,6 +115,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Student__createB__4F47C5E3">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="idUserProfile" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="createBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Student__idUserP__2739D489">
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
           <End Role="Student" Type="Self.Student" Multiplicity="*" />
@@ -92,6 +136,18 @@
             </Principal>
             <Dependent Role="Student">
               <PropertyRef Name="idUserProfile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserProfi__creat__4D5F7D71">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+          <End Role="UserProfile1" Type="Self.UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="idUserProfile" />
+            </Principal>
+            <Dependent Role="UserProfile1">
+              <PropertyRef Name="createBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -131,6 +187,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="deleteProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="idProfessor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="deleteStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="idStudent" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertUpdateProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="idProfessor" Type="int" Mode="In" />
+          <Parameter Name="degree" Type="nvarchar" Mode="In" />
+          <Parameter Name="Action" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="InsertUpdateStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="idStudent" Type="int" Mode="In" />
+          <Parameter Name="identificationCard" Type="nvarchar" Mode="In" />
+          <Parameter Name="Action" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="IF4101_BeatySolutions_ISem_2020ModelStoreContainer">
           <EntitySet Name="Canton" EntityType="Self.Canton" Schema="BS_ISem_2020" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="BS_ISem_2020" store:Type="Tables" />
@@ -139,13 +211,29 @@
           <EntitySet Name="Province" EntityType="Self.Province" Schema="BS_ISem_2020" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="BS_ISem_2020" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="BS_ISem_2020" store:Type="Tables" />
+          <AssociationSet Name="FK__Course__createBy__503BEA1C" Association="Self.FK__Course__createBy__503BEA1C">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Professor__creat__4E53A1AA" Association="Self.FK__Professor__creat__4E53A1AA">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Professor" EntitySet="Professor" />
+          </AssociationSet>
           <AssociationSet Name="FK__Professor__idUse__245D67DE" Association="Self.FK__Professor__idUse__245D67DE">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Professor" EntitySet="Professor" />
           </AssociationSet>
+          <AssociationSet Name="FK__Student__createB__4F47C5E3" Association="Self.FK__Student__createB__4F47C5E3">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
           <AssociationSet Name="FK__Student__idUserP__2739D489" Association="Self.FK__Student__idUserP__2739D489">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserProfi__creat__4D5F7D71" Association="Self.FK__UserProfi__creat__4D5F7D71">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="UserProfile1" EntitySet="UserProfile" />
           </AssociationSet>
           <AssociationSet Name="FK__UserProfi__idCan__1CBC4616" Association="Self.FK__UserProfi__idCan__1CBC4616">
             <End Role="Canton" EntitySet="Canton" />
@@ -160,8 +248,7 @@
             <End Role="UserProfile" EntitySet="UserProfile" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="IF4101_BeatySolutions_ISem_2020Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -182,6 +269,9 @@
           <Property Name="semestrer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="createBy" Type="Int32" />
+          <Property Name="creationDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="UserProfile" Relationship="IF4101_BeatySolutions_ISem_2020Model.FK__Course__createBy__503BEA1C" FromRole="Course" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="District">
           <Key>
@@ -197,7 +287,8 @@
           <Property Name="idProfessor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="degree" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="idUserProfile" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="UserProfile" Relationship="Self.FK__Professor__idUse__245D67DE" FromRole="Professor" ToRole="UserProfile" />
+          <Property Name="createBy" Type="Int32" />
+          <Property Name="creationDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Province">
           <Key>
@@ -213,9 +304,10 @@
           <Property Name="idStudent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="identificationCard" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="idUserProfile" Type="Int32" Nullable="false" />
-          <Property Name="isASIP" Type="Boolean" Nullable="false" />
-          <Property Name="isActive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="UserProfile" Relationship="Self.FK__Student__idUserP__2739D489" FromRole="Student" ToRole="UserProfile" />
+          <Property Name="isASIP" Type="Boolean" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="createBy" Type="Int32" />
+          <Property Name="creationDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
@@ -232,11 +324,8 @@
           <Property Name="idCanton" Type="Int32" Nullable="false" />
           <Property Name="idProvince" Type="Int32" Nullable="false" />
           <Property Name="idDistrict" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Canton" Relationship="Self.FK__UserProfi__idCan__1CBC4616" FromRole="UserProfile" ToRole="Canton" />
-          <NavigationProperty Name="District" Relationship="Self.FK__UserProfi__idDis__1EA48E88" FromRole="UserProfile" ToRole="District" />
-          <NavigationProperty Name="Professor" Relationship="Self.FK__Professor__idUse__245D67DE" FromRole="UserProfile" ToRole="Professor" />
-          <NavigationProperty Name="Province" Relationship="Self.FK__UserProfi__idPro__1DB06A4F" FromRole="UserProfile" ToRole="Province" />
-          <NavigationProperty Name="Student" Relationship="Self.FK__Student__idUserP__2739D489" FromRole="UserProfile" ToRole="Student" />
+          <Property Name="createBy" Type="Int32" />
+          <Property Name="creationDate" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK__UserProfi__idCan__1CBC4616">
           <End Role="Canton" Type="Self.Canton" Multiplicity="1" />
@@ -263,8 +352,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Professor__idUse__245D67DE">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
-          <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
+          <End Type="Self.UserProfile" Multiplicity="1" Role="UserProfile" />
+          <End Type="Self.Professor" Multiplicity="*" Role="Professor" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
               <PropertyRef Name="idUserProfile" />
@@ -287,8 +376,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Student__idUserP__2739D489">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
-          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <End Type="Self.UserProfile" Multiplicity="1" Role="UserProfile" />
+          <End Type="Self.Student" Multiplicity="*" Role="Student" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
               <PropertyRef Name="idUserProfile" />
@@ -315,18 +404,114 @@
             <End Role="UserProfile" EntitySet="UserProfile" />
           </AssociationSet>
           <AssociationSet Name="FK__Professor__idUse__245D67DE" Association="Self.FK__Professor__idUse__245D67DE">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="Professor" EntitySet="Professor" />
+            <End EntitySet="UserProfile" Role="UserProfile" />
+            <End EntitySet="Professor" Role="Professor" />
           </AssociationSet>
           <AssociationSet Name="FK__UserProfi__idPro__1DB06A4F" Association="Self.FK__UserProfi__idPro__1DB06A4F">
             <End Role="Province" EntitySet="Province" />
             <End Role="UserProfile" EntitySet="UserProfile" />
           </AssociationSet>
           <AssociationSet Name="FK__Student__idUserP__2739D489" Association="Self.FK__Student__idUserP__2739D489">
+            <End EntitySet="UserProfile" Role="UserProfile" />
+            <End EntitySet="Student" Role="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Course__createBy__503BEA1C" Association="IF4101_BeatySolutions_ISem_2020Model.FK__Course__createBy__503BEA1C">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Professor__creat__4E53A1AA" Association="IF4101_BeatySolutions_ISem_2020Model.FK__Professor__creat__4E53A1AA">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Professor" EntitySet="Professor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__createB__4F47C5E3" Association="IF4101_BeatySolutions_ISem_2020Model.FK__Student__createB__4F47C5E3">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Student" EntitySet="Student" />
           </AssociationSet>
+          <AssociationSet Name="FK__UserProfi__creat__4D5F7D71" Association="IF4101_BeatySolutions_ISem_2020Model.FK__UserProfi__creat__4D5F7D71">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="UserProfile1" EntitySet="UserProfile" />
+          </AssociationSet>
+          <FunctionImport Name="InsertUpdateProfessor">
+            <Parameter Name="idProfessor" Mode="In" Type="Int32" />
+            <Parameter Name="degree" Mode="In" Type="String" />
+            <Parameter Name="Action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertUpdateProfessorSP">
+            <Parameter Name="idProfessor" Mode="In" Type="Int32" />
+            <Parameter Name="degree" Mode="In" Type="String" />
+            <Parameter Name="Action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="deleteProfessor">
+          <Parameter Name="idProfessor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="deleteProfessorSP">
+          <Parameter Name="idProfessor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="deleteStudent">
+          <Parameter Name="idStudent" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertUpdateStudent">
+            <Parameter Name="idStudent" Mode="In" Type="Int32" />
+            <Parameter Name="identificationCard" Mode="In" Type="String" />
+            <Parameter Name="Action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertUpdateStudentSP">
+            <Parameter Name="idStudent" Mode="In" Type="Int32" />
+            <Parameter Name="identificationCard" Mode="In" Type="String" />
+            <Parameter Name="Action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="deleteStudentSP">
+          <Parameter Name="idStudent" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <Association Name="FK__Course__createBy__503BEA1C">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model.Course" Role="Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="idUserProfile" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="createBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Professor__creat__4E53A1AA">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model.Professor" Role="Professor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="idUserProfile" />
+            </Principal>
+            <Dependent Role="Professor">
+              <PropertyRef Name="createBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__createB__4F47C5E3">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="idUserProfile" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="createBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserProfi__creat__4D5F7D71">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model.UserProfile" Role="UserProfile1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="idUserProfile" />
+            </Principal>
+            <Dependent Role="UserProfile1">
+              <PropertyRef Name="createBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -344,6 +529,8 @@
           <EntitySetMapping Name="Course">
             <EntityTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model.Course">
               <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+                <ScalarProperty Name="createBy" ColumnName="createBy" />
                 <ScalarProperty Name="idCourse" ColumnName="idCourse" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="state" ColumnName="state" />
@@ -364,6 +551,8 @@
           <EntitySetMapping Name="Professor">
             <EntityTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model.Professor">
               <MappingFragment StoreEntitySet="Professor">
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+                <ScalarProperty Name="createBy" ColumnName="createBy" />
                 <ScalarProperty Name="idProfessor" ColumnName="idProfessor" />
                 <ScalarProperty Name="degree" ColumnName="degree" />
                 <ScalarProperty Name="idUserProfile" ColumnName="idUserProfile" />
@@ -381,6 +570,8 @@
           <EntitySetMapping Name="Student">
             <EntityTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model.Student">
               <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+                <ScalarProperty Name="createBy" ColumnName="createBy" />
                 <ScalarProperty Name="idStudent" ColumnName="idStudent" />
                 <ScalarProperty Name="identificationCard" ColumnName="identificationCard" />
                 <ScalarProperty Name="idUserProfile" ColumnName="idUserProfile" />
@@ -392,6 +583,8 @@
           <EntitySetMapping Name="UserProfile">
             <EntityTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model.UserProfile">
               <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+                <ScalarProperty Name="createBy" ColumnName="createBy" />
                 <ScalarProperty Name="idUserProfile" ColumnName="idUserProfile" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="password" ColumnName="password" />
@@ -406,6 +599,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="InsertUpdateProfessor" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.InsertUpdateProfessor" />
+          <FunctionImportMapping FunctionImportName="InsertUpdateProfessorSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.InsertUpdateProfessor" />
+          <FunctionImportMapping FunctionImportName="deleteProfessor" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.deleteProfessor" />
+          <FunctionImportMapping FunctionImportName="deleteProfessorSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.deleteProfessor" />
+          <FunctionImportMapping FunctionImportName="deleteStudent" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.deleteStudent" />
+          <FunctionImportMapping FunctionImportName="InsertUpdateStudent" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.InsertUpdateStudent" />
+          <FunctionImportMapping FunctionImportName="InsertUpdateStudentSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.InsertUpdateStudent" />
+          <FunctionImportMapping FunctionImportName="deleteStudentSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model.Store.deleteStudent" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

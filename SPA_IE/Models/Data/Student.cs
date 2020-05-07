@@ -17,9 +17,9 @@ namespace SPA_IE.Models.Data
         public int idStudent { get; set; }
         public string identificationCard { get; set; }
         public int idUserProfile { get; set; }
-        public bool isASIP { get; set; }
-        public bool isActive { get; set; }
-    
-        public virtual UserProfile UserProfile { get; set; }
+        public Nullable<bool> isASIP { get; set; }
+        public Nullable<bool> isActive { get; set; }
+        public Nullable<int> createBy { get; set; }
+        public Nullable<System.DateTime> creationDate { get; set; }
     }
 }

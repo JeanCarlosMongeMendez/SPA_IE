@@ -1,0 +1,124 @@
+﻿@model IEnumerable<SPA_IE.Models.Domain.DTO.UserProfileDTO>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idUserProfile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userPhoto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.interests)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isAdmin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isEnable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idProvince)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nameProvince)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idCanton)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nameCanton)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idDistrict)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nameDistrict)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usernameCreator)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creationDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idUserProfile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userPhoto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.interests)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isAdmin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isEnable)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idProvince)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nameProvince)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idCanton)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nameCanton)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idDistrict)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nameDistrict)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usernameCreator)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creationDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

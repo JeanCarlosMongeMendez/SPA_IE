@@ -14,13 +14,6 @@ namespace SPA_IE.Models.Data
     
     public partial class UserProfile
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UserProfile()
-        {
-            this.Professor = new HashSet<Professor>();
-            this.Student = new HashSet<Student>();
-        }
-    
         public int idUserProfile { get; set; }
         public string username { get; set; }
         public string password { get; set; }
@@ -32,13 +25,7 @@ namespace SPA_IE.Models.Data
         public int idCanton { get; set; }
         public int idProvince { get; set; }
         public int idDistrict { get; set; }
-    
-        public virtual Canton Canton { get; set; }
-        public virtual District District { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Professor> Professor { get; set; }
-        public virtual Province Province { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Student> Student { get; set; }
+        public Nullable<int> createBy { get; set; }
+        public Nullable<System.DateTime> creationDate { get; set; }
     }
 }
