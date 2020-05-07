@@ -16,8 +16,7 @@ namespace SPA_IE.Controllers
 
         public ActionResult Index()
         {
-            IEnumerable<ProvinceDTO> userProfiles = provinceData.ListAllProvince();
-            return View(userProfiles);
+            return View();
 
         }
 
