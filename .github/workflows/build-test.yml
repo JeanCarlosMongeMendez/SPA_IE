@@ -19,12 +19,6 @@ jobs:
      
     - name: Setup MSBuild Path
       uses: warrenbuckley/Setup-MSBuild@v1
-       
-    - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.0.2
-     
-    - name: Restore NuGet Packages
-      run: nuget restore SPA_IE.sln
  
     - name: Build and Publish Web App
       run: msbuild SPA_IE.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
