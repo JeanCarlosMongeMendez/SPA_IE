@@ -26,8 +26,8 @@ jobs:
      
     - name: Restore NuGet Packages
       run: nuget restore SPA_IE.sln
-      working-directory: ./SPA_IE.sln
+      working-directory: ./SPA_IE
  
     - name: Build Web App
       run: msbuild SPA_IE.sln /p:Configuration=Release /p:DeployOnBuild=false /p:PublishProfile=FolderProfile
-      working-directory: ./SPA_IE.sln
+      working-directory: ./SPA_IE
