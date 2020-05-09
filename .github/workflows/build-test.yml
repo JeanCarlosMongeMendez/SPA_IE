@@ -9,6 +9,7 @@ on:
         - master
 
 jobs: 
+ 
   build:
  
     runs-on: windows-latest
@@ -19,12 +20,14 @@ jobs:
      
     - name: Setup MSBuild Path
       uses: warrenbuckley/Setup-MSBuild@v1
+       
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.2
+     
+    - name: Restore NuGet Packages
+      run: nuget restore SPA_IE.sln
+      working-directory: ./SPA_IE.sln
  
-    - name: Build and Publish Web App
-      run: msbuild SPA_IE.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
- 
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v1.0.0
-      with:
-        name: published_webapp
-        path: bin\Release\Publish
+    - name: Build Web App
+      run: msbuild SPA_IE.sln /p:Configuration=Release /p:DeployOnBuild=false /p:PublishProfile=FolderProfile
+      working-directory: ./SPA_IE.sln
