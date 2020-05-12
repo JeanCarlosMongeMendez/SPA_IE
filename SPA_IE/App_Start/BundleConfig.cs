@@ -19,15 +19,14 @@ namespace SPA_IE
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                        "~/Scripts/js/jquery.js",
-                        "~/Scripts/js/bootstrap.min.js",
-                        "~/Scripts/js/owl.carousel.min.js",
-                        "~/Scripts/js/smoothscroll.js",
-                        "~/Scripts/js/custom.js"
-
+                        "~/Content/js/jquery.js",
+                        "~/Content/js/bootstrap.min.js",
+                        "~/Content/js/owl.carousel.min.js",
+                        "~/Content/js/smoothscroll.js",
+                        "~/Content/js/custom.js"
                       ));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/Content/css/template").Include(
                         "~/Content/css/bootstrap.min.css",
                         "~/Content/css/font-awesome.min.css",
                         "~/Content/css/owl.carousel.css",
