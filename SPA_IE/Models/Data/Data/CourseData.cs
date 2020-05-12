@@ -10,7 +10,7 @@ namespace SPA_IE.Models.Data.Data
         {
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
-                return context.SelectCourseSP().ToList();
+                return context.SPSelectCourse().ToList();
 
             }
 
@@ -22,7 +22,7 @@ namespace SPA_IE.Models.Data.Data
 
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
-                resultToReturn = context.InsertUpdateCourseSP(course.idCourse, course.name, course.state, course.semestrer, course.description, "Insert");
+                resultToReturn = context.SPInsertUpdateCourse(course.IdCourse, course.Name, course.state, course.Semestrer, course.Description,course.Image, "Insert");
             }
 
             return resultToReturn;
@@ -35,7 +35,7 @@ namespace SPA_IE.Models.Data.Data
 
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
-                resultToReturn = context.InsertUpdateCourseSP(course.idCourse, course.name, course.state, course.semestrer, course.description, "Update");
+                resultToReturn = context.SPInsertUpdateCourse(course.IdCourse, course.Name, course.state, course.Semestrer, course.Description, course.Image, "Update");
             }
 
             return resultToReturn;
@@ -46,7 +46,7 @@ namespace SPA_IE.Models.Data.Data
 
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
-                var course = context.GetByIdCourseSP(id).Single();
+                var course = context.SPGetByIdCourse(id).Single();
 
                 return course;
             }
@@ -58,7 +58,7 @@ namespace SPA_IE.Models.Data.Data
 
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
-                var resultToReturn = context.deleteCourseSP(id);
+                var resultToReturn = context.SPDeleteCourse(id);
 
                 return resultToReturn;
             }

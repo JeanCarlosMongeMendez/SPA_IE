@@ -4,21 +4,21 @@ namespace SPA_IE.Models.Domain.DTO
 {
     public class UserProfileDTO
     {
-        public int idUserProfile { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
-        public string userPhoto { get; set; }
-        public string interests { get; set; }
-        public string email { get; set; }
-        public bool isAdmin { get; set; }
-        public bool isEnable { get; set; }
-        public int idProvince { get; set; }
-        public string nameProvince { get; set; }
-        public int idCanton { get; set; }
-        public string nameCanton { get; set; }
-        public int idDistrict { get; set; }
-        public string nameDistrict { get; set; }
-        public string usernameCreator { get; set; }
-        public DateTime creationDate { get; set; }
+        public int IdUserProfile { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string UserPhoto { get; set; }
+        public string Interests { get; set; }
+        public string Email { get; set; }
+        public Nullable<bool> IsAdmin { get; set; }
+        public Nullable<bool> IsEnable { get; set; }
+        public Nullable<int> IdProvince { get; set; }
+        public string NameProvince { get; set; }
+        public Nullable<int> IdCanton { get; set; }
+        public string NameCanton { get; set; }
+        public Nullable<int> IdDistrict { get; set; }
+        public string NameDistrict { get; set; }
+        public Nullable<int> CreateBy { get; set; }
+        public Nullable<System.DateTime> CreationDate { get; set; }
     }
 }

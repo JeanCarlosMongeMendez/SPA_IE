@@ -20,9 +20,11 @@ namespace SPA_IE.Models.Data
             this.UserProfile = new HashSet<UserProfile>();
         }
     
-        public int idDistrict { get; set; }
-        public string name { get; set; }
+        public int IdDistrict { get; set; }
+        public Nullable<int> IdCantonDistrict { get; set; }
+        public string Name { get; set; }
     
+        public virtual Canton Canton { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserProfile> UserProfile { get; set; }
     }

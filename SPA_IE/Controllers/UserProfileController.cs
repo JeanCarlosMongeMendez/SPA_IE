@@ -8,7 +8,7 @@ namespace SPA_IE.Controllers
     public class UserProfileController : Controller
     {
         // GET: UserProfile
-        UserProfileData userProfileData = new UserProfileData();
+    
 
         public ActionResult Index()
         {

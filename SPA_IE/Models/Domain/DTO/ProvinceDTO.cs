@@ -4,5 +4,8 @@
     {
         public int IdProvince { get; set; }
         public string Name { get; set; }
+       
+
+
     }
 }

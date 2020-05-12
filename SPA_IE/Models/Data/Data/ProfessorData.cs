@@ -7,7 +7,106 @@ namespace SPA_IE.Models.Data.Data
 {
     public class ProfessorData
     {
-        public List<ProfessorDTO> ListAllProfessor()
+
+        public List<SelectProfessor_Result> ListAllSP()
+        {
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            {
+                return context.SPSelectProfessor().ToList();
+            }
+
+        }
+
+        public int Add(ProfessorDTO professor)
+        {
+            int resultToReturn;
+
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            {
+                resultToReturn = context.SPInsertUpdateProfessor(professor.IdProfessor, professor.Degree, professor.IdUserProfile, professor.CreateBy, DateTime.Now, professor.Username, professor.Password, professor.UserPhoto, professor.Interests, professor.Email, professor.IsAdmin, professor.IsEnable, professor.IdProvince, professor.IdCanton, professor.IdDistrict, "Insert");
+            }
+
+            return resultToReturn;
+
+        }
+
+        public int Update(ProfessorDTO professor)
+        {
+            int resultToReturn;
+
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            {
+                resultToReturn = context.SPInsertUpdateProfessor(professor.IdProfessor, professor.Degree, professor.IdUserProfile, professor.CreateBy, DateTime.Now, professor.Username, professor.Password, professor.UserPhoto, professor.Interests, professor.Email, professor.IsAdmin, professor.IsEnable, professor.IdProvince, professor.IdCanton, professor.IdDistrict, "Update");
+            }
+
+            return resultToReturn;
+
+        }
+        public SelectProfessorById_Result GetByIdProfessorSP(int id)
+        {
+
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            {
+                var professor= context.SPSelectProfessorById(id).Single();
+
+                return professor;
+            }
+
+
+        }
+        public int Delete(int id)
+        {
+
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            {
+                var resultToReturn = context.SPDeleteStudent(id);
+
+                return resultToReturn;
+            }
+
+        }
+
+
+        public ProfessorDTO GetById(int id)
+        {
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            {
+                var professorToReturn = (from professor in context.Professor
+                                       join userProfile in context.UserProfile on professor.IdUserProfile equals userProfile.IdUserProfile
+                                       join province in context.Province on userProfile.IdProvince equals province.IdProvince
+                                       join canton in context.Canton on userProfile.IdCanton equals canton.IdCanton
+                                       join district in context.District on userProfile.IdDistrict equals district.IdDistrict
+                                       select new ProfessorDTO
+                                       {
+                                           IdProfessor= professor.IdProfessor,
+                                           Degree = professor.Degree,
+                                           IdUserProfile = userProfile.IdUserProfile,
+                                           CreateBy = professor.CreateBy,
+                                           CreationDate = professor.CreationDate,
+                                           Username = userProfile.Username,
+                                           Password = userProfile.Password,
+                                           UserPhoto = userProfile.UserPhoto,
+                                           Interests = userProfile.Interests,
+                                           Email = userProfile.Email,
+                                           IsAdmin = userProfile.IsAdmin,
+                                           IsEnable = userProfile.IsEnable,
+                                           IdProvince = userProfile.IdProvince,
+                                           NameProvince = province.Name,
+                                           IdCanton = userProfile.IdCanton,
+                                           NameCanton = canton.Name,
+                                           IdDistrict = userProfile.IdDistrict,
+                                           NameDistrict = district.Name,
+
+                                       }).Where(x => x.IdProfessor == id && x.IsEnable == true).Single();
+                return professorToReturn;
+            }
+        }
+
+
+
+
+
+        /*public List<ProfessorDTO> ListAllProfessor()
         {
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
@@ -121,6 +220,6 @@ namespace SPA_IE.Models.Data.Data
                 var resultToReturn = context.deleteProfessorSP(id);
                 return resultToReturn;
             }
-        }
+        }*/
     }
 }
