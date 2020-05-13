@@ -1,4 +1,5 @@
-﻿using SPA_IE.Models.Data.Data;
+﻿using SPA_IE.Models.Data;
+using SPA_IE.Models.Data.Data;
 using SPA_IE.Models.Data.DTO;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace SPA_IE.Controllers
         DistrictData districtData = new DistrictData();
         public ActionResult Index()
         {
-            IEnumerable<StudentDTO> students = studentData.ListAllStudents();
+            IEnumerable<SelectStudent_Result> students = studentData.ListAllSP();
             return View(students);
         }
         public ActionResult Create()
@@ -38,7 +39,7 @@ namespace SPA_IE.Controllers
             studentData.Add(student);
 
 
-            return View("Index",studentData.ListAllStudents().AsEnumerable());
+            return View("Index",studentData.ListAllSP().AsEnumerable());
         }
         public ActionResult Edit(int id)
         {
@@ -56,9 +57,9 @@ namespace SPA_IE.Controllers
             var districts = new SelectList(districtData.ListAllDistrict(), "IdDistrict", "Name");
             ViewData["districts"] = districts;
 
-            ViewData["idProvince"] = student.idProvince;
-            ViewData["idCanton"] = student.idDistrict;
-            ViewData["idDistrict"] = student.idDistrict;
+            ViewData["idProvince"] = student.IdProvince;
+            ViewData["idCanton"] = student.IdDistrict;
+            ViewData["idDistrict"] = student.IdDistrict;
 
             return View(student);
 
@@ -69,12 +70,12 @@ namespace SPA_IE.Controllers
         {
             studentData.Update(student);
 
-            return View("Index", studentData.ListAllStudents().AsEnumerable());
+            return View("Index", studentData.ListAllSP().AsEnumerable());
         }
         public ActionResult Delete(int id)
         {
             studentData.Delete(id);
-            return View("Index", studentData.ListAllStudents().AsEnumerable());
+            return View("Index", studentData.ListAllSP().AsEnumerable());
         }
     }
 }

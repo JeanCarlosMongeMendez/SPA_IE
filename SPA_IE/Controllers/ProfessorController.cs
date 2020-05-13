@@ -1,4 +1,5 @@
-﻿using SPA_IE.Models.Data.Data;
+﻿using SPA_IE.Models.Data;
+using SPA_IE.Models.Data.Data;
 using SPA_IE.Models.Domain.DTO;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace SPA_IE.Controllers
         DistrictData districtData = new DistrictData();
         public ActionResult Index()
         {
-            IEnumerable<ProfessorDTO> professors = professorData.ListAllProfessor();
+            IEnumerable<SelectProfessor_Result> professors = professorData.ListAllSP();
             return View(professors);
         }
         public ActionResult Create()
@@ -37,7 +38,7 @@ namespace SPA_IE.Controllers
             professorData.Add(professor);
            
 
-            return View("Index", professorData.ListAllProfessor().AsEnumerable());
+            return View("Index", professorData.ListAllSP().AsEnumerable());
         }
         public ActionResult Edit(int id)
         {
@@ -55,9 +56,9 @@ namespace SPA_IE.Controllers
             var districts = new SelectList(districtData.ListAllDistrict(), "IdDistrict", "Name");
             ViewData["districts"] = districts;
 
-            ViewData["idProvince"] = professor.idProvince;
-            ViewData["idCanton"] = professor.idDistrict;
-            ViewData["idDistrict"] = professor.idDistrict;
+            ViewData["idProvince"] = professor.IdProvince;
+            ViewData["idCanton"] = professor.IdDistrict;
+            ViewData["idDistrict"] = professor.IdDistrict;
 
             return View(professor);
 
@@ -68,12 +69,12 @@ namespace SPA_IE.Controllers
         {
             professorData.Update(professor);
 
-            return View("Index", professorData.ListAllProfessor().AsEnumerable());
+            return View("Index", professorData.ListAllSP().AsEnumerable());
         }
         public ActionResult Delete(int id)
         {
             professorData.Delete(id);
-            return View("Index", professorData.ListAllProfessor().AsEnumerable());
+            return View("Index", professorData.ListAllSP().AsEnumerable());
         }
 
 

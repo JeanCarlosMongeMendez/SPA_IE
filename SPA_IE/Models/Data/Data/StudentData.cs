@@ -1,5 +1,6 @@
 ﻿using SPA_IE.Models.Data.DTO;
 using System;
+using System.Activities.Expressions;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,6 +8,116 @@ namespace SPA_IE.Models.Data.Data
 {
     public class StudentData
     {
+
+        public List<SelectStudent_Result> ListAllSP()
+        {
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            {
+                return context.SPSelectStudent().ToList();
+            }
+
+        }
+
+        public int Add(StudentDTO student)
+        {
+            int resultToReturn;
+
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            {
+                resultToReturn = context.SPInsertUpdateStudent(student.IdStudent, student.IdentificationCard, student.IdUserProfile, student.isASIP, student.isActive, student.CreateBy, DateTime.Now, student.Username, student.Password, student.UserPhoto, student.Interests, student.Email, student.IsAdmin, student.IsEnable, student.IdProvince, student.IdCanton, student.IdDistrict, "Insert");
+            }
+
+            return resultToReturn;
+
+        }
+
+        public int Update(StudentDTO student)
+        {
+            int resultToReturn;
+
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            {
+                resultToReturn = context.SPInsertUpdateStudent(student.IdStudent, student.IdentificationCard, student.IdUserProfile, student.isASIP, student.isActive, student.CreateBy, DateTime.Now, student.Username, student.Password, student.UserPhoto, student.Interests, student.Email, student.IsAdmin, student.IsEnable, student.IdProvince, student.IdCanton, student.IdDistrict, "Update");
+            }
+
+            return resultToReturn;
+
+        }
+        public SelectStudentById_Result GetByIdStudentSP(int id)
+        {
+
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            {
+                var course = context.SPSelectStudentById(id).Single();
+
+                return course;
+            }
+
+
+        }
+        public int Delete(int id)
+        {
+
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            {
+                var resultToReturn = context.SPDeleteStudent(id);
+
+                return resultToReturn;
+            }
+
+        }
+
+
+        public StudentDTO GetById(int id)
+        {
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            {
+                var studentToReturn = (from student in context.Student
+                                       join userProfile in context.UserProfile on student.IdUserProfile equals userProfile.IdUserProfile
+                                       join province in context.Province on userProfile.IdProvince equals province.IdProvince
+                                       join canton in context.Canton on userProfile.IdCanton equals canton.IdCanton
+                                       join district in context.District on userProfile.IdDistrict equals district.IdDistrict
+                                       select new StudentDTO
+                                       {
+                                           IdStudent = student.IdStudent,
+                                           IdentificationCard= student.IdentificationCard,
+                                           IdUserProfile= userProfile.IdUserProfile,
+                                           isASIP= student.IsASIP,
+                                           isActive=   student.IsActive,
+                                           CreateBy= student.CreateBy,
+                                           CreationDate= student.CreationDate,
+                                           Username= userProfile.Username,
+                                           Password= userProfile.Password,
+                                           UserPhoto= userProfile.UserPhoto,
+                                           Interests= userProfile.Interests,
+                                           Email= userProfile.Email,
+                                           IsAdmin= userProfile.IsAdmin,
+                                           IsEnable= userProfile.IsEnable,
+                                           IdProvince= userProfile.IdProvince,
+                                           NameProvince=province.Name,
+                                           IdCanton= userProfile.IdCanton,
+                                           NameCanton= canton.Name,
+                                           IdDistrict=userProfile.IdDistrict,
+                                           NameDistrict= district.Name,
+
+                                        }).Where(x => x.IdStudent == id && x.IsEnable==true && x.isActive== true).Single();
+                return studentToReturn;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
         public List<StudentDTO> ListAllStudents()
         {
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
@@ -120,6 +231,6 @@ namespace SPA_IE.Models.Data.Data
                 var resultToReturn = context.deleteStudentSP(id);
                 return resultToReturn;
             }
-        }
+        }*/
     }
 }

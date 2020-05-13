@@ -10,17 +10,26 @@
 namespace SPA_IE.Models.Data
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Professor
+    public partial class SelectProfessorById_Result
     {
         public int IdProfessor { get; set; }
         public string Degree { get; set; }
         public Nullable<int> IdUserProfile { get; set; }
         public Nullable<int> CreateBy { get; set; }
         public Nullable<System.DateTime> CreationDate { get; set; }
-    
-        public virtual UserProfile UserProfile { get; set; }
-        public virtual UserProfile UserProfile1 { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string UserPhoto { get; set; }
+        public string Interests { get; set; }
+        public string Email { get; set; }
+        public Nullable<bool> IsAdmin { get; set; }
+        public Nullable<bool> IsEnable { get; set; }
+        public Nullable<int> IdProvince { get; set; }
+        public string ProvinceName { get; set; }
+        public Nullable<int> IdCanton { get; set; }
+        public string CantonName { get; set; }
+        public Nullable<int> IdDistrict { get; set; }
+        public string DistrictName { get; set; }
     }
 }

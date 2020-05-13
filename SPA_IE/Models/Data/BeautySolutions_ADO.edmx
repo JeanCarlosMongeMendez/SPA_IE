@@ -4,220 +4,295 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="IF4101_BeatySolutions_ISem_2020Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="IF4101_BeatySolutions_ISem_2020Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Canton">
           <Key>
-            <PropertyRef Name="idCanton" />
+            <PropertyRef Name="IdCanton" />
           </Key>
-          <Property Name="idCanton" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdCanton" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProvince" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
-            <PropertyRef Name="idCourse" />
+            <PropertyRef Name="IdCourse" />
           </Key>
-          <Property Name="idCourse" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="state" Type="bit" Nullable="false" />
-          <Property Name="semestrer" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="description" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="image" Type="nvarchar" MaxLength="200" />
-          <Property Name="createBy" Type="int" />
-          <Property Name="creationDate" Type="date" />
+          <Property Name="IdCourse" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Semestrer" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="Image" Type="nvarchar" MaxLength="200" />
+          <Property Name="state" Type="bit" />
+          <Property Name="CreateBy" Type="int" />
+          <Property Name="CreationDate" Type="date" />
         </EntityType>
         <EntityType Name="District">
           <Key>
-            <PropertyRef Name="idDistrict" />
+            <PropertyRef Name="IdDistrict" />
           </Key>
-          <Property Name="idDistrict" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdDistrict" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCanton" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Professor">
           <Key>
-            <PropertyRef Name="idProfessor" />
+            <PropertyRef Name="IdProfessor" />
           </Key>
-          <Property Name="idProfessor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="degree" Type="nvarchar" MaxLength="200" />
-          <Property Name="idUserProfile" Type="int" />
-          <Property Name="createBy" Type="int" />
-          <Property Name="creationDate" Type="date" />
+          <Property Name="IdProfessor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Degree" Type="nvarchar" MaxLength="200" />
+          <Property Name="IdUserProfile" Type="int" />
+          <Property Name="CreateBy" Type="int" />
+          <Property Name="CreationDate" Type="date" />
         </EntityType>
         <EntityType Name="Province">
           <Key>
-            <PropertyRef Name="idProvince" />
+            <PropertyRef Name="IdProvince" />
           </Key>
-          <Property Name="idProvince" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdProvince" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
-            <PropertyRef Name="idStudent" />
+            <PropertyRef Name="IdStudent" />
           </Key>
-          <Property Name="idStudent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="identificationCard" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="idUserProfile" Type="int" />
-          <Property Name="isASIP" Type="bit" />
-          <Property Name="isActive" Type="bit" />
-          <Property Name="createBy" Type="int" />
-          <Property Name="creationDate" Type="date" />
+          <Property Name="IdStudent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdentificationCard" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="IdUserProfile" Type="int" />
+          <Property Name="IsASIP" Type="bit" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreateBy" Type="int" />
+          <Property Name="CreationDate" Type="date" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
-            <PropertyRef Name="idUserProfile" />
+            <PropertyRef Name="IdUserProfile" />
           </Key>
-          <Property Name="idUserProfile" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="userPhoto" Type="nvarchar" MaxLength="200" />
-          <Property Name="interests" Type="nvarchar" MaxLength="100" />
-          <Property Name="email" Type="nvarchar" MaxLength="50" />
-          <Property Name="isAdmin" Type="bit" />
-          <Property Name="isEnable" Type="bit" />
-          <Property Name="idCanton" Type="int" />
-          <Property Name="idProvince" Type="int" />
-          <Property Name="idDistrict" Type="int" />
-          <Property Name="creationDate" Type="datetime" />
-          <Property Name="createBy" Type="int" />
+          <Property Name="IdUserProfile" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserPhoto" Type="nvarchar" MaxLength="200" />
+          <Property Name="Interests" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsAdmin" Type="bit" />
+          <Property Name="IsEnable" Type="bit" />
+          <Property Name="IdCanton" Type="int" />
+          <Property Name="IdProvince" Type="int" />
+          <Property Name="IdDistrict" Type="int" />
+          <Property Name="CreateBy" Type="int" />
+          <Property Name="CreationDate" Type="datetime" />
         </EntityType>
-        <Association Name="FK__Course__createBy__3C69FB99">
+        <Association Name="FK__Canton__IdProvin__5629CD9C">
+          <End Role="Province" Type="Self.Province" Multiplicity="0..1" />
+          <End Role="Canton" Type="Self.Canton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="IdProvince" />
+            </Principal>
+            <Dependent Role="Canton">
+              <PropertyRef Name="IdProvince" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Course__CreateBy__778AC167">
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
           <End Role="Course" Type="Self.Course" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
-              <PropertyRef Name="idUserProfile" />
+              <PropertyRef Name="IdUserProfile" />
             </Principal>
             <Dependent Role="Course">
-              <PropertyRef Name="createBy" />
+              <PropertyRef Name="CreateBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Professor__creat__35BCFE0A">
+        <Association Name="FK__District__IdCant__59063A47">
+          <End Role="Canton" Type="Self.Canton" Multiplicity="0..1" />
+          <End Role="District" Type="Self.District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Canton">
+              <PropertyRef Name="IdCanton" />
+            </Principal>
+            <Dependent Role="District">
+              <PropertyRef Name="IdCanton" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Professor__Creat__6E01572D">
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
           <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
-              <PropertyRef Name="idUserProfile" />
+              <PropertyRef Name="IdUserProfile" />
             </Principal>
             <Dependent Role="Professor">
-              <PropertyRef Name="createBy" />
+              <PropertyRef Name="CreateBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Professor__idUse__34C8D9D1">
+        <Association Name="FK__Professor__IdUse__6D0D32F4">
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
           <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
-              <PropertyRef Name="idUserProfile" />
+              <PropertyRef Name="IdUserProfile" />
             </Principal>
             <Dependent Role="Professor">
-              <PropertyRef Name="idUserProfile" />
+              <PropertyRef Name="IdUserProfile" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Student__createB__398D8EEE">
+        <Association Name="FK__Student__CreateB__71D1E811">
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
           <End Role="Student" Type="Self.Student" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
-              <PropertyRef Name="idUserProfile" />
+              <PropertyRef Name="IdUserProfile" />
             </Principal>
             <Dependent Role="Student">
-              <PropertyRef Name="createBy" />
+              <PropertyRef Name="CreateBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Student__idUserP__38996AB5">
+        <Association Name="FK__Student__CreateB__75A278F5">
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
           <End Role="Student" Type="Self.Student" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
-              <PropertyRef Name="idUserProfile" />
+              <PropertyRef Name="IdUserProfile" />
             </Principal>
             <Dependent Role="Student">
-              <PropertyRef Name="idUserProfile" />
+              <PropertyRef Name="CreateBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserProfi__creat__31EC6D26">
+        <Association Name="FK__Student__IdUserP__70DDC3D8">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="IdUserProfile" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="IdUserProfile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserProfi__Creat__6754599E">
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
           <End Role="UserProfile1" Type="Self.UserProfile" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
-              <PropertyRef Name="idUserProfile" />
+              <PropertyRef Name="IdUserProfile" />
             </Principal>
             <Dependent Role="UserProfile1">
-              <PropertyRef Name="createBy" />
+              <PropertyRef Name="CreateBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserProfi__idCan__2F10007B">
+        <Association Name="FK__UserProfi__IdCan__6477ECF3">
           <End Role="Canton" Type="Self.Canton" Multiplicity="0..1" />
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Canton">
-              <PropertyRef Name="idCanton" />
+              <PropertyRef Name="IdCanton" />
             </Principal>
             <Dependent Role="UserProfile">
-              <PropertyRef Name="idCanton" />
+              <PropertyRef Name="IdCanton" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserProfi__idDis__30F848ED">
+        <Association Name="FK__UserProfi__IdDis__66603565">
           <End Role="District" Type="Self.District" Multiplicity="0..1" />
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="District">
-              <PropertyRef Name="idDistrict" />
+              <PropertyRef Name="IdDistrict" />
             </Principal>
             <Dependent Role="UserProfile">
-              <PropertyRef Name="idDistrict" />
+              <PropertyRef Name="IdDistrict" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserProfi__idPro__300424B4">
+        <Association Name="FK__UserProfi__IdPro__656C112C">
           <End Role="Province" Type="Self.Province" Multiplicity="0..1" />
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Province">
-              <PropertyRef Name="idProvince" />
+              <PropertyRef Name="IdProvince" />
             </Principal>
             <Dependent Role="UserProfile">
-              <PropertyRef Name="idProvince" />
+              <PropertyRef Name="IdProvince" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="deleteCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
-          <Parameter Name="idCourse" Type="int" Mode="In" />
+        <Function Name="DeleteCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="IdCourse" Type="int" Mode="In" />
         </Function>
-        <Function Name="deleteProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
-          <Parameter Name="idProfessor" Type="int" Mode="In" />
+        <Function Name="DeleteProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="IdUserProfile" Type="int" Mode="In" />
         </Function>
-        <Function Name="deleteStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
-          <Parameter Name="idStudent" Type="int" Mode="In" />
+        <Function Name="DeleteStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="IdUserProfile" Type="int" Mode="In" />
         </Function>
         <Function Name="GetByIdCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
-          <Parameter Name="idCourse" Type="int" Mode="In" />
+          <Parameter Name="IdCourse" Type="int" Mode="In" />
         </Function>
         <Function Name="InsertUpdateCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
-          <Parameter Name="idCourse" Type="int" Mode="In" />
-          <Parameter Name="name" Type="nvarchar" Mode="In" />
-          <Parameter Name="state" Type="bit" Mode="In" />
-          <Parameter Name="semestrer" Type="nvarchar" Mode="In" />
-          <Parameter Name="description" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdCourse" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="State" Type="bit" Mode="In" />
+          <Parameter Name="Semestrer" Type="nvarchar" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="Image" Type="nvarchar" Mode="In" />
           <Parameter Name="Action" Type="varchar" Mode="In" />
         </Function>
         <Function Name="InsertUpdateProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
-          <Parameter Name="idProfessor" Type="int" Mode="In" />
-          <Parameter Name="degree" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdProfessor" Type="int" Mode="In" />
+          <Parameter Name="Degree" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdUserProfile" Type="int" Mode="In" />
+          <Parameter Name="CreateBy" Type="int" Mode="In" />
+          <Parameter Name="CreationDate" Type="date" Mode="In" />
+          <Parameter Name="Username" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserPhoto" Type="nvarchar" Mode="In" />
+          <Parameter Name="Interest" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsAdmin" Type="bit" Mode="In" />
+          <Parameter Name="IsEnable" Type="bit" Mode="In" />
+          <Parameter Name="IdProvince" Type="int" Mode="In" />
+          <Parameter Name="IdCanton" Type="int" Mode="In" />
+          <Parameter Name="IdDistrict" Type="int" Mode="In" />
           <Parameter Name="Action" Type="varchar" Mode="In" />
         </Function>
         <Function Name="InsertUpdateStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
-          <Parameter Name="idStudent" Type="int" Mode="In" />
-          <Parameter Name="identificationCard" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdStudent" Type="int" Mode="In" />
+          <Parameter Name="IdentificationCard" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdUserProfile" Type="int" Mode="In" />
+          <Parameter Name="IsASIP" Type="bit" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+          <Parameter Name="CreateBy" Type="int" Mode="In" />
+          <Parameter Name="CreationDate" Type="date" Mode="In" />
+          <Parameter Name="Username" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserPhoto" Type="nvarchar" Mode="In" />
+          <Parameter Name="Interest" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsAdmin" Type="bit" Mode="In" />
+          <Parameter Name="IsEnable" Type="bit" Mode="In" />
+          <Parameter Name="IdProvince" Type="int" Mode="In" />
+          <Parameter Name="IdCanton" Type="int" Mode="In" />
+          <Parameter Name="IdDistrict" Type="int" Mode="In" />
           <Parameter Name="Action" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SelectCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020" />
+        <Function Name="SelectProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020" />
+        <Function Name="SelectProfessorById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="IdUserProfile" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SelectStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020" />
+        <Function Name="SelectStudentById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="IdUserProfile" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="IF4101_BeatySolutions_ISem_2020Model1StoreContainer">
           <EntitySet Name="Canton" EntityType="Self.Canton" Schema="BS_ISem_2020" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="BS_ISem_2020" store:Type="Tables" />
@@ -226,354 +301,251 @@
           <EntitySet Name="Province" EntityType="Self.Province" Schema="BS_ISem_2020" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="BS_ISem_2020" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="BS_ISem_2020" store:Type="Tables" />
-          <AssociationSet Name="FK__Course__createBy__3C69FB99" Association="Self.FK__Course__createBy__3C69FB99">
+          <AssociationSet Name="FK__Canton__IdProvin__5629CD9C" Association="Self.FK__Canton__IdProvin__5629CD9C">
+            <End Role="Province" EntitySet="Province" />
+            <End Role="Canton" EntitySet="Canton" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Course__CreateBy__778AC167" Association="Self.FK__Course__CreateBy__778AC167">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Course" EntitySet="Course" />
           </AssociationSet>
-          <AssociationSet Name="FK__Professor__creat__35BCFE0A" Association="Self.FK__Professor__creat__35BCFE0A">
+          <AssociationSet Name="FK__District__IdCant__59063A47" Association="Self.FK__District__IdCant__59063A47">
+            <End Role="Canton" EntitySet="Canton" />
+            <End Role="District" EntitySet="District" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Professor__Creat__6E01572D" Association="Self.FK__Professor__Creat__6E01572D">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Professor" EntitySet="Professor" />
           </AssociationSet>
-          <AssociationSet Name="FK__Professor__idUse__34C8D9D1" Association="Self.FK__Professor__idUse__34C8D9D1">
+          <AssociationSet Name="FK__Professor__IdUse__6D0D32F4" Association="Self.FK__Professor__IdUse__6D0D32F4">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Professor" EntitySet="Professor" />
           </AssociationSet>
-          <AssociationSet Name="FK__Student__createB__398D8EEE" Association="Self.FK__Student__createB__398D8EEE">
+          <AssociationSet Name="FK__Student__CreateB__71D1E811" Association="Self.FK__Student__CreateB__71D1E811">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Student" EntitySet="Student" />
           </AssociationSet>
-          <AssociationSet Name="FK__Student__idUserP__38996AB5" Association="Self.FK__Student__idUserP__38996AB5">
+          <AssociationSet Name="FK__Student__CreateB__75A278F5" Association="Self.FK__Student__CreateB__75A278F5">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Student" EntitySet="Student" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserProfi__creat__31EC6D26" Association="Self.FK__UserProfi__creat__31EC6D26">
+          <AssociationSet Name="FK__Student__IdUserP__70DDC3D8" Association="Self.FK__Student__IdUserP__70DDC3D8">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserProfi__Creat__6754599E" Association="Self.FK__UserProfi__Creat__6754599E">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="UserProfile1" EntitySet="UserProfile" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserProfi__idCan__2F10007B" Association="Self.FK__UserProfi__idCan__2F10007B">
+          <AssociationSet Name="FK__UserProfi__IdCan__6477ECF3" Association="Self.FK__UserProfi__IdCan__6477ECF3">
             <End Role="Canton" EntitySet="Canton" />
             <End Role="UserProfile" EntitySet="UserProfile" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserProfi__idDis__30F848ED" Association="Self.FK__UserProfi__idDis__30F848ED">
+          <AssociationSet Name="FK__UserProfi__IdDis__66603565" Association="Self.FK__UserProfi__IdDis__66603565">
             <End Role="District" EntitySet="District" />
             <End Role="UserProfile" EntitySet="UserProfile" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserProfi__idPro__300424B4" Association="Self.FK__UserProfi__idPro__300424B4">
+          <AssociationSet Name="FK__UserProfi__IdPro__656C112C" Association="Self.FK__UserProfi__IdPro__656C112C">
             <End Role="Province" EntitySet="Province" />
             <End Role="UserProfile" EntitySet="UserProfile" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="IF4101_BeatySolutions_ISem_2020Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Canton">
-          <Key>
-            <PropertyRef Name="idCanton" />
-          </Key>
-          <Property Name="idCanton" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="UserProfile" Relationship="Self.FK__UserProfi__idCan__2F10007B" FromRole="Canton" ToRole="UserProfile" />
-        </EntityType>
-        <EntityType Name="Course">
-          <Key>
-            <PropertyRef Name="idCourse" />
-          </Key>
-          <Property Name="idCourse" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="state" Type="Boolean" Nullable="false" />
-          <Property Name="semestrer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="createBy" Type="Int32" />
-          <Property Name="creationDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="UserProfile" Relationship="Self.FK__Course__createBy__3C69FB99" FromRole="Course" ToRole="UserProfile" />
-        </EntityType>
-        <EntityType Name="District">
-          <Key>
-            <PropertyRef Name="idDistrict" />
-          </Key>
-          <Property Name="idDistrict" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="UserProfile" Relationship="Self.FK__UserProfi__idDis__30F848ED" FromRole="District" ToRole="UserProfile" />
-        </EntityType>
-        <EntityType Name="Professor">
-          <Key>
-            <PropertyRef Name="idProfessor" />
-          </Key>
-          <Property Name="idProfessor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="degree" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="idUserProfile" Type="Int32" />
-          <Property Name="createBy" Type="Int32" />
-          <Property Name="creationDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="UserProfile" Relationship="Self.FK__Professor__creat__35BCFE0A" FromRole="Professor" ToRole="UserProfile" />
-          <NavigationProperty Name="UserProfile1" Relationship="Self.FK__Professor__idUse__34C8D9D1" FromRole="Professor" ToRole="UserProfile" />
-        </EntityType>
-        <EntityType Name="Province">
-          <Key>
-            <PropertyRef Name="idProvince" />
-          </Key>
-          <Property Name="idProvince" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="UserProfile" Relationship="Self.FK__UserProfi__idPro__300424B4" FromRole="Province" ToRole="UserProfile" />
-        </EntityType>
-        <EntityType Name="Student">
-          <Key>
-            <PropertyRef Name="idStudent" />
-          </Key>
-          <Property Name="idStudent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="identificationCard" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="idUserProfile" Type="Int32" />
-          <Property Name="isASIP" Type="Boolean" />
-          <Property Name="isActive" Type="Boolean" />
-          <Property Name="createBy" Type="Int32" />
-          <Property Name="creationDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="UserProfile" Relationship="Self.FK__Student__createB__398D8EEE" FromRole="Student" ToRole="UserProfile" />
-          <NavigationProperty Name="UserProfile1" Relationship="Self.FK__Student__idUserP__38996AB5" FromRole="Student" ToRole="UserProfile" />
-        </EntityType>
-        <EntityType Name="UserProfile">
-          <Key>
-            <PropertyRef Name="idUserProfile" />
-          </Key>
-          <Property Name="idUserProfile" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="userPhoto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="interests" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="isAdmin" Type="Boolean" />
-          <Property Name="isEnable" Type="Boolean" />
-          <Property Name="idCanton" Type="Int32" />
-          <Property Name="idProvince" Type="Int32" />
-          <Property Name="idDistrict" Type="Int32" />
-          <Property Name="creationDate" Type="DateTime" Precision="3" />
-          <Property Name="createBy" Type="Int32" />
-          <NavigationProperty Name="Canton" Relationship="Self.FK__UserProfi__idCan__2F10007B" FromRole="UserProfile" ToRole="Canton" />
-          <NavigationProperty Name="Course" Relationship="Self.FK__Course__createBy__3C69FB99" FromRole="UserProfile" ToRole="Course" />
-          <NavigationProperty Name="District" Relationship="Self.FK__UserProfi__idDis__30F848ED" FromRole="UserProfile" ToRole="District" />
-          <NavigationProperty Name="Professor" Relationship="Self.FK__Professor__creat__35BCFE0A" FromRole="UserProfile" ToRole="Professor" />
-          <NavigationProperty Name="Professor1" Relationship="Self.FK__Professor__idUse__34C8D9D1" FromRole="UserProfile" ToRole="Professor" />
-          <NavigationProperty Name="Province" Relationship="Self.FK__UserProfi__idPro__300424B4" FromRole="UserProfile" ToRole="Province" />
-          <NavigationProperty Name="Student" Relationship="Self.FK__Student__createB__398D8EEE" FromRole="UserProfile" ToRole="Student" />
-          <NavigationProperty Name="Student1" Relationship="Self.FK__Student__idUserP__38996AB5" FromRole="UserProfile" ToRole="Student" />
-          <NavigationProperty Name="UserProfile1" Relationship="Self.FK__UserProfi__creat__31EC6D26" FromRole="UserProfile" ToRole="UserProfile1" />
-          <NavigationProperty Name="UserProfile2" Relationship="Self.FK__UserProfi__creat__31EC6D26" FromRole="UserProfile1" ToRole="UserProfile" />
-        </EntityType>
-        <Association Name="FK__UserProfi__idCan__2F10007B">
-          <End Role="Canton" Type="Self.Canton" Multiplicity="0..1" />
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Canton">
-              <PropertyRef Name="idCanton" />
-            </Principal>
-            <Dependent Role="UserProfile">
-              <PropertyRef Name="idCanton" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Course__createBy__3C69FB99">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
-          <End Role="Course" Type="Self.Course" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfile">
-              <PropertyRef Name="idUserProfile" />
-            </Principal>
-            <Dependent Role="Course">
-              <PropertyRef Name="createBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserProfi__idDis__30F848ED">
-          <End Role="District" Type="Self.District" Multiplicity="0..1" />
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="District">
-              <PropertyRef Name="idDistrict" />
-            </Principal>
-            <Dependent Role="UserProfile">
-              <PropertyRef Name="idDistrict" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Professor__creat__35BCFE0A">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
-          <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfile">
-              <PropertyRef Name="idUserProfile" />
-            </Principal>
-            <Dependent Role="Professor">
-              <PropertyRef Name="createBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Professor__idUse__34C8D9D1">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
-          <End Role="Professor" Type="Self.Professor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfile">
-              <PropertyRef Name="idUserProfile" />
-            </Principal>
-            <Dependent Role="Professor">
-              <PropertyRef Name="idUserProfile" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserProfi__idPro__300424B4">
-          <End Role="Province" Type="Self.Province" Multiplicity="0..1" />
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Province">
-              <PropertyRef Name="idProvince" />
-            </Principal>
-            <Dependent Role="UserProfile">
-              <PropertyRef Name="idProvince" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Student__createB__398D8EEE">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
-          <End Role="Student" Type="Self.Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfile">
-              <PropertyRef Name="idUserProfile" />
-            </Principal>
-            <Dependent Role="Student">
-              <PropertyRef Name="createBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Student__idUserP__38996AB5">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
-          <End Role="Student" Type="Self.Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfile">
-              <PropertyRef Name="idUserProfile" />
-            </Principal>
-            <Dependent Role="Student">
-              <PropertyRef Name="idUserProfile" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserProfi__creat__31EC6D26">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
-          <End Role="UserProfile1" Type="Self.UserProfile" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfile">
-              <PropertyRef Name="idUserProfile" />
-            </Principal>
-            <Dependent Role="UserProfile1">
-              <PropertyRef Name="createBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="IF4101_BeatySolutions_ISem_2020Entities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Canton" EntityType="Self.Canton" />
-          <EntitySet Name="Course" EntityType="Self.Course" />
-          <EntitySet Name="District" EntityType="Self.District" />
-          <EntitySet Name="Professor" EntityType="Self.Professor" />
-          <EntitySet Name="Province" EntityType="Self.Province" />
-          <EntitySet Name="Student" EntityType="Self.Student" />
-          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" />
-          <AssociationSet Name="FK__UserProfi__idCan__2F10007B" Association="Self.FK__UserProfi__idCan__2F10007B">
-            <End Role="Canton" EntitySet="Canton" />
-            <End Role="UserProfile" EntitySet="UserProfile" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Course__createBy__3C69FB99" Association="Self.FK__Course__createBy__3C69FB99">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="Course" EntitySet="Course" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserProfi__idDis__30F848ED" Association="Self.FK__UserProfi__idDis__30F848ED">
-            <End Role="District" EntitySet="District" />
-            <End Role="UserProfile" EntitySet="UserProfile" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Professor__creat__35BCFE0A" Association="Self.FK__Professor__creat__35BCFE0A">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="Professor" EntitySet="Professor" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Professor__idUse__34C8D9D1" Association="Self.FK__Professor__idUse__34C8D9D1">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="Professor" EntitySet="Professor" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserProfi__idPro__300424B4" Association="Self.FK__UserProfi__idPro__300424B4">
-            <End Role="Province" EntitySet="Province" />
-            <End Role="UserProfile" EntitySet="UserProfile" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Student__createB__398D8EEE" Association="Self.FK__Student__createB__398D8EEE">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="Student" EntitySet="Student" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Student__idUserP__38996AB5" Association="Self.FK__Student__idUserP__38996AB5">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="Student" EntitySet="Student" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserProfi__creat__31EC6D26" Association="Self.FK__UserProfi__creat__31EC6D26">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="UserProfile1" EntitySet="UserProfile" />
-          </AssociationSet>
-          <FunctionImport Name="deleteCourse">
-            <Parameter Name="idCourse" Mode="In" Type="Int32" />
+          <FunctionImport Name="DeleteCourse">
+          <Parameter Name="IdCourse" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="deleteProfessor">
-            <Parameter Name="idProfessor" Mode="In" Type="Int32" />
+          <FunctionImport Name="DeleteProfessor">
+          <Parameter Name="IdUserProfile" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="deleteStudent">
-            <Parameter Name="idStudent" Mode="In" Type="Int32" />
+          <FunctionImport Name="DeleteStudent">
+          <Parameter Name="IdUserProfile" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetByIdCourse" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.GetByIdCourse_Result)">
-            <Parameter Name="idCourse" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="InsertUpdateCourse">
-            <Parameter Name="idCourse" Mode="In" Type="Int32" />
-            <Parameter Name="name" Mode="In" Type="String" />
-            <Parameter Name="state" Mode="In" Type="Boolean" />
-            <Parameter Name="semestrer" Mode="In" Type="String" />
-            <Parameter Name="description" Mode="In" Type="String" />
-            <Parameter Name="Action" Mode="In" Type="String" />
+          <FunctionImport Name="GetByIdCourse" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.GetByIdCourse_Result1)">
+          <Parameter Name="IdCourse" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="InsertUpdateProfessor">
-            <Parameter Name="idProfessor" Mode="In" Type="Int32" />
-            <Parameter Name="degree" Mode="In" Type="String" />
+            <Parameter Name="IdProfessor" Mode="In" Type="Int32" />
+            <Parameter Name="Degree" Mode="In" Type="String" />
+            <Parameter Name="IdUserProfile" Mode="In" Type="Int32" />
+            <Parameter Name="CreateBy" Mode="In" Type="Int32" />
+            <Parameter Name="CreationDate" Mode="In" Type="DateTime" />
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="UserPhoto" Mode="In" Type="String" />
+            <Parameter Name="Interest" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="IsAdmin" Mode="In" Type="Boolean" />
+            <Parameter Name="IsEnable" Mode="In" Type="Boolean" />
+            <Parameter Name="IdProvince" Mode="In" Type="Int32" />
+            <Parameter Name="IdCanton" Mode="In" Type="Int32" />
+            <Parameter Name="IdDistrict" Mode="In" Type="Int32" />
             <Parameter Name="Action" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="InsertUpdateStudent">
-            <Parameter Name="idStudent" Mode="In" Type="Int32" />
-            <Parameter Name="identificationCard" Mode="In" Type="String" />
+            <Parameter Name="IdStudent" Mode="In" Type="Int32" />
+            <Parameter Name="IdentificationCard" Mode="In" Type="String" />
+            <Parameter Name="IdUserProfile" Mode="In" Type="Int32" />
+            <Parameter Name="IsASIP" Mode="In" Type="Boolean" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+            <Parameter Name="CreateBy" Mode="In" Type="Int32" />
+            <Parameter Name="CreationDate" Mode="In" Type="DateTime" />
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="UserPhoto" Mode="In" Type="String" />
+            <Parameter Name="Interest" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="IsAdmin" Mode="In" Type="Boolean" />
+            <Parameter Name="IsEnable" Mode="In" Type="Boolean" />
+            <Parameter Name="IdProvince" Mode="In" Type="Int32" />
+            <Parameter Name="IdCanton" Mode="In" Type="Int32" />
+            <Parameter Name="IdDistrict" Mode="In" Type="Int32" />
             <Parameter Name="Action" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SelectCourse" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectCourse_Result)" />
-          <FunctionImport Name="deleteCourseSP">
-            <Parameter Name="idCourse" Mode="In" Type="Int32" />
+          <FunctionImport Name="SelectCourse" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectCourse_Result1)" />
+          <FunctionImport Name="SelectProfessor" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectProfessor_Result)" />
+          <FunctionImport Name="SelectProfessorById" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectProfessorById_Result)">
+          <Parameter Name="IdUserProfile" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="deleteProfessorSP">
-            <Parameter Name="idProfessor" Mode="In" Type="Int32" />
+          <FunctionImport Name="SelectStudent" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectStudent_Result)" />
+          <FunctionImport Name="SelectStudentById" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectStudentById_Result)">
+          <Parameter Name="IdUserProfile" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="deleteStudentSP">
-            <Parameter Name="idStudent" Mode="In" Type="Int32" />
+          <FunctionImport Name="SPDeleteCourse">
+          <Parameter Name="IdCourse" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="InsertUpdateCourseSP">
-            <Parameter Name="idCourse" Mode="In" Type="Int32" />
-            <Parameter Name="name" Mode="In" Type="String" />
-            <Parameter Name="state" Mode="In" Type="Boolean" />
-            <Parameter Name="semestrer" Mode="In" Type="String" />
-            <Parameter Name="description" Mode="In" Type="String" />
+          <FunctionImport Name="InsertUpdateCourse">
+            <Parameter Name="IdCourse" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="Boolean" />
+            <Parameter Name="Semestrer" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="Image" Mode="In" Type="String" />
             <Parameter Name="Action" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="InsertUpdateProfessorSP">
-            <Parameter Name="idProfessor" Mode="In" Type="Int32" />
-            <Parameter Name="degree" Mode="In" Type="String" />
+          <FunctionImport Name="SPInsertUpdateCourse">
+            <Parameter Name="IdCourse" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="Boolean" />
+            <Parameter Name="Semestrer" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="Image" Mode="In" Type="String" />
             <Parameter Name="Action" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="InsertUpdateStudentSP">
-            <Parameter Name="idStudent" Mode="In" Type="Int32" />
-            <Parameter Name="identificationCard" Mode="In" Type="String" />
+          <FunctionImport Name="SPDeleteStudent">
+          <Parameter Name="IdUserProfile" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPInsertUpdateStudent">
+            <Parameter Name="IdStudent" Mode="In" Type="Int32" />
+            <Parameter Name="IdentificationCard" Mode="In" Type="String" />
+            <Parameter Name="IdUserProfile" Mode="In" Type="Int32" />
+            <Parameter Name="IsASIP" Mode="In" Type="Boolean" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+            <Parameter Name="CreateBy" Mode="In" Type="Int32" />
+            <Parameter Name="CreationDate" Mode="In" Type="DateTime" />
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="UserPhoto" Mode="In" Type="String" />
+            <Parameter Name="Interest" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="IsAdmin" Mode="In" Type="Boolean" />
+            <Parameter Name="IsEnable" Mode="In" Type="Boolean" />
+            <Parameter Name="IdProvince" Mode="In" Type="Int32" />
+            <Parameter Name="IdCanton" Mode="In" Type="Int32" />
+            <Parameter Name="IdDistrict" Mode="In" Type="Int32" />
             <Parameter Name="Action" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SelectCourseSP" EntitySet="Course" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.Course)" />
-          <FunctionImport Name="GetByIdCourseSP" EntitySet="Course" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.Course)">
-            <Parameter Name="idCourse" Mode="In" Type="Int32" />
+          <EntitySet Name="Canton" EntityType="IF4101_BeatySolutions_ISem_2020Model1.Canton" />
+          <EntitySet Name="Course" EntityType="IF4101_BeatySolutions_ISem_2020Model1.Course" />
+          <EntitySet Name="District" EntityType="IF4101_BeatySolutions_ISem_2020Model1.District" />
+          <EntitySet Name="Professor" EntityType="IF4101_BeatySolutions_ISem_2020Model1.Professor" />
+          <EntitySet Name="Province" EntityType="IF4101_BeatySolutions_ISem_2020Model1.Province" />
+          <EntitySet Name="Student" EntityType="IF4101_BeatySolutions_ISem_2020Model1.Student" />
+          <EntitySet Name="UserProfile" EntityType="IF4101_BeatySolutions_ISem_2020Model1.UserProfile" />
+          <AssociationSet Name="FK__Canton__IdProvin__5629CD9C" Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Canton__IdProvin__5629CD9C">
+            <End Role="Province" EntitySet="Province" />
+            <End Role="Canton" EntitySet="Canton" />
+          </AssociationSet>
+          <AssociationSet Name="FK__District__IdCant__59063A47" Association="IF4101_BeatySolutions_ISem_2020Model1.FK__District__IdCant__59063A47">
+            <End Role="Canton" EntitySet="Canton" />
+            <End Role="District" EntitySet="District" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserProfi__IdCan__6477ECF3" Association="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__IdCan__6477ECF3">
+            <End Role="Canton" EntitySet="Canton" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Course__CreateBy__778AC167" Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Course__CreateBy__778AC167">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserProfi__IdDis__66603565" Association="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__IdDis__66603565">
+            <End Role="District" EntitySet="District" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Professor__Creat__6E01572D" Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Professor__Creat__6E01572D">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Professor" EntitySet="Professor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Professor__IdUse__6D0D32F4" Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Professor__IdUse__6D0D32F4">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Professor" EntitySet="Professor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserProfi__IdPro__656C112C" Association="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__IdPro__656C112C">
+            <End Role="Province" EntitySet="Province" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__CreateB__71D1E811" Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__CreateB__71D1E811">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__CreateB__75A278F5" Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__CreateB__75A278F5">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__IdUserP__70DDC3D8" Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__IdUserP__70DDC3D8">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserProfi__Creat__6754599E" Association="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__Creat__6754599E">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="UserProfile1" EntitySet="UserProfile" />
+          </AssociationSet>
+          <FunctionImport Name="SPSelectStudent" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectStudent_Result)" />
+          <FunctionImport Name="SPSelectStudentById" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectStudentById_Result)">
+            <Parameter Name="IdUserProfile" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SPSelectCourse" EntitySet="Course" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.Course)" />
+          <FunctionImport Name="SPGetByIdCourse" EntitySet="Course" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.Course)">
+            <Parameter Name="IdCourse" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPDeleteProfessor">
+            <Parameter Name="IdUserProfile" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPInsertUpdateProfessor">
+            <Parameter Name="IdProfessor" Mode="In" Type="Int32" />
+            <Parameter Name="Degree" Mode="In" Type="String" />
+            <Parameter Name="IdUserProfile" Mode="In" Type="Int32" />
+            <Parameter Name="CreateBy" Mode="In" Type="Int32" />
+            <Parameter Name="CreationDate" Mode="In" Type="DateTime" />
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="UserPhoto" Mode="In" Type="String" />
+            <Parameter Name="Interest" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="IsAdmin" Mode="In" Type="Boolean" />
+            <Parameter Name="IsEnable" Mode="In" Type="Boolean" />
+            <Parameter Name="IdProvince" Mode="In" Type="Int32" />
+            <Parameter Name="IdCanton" Mode="In" Type="Int32" />
+            <Parameter Name="IdDistrict" Mode="In" Type="Int32" />
+            <Parameter Name="Action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPSelectProfessorById" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectProfessorById_Result)">
+            <Parameter Name="IdUserProfile" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPSelectProfessor" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectProfessor_Result)" />
         </EntityContainer>
         <ComplexType Name="GetByIdCourse_Result">
           <Property Type="Int32" Name="idCourse" Nullable="false" />
@@ -595,135 +567,681 @@
           <Property Type="Int32" Name="createBy" Nullable="true" />
           <Property Type="DateTime" Name="creationDate" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="GetByIdCourse_Result1">
+          <Property Type="Int32" Name="IdCourse" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Semestrer" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Image" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="state" Nullable="true" />
+          <Property Type="Int32" Name="CreateBy" Nullable="true" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SelectCourse_Result1">
+          <Property Type="Int32" Name="IdCourse" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Semestrer" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Image" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="state" Nullable="true" />
+          <Property Type="Int32" Name="CreateBy" Nullable="true" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SelectProfessor_Result">
+          <Property Type="Int32" Name="IdProfessor" Nullable="false" />
+          <Property Type="String" Name="Degree" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="IdUserProfile" Nullable="true" />
+          <Property Type="Int32" Name="CreateBy" Nullable="true" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="UserPhoto" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Interests" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsAdmin" Nullable="true" />
+          <Property Type="Boolean" Name="IsEnable" Nullable="true" />
+          <Property Type="Int32" Name="IdProvince" Nullable="true" />
+          <Property Type="String" Name="ProvinceName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="IdCanton" Nullable="true" />
+          <Property Type="String" Name="CantonName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="IdDistrict" Nullable="true" />
+          <Property Type="String" Name="DistrictName" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SelectProfessorById_Result">
+          <Property Type="Int32" Name="IdProfessor" Nullable="false" />
+          <Property Type="String" Name="Degree" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="IdUserProfile" Nullable="true" />
+          <Property Type="Int32" Name="CreateBy" Nullable="true" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="UserPhoto" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Interests" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsAdmin" Nullable="true" />
+          <Property Type="Boolean" Name="IsEnable" Nullable="true" />
+          <Property Type="Int32" Name="IdProvince" Nullable="true" />
+          <Property Type="String" Name="ProvinceName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="IdCanton" Nullable="true" />
+          <Property Type="String" Name="CantonName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="IdDistrict" Nullable="true" />
+          <Property Type="String" Name="DistrictName" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SelectStudent_Result">
+          <Property Type="Int32" Name="IdStudent" Nullable="false" />
+          <Property Type="String" Name="IdentificationCard" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="IdUserProfile" Nullable="true" />
+          <Property Type="Boolean" Name="IsASIP" Nullable="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="Int32" Name="CreateBy" Nullable="true" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="UserPhoto" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Interests" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsAdmin" Nullable="true" />
+          <Property Type="Boolean" Name="IsEnable" Nullable="true" />
+          <Property Type="Int32" Name="IdProvince" Nullable="true" />
+          <Property Type="String" Name="ProvinceName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="IdCanton" Nullable="true" />
+          <Property Type="String" Name="CantonName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="IdDistrict" Nullable="true" />
+          <Property Type="String" Name="DistrictName" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SelectStudentById_Result">
+          <Property Type="Int32" Name="IdStudent" Nullable="false" />
+          <Property Type="String" Name="IdentificationCard" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="IdUserProfile" Nullable="true" />
+          <Property Type="Boolean" Name="IsASIP" Nullable="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="Int32" Name="CreateBy" Nullable="true" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="UserPhoto" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Interests" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsAdmin" Nullable="true" />
+          <Property Type="Boolean" Name="IsEnable" Nullable="true" />
+          <Property Type="Int32" Name="IdProvince" Nullable="true" />
+          <Property Type="String" Name="ProvinceName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="IdCanton" Nullable="true" />
+          <Property Type="String" Name="CantonName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="IdDistrict" Nullable="true" />
+          <Property Type="String" Name="DistrictName" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="Canton">
+          <Key>
+            <PropertyRef Name="IdCanton" />
+          </Key>
+          <Property Name="IdCanton" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProvinceCanton" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Province" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Canton__IdProvin__5629CD9C" FromRole="Canton" ToRole="Province" />
+          <NavigationProperty Name="District" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__District__IdCant__59063A47" FromRole="Canton" ToRole="District" />
+          <NavigationProperty Name="UserProfile" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__IdCan__6477ECF3" FromRole="Canton" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="IdCourse" />
+          </Key>
+          <Property Name="IdCourse" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Semestrer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Boolean" />
+          <Property Name="CreateBy" Type="Int32" />
+          <Property Name="CreationDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="UserProfile" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Course__CreateBy__778AC167" FromRole="Course" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="IdDistrict" />
+          </Key>
+          <Property Name="IdDistrict" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCantonDistrict" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Canton" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__District__IdCant__59063A47" FromRole="District" ToRole="Canton" />
+          <NavigationProperty Name="UserProfile" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__IdDis__66603565" FromRole="District" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="Professor">
+          <Key>
+            <PropertyRef Name="IdProfessor" />
+          </Key>
+          <Property Name="IdProfessor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Degree" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IdUserProfile" Type="Int32" />
+          <Property Name="CreateBy" Type="Int32" />
+          <Property Name="CreationDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="UserProfile" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Professor__Creat__6E01572D" FromRole="Professor" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfile1" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Professor__IdUse__6D0D32F4" FromRole="Professor" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="IdProvince" />
+          </Key>
+          <Property Name="IdProvince" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Canton" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Canton__IdProvin__5629CD9C" FromRole="Province" ToRole="Canton" />
+          <NavigationProperty Name="UserProfile" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__IdPro__656C112C" FromRole="Province" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="IdStudent" />
+          </Key>
+          <Property Name="IdStudent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdentificationCard" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IdUserProfile" Type="Int32" />
+          <Property Name="IsASIP" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreateBy" Type="Int32" />
+          <Property Name="CreationDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="UserProfile" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__CreateB__71D1E811" FromRole="Student" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfile1" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__CreateB__75A278F5" FromRole="Student" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfile2" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__IdUserP__70DDC3D8" FromRole="Student" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="IdUserProfile" />
+          </Key>
+          <Property Name="IdUserProfile" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserPhoto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Interests" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsAdmin" Type="Boolean" />
+          <Property Name="IsEnable" Type="Boolean" />
+          <Property Name="IdCanton" Type="Int32" />
+          <Property Name="IdProvince" Type="Int32" />
+          <Property Name="IdDistrict" Type="Int32" />
+          <Property Name="CreateBy" Type="Int32" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Canton" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__IdCan__6477ECF3" FromRole="UserProfile" ToRole="Canton" />
+          <NavigationProperty Name="Course" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Course__CreateBy__778AC167" FromRole="UserProfile" ToRole="Course" />
+          <NavigationProperty Name="District" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__IdDis__66603565" FromRole="UserProfile" ToRole="District" />
+          <NavigationProperty Name="Professor" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Professor__Creat__6E01572D" FromRole="UserProfile" ToRole="Professor" />
+          <NavigationProperty Name="Professor1" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Professor__IdUse__6D0D32F4" FromRole="UserProfile" ToRole="Professor" />
+          <NavigationProperty Name="Province" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__IdPro__656C112C" FromRole="UserProfile" ToRole="Province" />
+          <NavigationProperty Name="Student" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__CreateB__71D1E811" FromRole="UserProfile" ToRole="Student" />
+          <NavigationProperty Name="Student1" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__CreateB__75A278F5" FromRole="UserProfile" ToRole="Student" />
+          <NavigationProperty Name="Student2" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__IdUserP__70DDC3D8" FromRole="UserProfile" ToRole="Student" />
+          <NavigationProperty Name="UserProfile1" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__Creat__6754599E" FromRole="UserProfile" ToRole="UserProfile1" />
+          <NavigationProperty Name="UserProfile2" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__Creat__6754599E" FromRole="UserProfile1" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="FK__Canton__IdProvin__5629CD9C">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Province" Role="Province" Multiplicity="0..1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Canton" Role="Canton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="IdProvince" />
+            </Principal>
+            <Dependent Role="Canton">
+              <PropertyRef Name="IdProvinceCanton" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__District__IdCant__59063A47">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Canton" Role="Canton" Multiplicity="0..1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.District" Role="District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Canton">
+              <PropertyRef Name="IdCanton" />
+            </Principal>
+            <Dependent Role="District">
+              <PropertyRef Name="IdCantonDistrict" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserProfi__IdCan__6477ECF3">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Canton" Role="Canton" Multiplicity="0..1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.UserProfile" Role="UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Canton">
+              <PropertyRef Name="IdCanton" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="IdCanton" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Course__CreateBy__778AC167">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Course" Role="Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="IdUserProfile" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="CreateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserProfi__IdDis__66603565">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.District" Role="District" Multiplicity="0..1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.UserProfile" Role="UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="IdDistrict" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="IdDistrict" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Professor__Creat__6E01572D">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Professor" Role="Professor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="IdUserProfile" />
+            </Principal>
+            <Dependent Role="Professor">
+              <PropertyRef Name="CreateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Professor__IdUse__6D0D32F4">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Professor" Role="Professor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="IdUserProfile" />
+            </Principal>
+            <Dependent Role="Professor">
+              <PropertyRef Name="IdUserProfile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserProfi__IdPro__656C112C">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Province" Role="Province" Multiplicity="0..1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.UserProfile" Role="UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="IdProvince" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="IdProvince" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__CreateB__71D1E811">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="IdUserProfile" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="CreateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__CreateB__75A278F5">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="IdUserProfile" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="CreateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__IdUserP__70DDC3D8">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="IdUserProfile" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="IdUserProfile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserProfi__Creat__6754599E">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.UserProfile" Role="UserProfile1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="IdUserProfile" />
+            </Principal>
+            <Dependent Role="UserProfile1">
+              <PropertyRef Name="CreateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="SelectStudent1_Result">
+          <Property Type="Int32" Name="IdStudent" Nullable="false" />
+          <Property Type="String" Name="IdentificationCard" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="IdUserProfile" Nullable="true" />
+          <Property Type="Boolean" Name="IsASIP" Nullable="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="Int32" Name="CreateBy" Nullable="true" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="UserPhoto" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Interests" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsAdmin" Nullable="true" />
+          <Property Type="Boolean" Name="IsEnable" Nullable="true" />
+          <Property Type="Int32" Name="IdProvince" Nullable="true" />
+          <Property Type="String" Name="ProvinceName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="IdCanton" Nullable="true" />
+          <Property Type="String" Name="CantonName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="IdDistrict" Nullable="true" />
+          <Property Type="String" Name="DistrictName" Nullable="false" MaxLength="100" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="IF4101_BeatySolutions_ISem_2020Model1StoreContainer" CdmEntityContainer="IF4101_BeatySolutions_ISem_2020Entities1">
+          <FunctionImportMapping FunctionImportName="DeleteCourse" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.DeleteCourse" />
+          <FunctionImportMapping FunctionImportName="DeleteProfessor" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.DeleteProfessor" />
+          <FunctionImportMapping FunctionImportName="DeleteStudent" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.DeleteStudent" />
+          <FunctionImportMapping FunctionImportName="GetByIdCourse" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.GetByIdCourse">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.GetByIdCourse_Result1">
+                <ScalarProperty Name="IdCourse" ColumnName="IdCourse" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Semestrer" ColumnName="Semestrer" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InsertUpdateProfessor" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.InsertUpdateProfessor" />
+          <FunctionImportMapping FunctionImportName="InsertUpdateStudent" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.InsertUpdateStudent" />
+          <FunctionImportMapping FunctionImportName="SelectCourse" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectCourse">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.SelectCourse_Result1">
+                <ScalarProperty Name="IdCourse" ColumnName="IdCourse" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Semestrer" ColumnName="Semestrer" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectProfessor" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectProfessor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.SelectProfessor_Result">
+                <ScalarProperty Name="IdProfessor" ColumnName="IdProfessor" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="IdUserProfile" ColumnName="IdUserProfile" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserPhoto" ColumnName="UserPhoto" />
+                <ScalarProperty Name="Interests" ColumnName="Interests" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="IdProvince" ColumnName="IdProvince" />
+                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
+                <ScalarProperty Name="CantonName" ColumnName="CantonName" />
+                <ScalarProperty Name="IdDistrict" ColumnName="IdDistrict" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectProfessorById" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectProfessorById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.SelectProfessorById_Result">
+                <ScalarProperty Name="IdProfessor" ColumnName="IdProfessor" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="IdUserProfile" ColumnName="IdUserProfile" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserPhoto" ColumnName="UserPhoto" />
+                <ScalarProperty Name="Interests" ColumnName="Interests" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="IdProvince" ColumnName="IdProvince" />
+                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
+                <ScalarProperty Name="CantonName" ColumnName="CantonName" />
+                <ScalarProperty Name="IdDistrict" ColumnName="IdDistrict" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectStudentById" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectStudentById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.SelectStudentById_Result">
+                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+                <ScalarProperty Name="IdentificationCard" ColumnName="IdentificationCard" />
+                <ScalarProperty Name="IdUserProfile" ColumnName="IdUserProfile" />
+                <ScalarProperty Name="IsASIP" ColumnName="IsASIP" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserPhoto" ColumnName="UserPhoto" />
+                <ScalarProperty Name="Interests" ColumnName="Interests" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="IdProvince" ColumnName="IdProvince" />
+                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
+                <ScalarProperty Name="CantonName" ColumnName="CantonName" />
+                <ScalarProperty Name="IdDistrict" ColumnName="IdDistrict" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPDeleteCourse" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.DeleteCourse" />
+          <FunctionImportMapping FunctionImportName="InsertUpdateCourse" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.InsertUpdateCourse" />
+          <FunctionImportMapping FunctionImportName="SPInsertUpdateCourse" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.InsertUpdateCourse" />
+          <FunctionImportMapping FunctionImportName="SPDeleteStudent" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.DeleteStudent" />
+          <FunctionImportMapping FunctionImportName="SPInsertUpdateStudent" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.InsertUpdateStudent" />
           <EntitySetMapping Name="Canton">
             <EntityTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.Canton">
               <MappingFragment StoreEntitySet="Canton">
-                <ScalarProperty Name="idCanton" ColumnName="idCanton" />
-                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdProvinceCanton" ColumnName="IdProvince" />
+                <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Course">
             <EntityTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.Course">
               <MappingFragment StoreEntitySet="Course">
-                <ScalarProperty Name="idCourse" ColumnName="idCourse" />
-                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
                 <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="semestrer" ColumnName="semestrer" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="image" ColumnName="image" />
-                <ScalarProperty Name="createBy" ColumnName="createBy" />
-                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Semestrer" ColumnName="Semestrer" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdCourse" ColumnName="IdCourse" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="District">
             <EntityTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.District">
               <MappingFragment StoreEntitySet="District">
-                <ScalarProperty Name="idDistrict" ColumnName="idDistrict" />
-                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdCantonDistrict" ColumnName="IdCanton" />
+                <ScalarProperty Name="IdDistrict" ColumnName="IdDistrict" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Professor">
             <EntityTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.Professor">
               <MappingFragment StoreEntitySet="Professor">
-                <ScalarProperty Name="idProfessor" ColumnName="idProfessor" />
-                <ScalarProperty Name="degree" ColumnName="degree" />
-                <ScalarProperty Name="idUserProfile" ColumnName="idUserProfile" />
-                <ScalarProperty Name="createBy" ColumnName="createBy" />
-                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="IdUserProfile" ColumnName="IdUserProfile" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="IdProfessor" ColumnName="IdProfessor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Province">
             <EntityTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.Province">
               <MappingFragment StoreEntitySet="Province">
-                <ScalarProperty Name="idProvince" ColumnName="idProvince" />
-                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdProvince" ColumnName="IdProvince" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Student">
             <EntityTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.Student">
               <MappingFragment StoreEntitySet="Student">
-                <ScalarProperty Name="idStudent" ColumnName="idStudent" />
-                <ScalarProperty Name="identificationCard" ColumnName="identificationCard" />
-                <ScalarProperty Name="idUserProfile" ColumnName="idUserProfile" />
-                <ScalarProperty Name="isASIP" ColumnName="isASIP" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="createBy" ColumnName="createBy" />
-                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsASIP" ColumnName="IsASIP" />
+                <ScalarProperty Name="IdUserProfile" ColumnName="IdUserProfile" />
+                <ScalarProperty Name="IdentificationCard" ColumnName="IdentificationCard" />
+                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserProfile">
             <EntityTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.UserProfile">
               <MappingFragment StoreEntitySet="UserProfile">
-                <ScalarProperty Name="idUserProfile" ColumnName="idUserProfile" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="userPhoto" ColumnName="userPhoto" />
-                <ScalarProperty Name="interests" ColumnName="interests" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
-                <ScalarProperty Name="isEnable" ColumnName="isEnable" />
-                <ScalarProperty Name="idCanton" ColumnName="idCanton" />
-                <ScalarProperty Name="idProvince" ColumnName="idProvince" />
-                <ScalarProperty Name="idDistrict" ColumnName="idDistrict" />
-                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
-                <ScalarProperty Name="createBy" ColumnName="createBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="IdDistrict" ColumnName="IdDistrict" />
+                <ScalarProperty Name="IdProvince" ColumnName="IdProvince" />
+                <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Interests" ColumnName="Interests" />
+                <ScalarProperty Name="UserPhoto" ColumnName="UserPhoto" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="IdUserProfile" ColumnName="IdUserProfile" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="deleteCourse" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.deleteCourse" />
-          <FunctionImportMapping FunctionImportName="deleteProfessor" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.deleteProfessor" />
-          <FunctionImportMapping FunctionImportName="deleteStudent" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.deleteStudent" />
-          <FunctionImportMapping FunctionImportName="GetByIdCourse" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.GetByIdCourse">
+          <FunctionImportMapping FunctionImportName="SPSelectStudent" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectStudent">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.GetByIdCourse_Result">
-                <ScalarProperty Name="idCourse" ColumnName="idCourse" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="semestrer" ColumnName="semestrer" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="image" ColumnName="image" />
-                <ScalarProperty Name="createBy" ColumnName="createBy" />
-                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.SelectStudent_Result">
+                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+                <ScalarProperty Name="IdentificationCard" ColumnName="IdentificationCard" />
+                <ScalarProperty Name="IdUserProfile" ColumnName="IdUserProfile" />
+                <ScalarProperty Name="IsASIP" ColumnName="IsASIP" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserPhoto" ColumnName="UserPhoto" />
+                <ScalarProperty Name="Interests" ColumnName="Interests" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="IdProvince" ColumnName="IdProvince" />
+                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
+                <ScalarProperty Name="CantonName" ColumnName="CantonName" />
+                <ScalarProperty Name="IdDistrict" ColumnName="IdDistrict" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="InsertUpdateCourse" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.InsertUpdateCourse" />
-          <FunctionImportMapping FunctionImportName="InsertUpdateProfessor" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.InsertUpdateProfessor" />
-          <FunctionImportMapping FunctionImportName="InsertUpdateStudent" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.InsertUpdateStudent" />
-          <FunctionImportMapping FunctionImportName="SelectCourse" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectCourse">
+          <FunctionImportMapping FunctionImportName="SPSelectStudentById" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectStudentById">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.SelectCourse_Result">
-                <ScalarProperty Name="idCourse" ColumnName="idCourse" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="semestrer" ColumnName="semestrer" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="image" ColumnName="image" />
-                <ScalarProperty Name="createBy" ColumnName="createBy" />
-                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.SelectStudentById_Result">
+                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+                <ScalarProperty Name="IdentificationCard" ColumnName="IdentificationCard" />
+                <ScalarProperty Name="IdUserProfile" ColumnName="IdUserProfile" />
+                <ScalarProperty Name="IsASIP" ColumnName="IsASIP" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserPhoto" ColumnName="UserPhoto" />
+                <ScalarProperty Name="Interests" ColumnName="Interests" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="IdProvince" ColumnName="IdProvince" />
+                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
+                <ScalarProperty Name="CantonName" ColumnName="CantonName" />
+                <ScalarProperty Name="IdDistrict" ColumnName="IdDistrict" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="deleteCourseSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.deleteCourse" />
-          <FunctionImportMapping FunctionImportName="deleteProfessorSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.deleteProfessor" />
-          <FunctionImportMapping FunctionImportName="deleteStudentSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.deleteStudent" />
-          <FunctionImportMapping FunctionImportName="InsertUpdateCourseSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.InsertUpdateCourse" />
-          <FunctionImportMapping FunctionImportName="InsertUpdateProfessorSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.InsertUpdateProfessor" />
-          <FunctionImportMapping FunctionImportName="InsertUpdateStudentSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.InsertUpdateStudent" />
-          <FunctionImportMapping FunctionImportName="SelectCourseSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectCourse" />
-          <FunctionImportMapping FunctionImportName="GetByIdCourseSP" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.GetByIdCourse" />
+          <FunctionImportMapping FunctionImportName="SPSelectCourse" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectCourse" />
+          <FunctionImportMapping FunctionImportName="SPGetByIdCourse" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.GetByIdCourse" />
+          <FunctionImportMapping FunctionImportName="SPDeleteProfessor" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.DeleteProfessor" />
+          <FunctionImportMapping FunctionImportName="SPInsertUpdateProfessor" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.InsertUpdateProfessor" />
+          <FunctionImportMapping FunctionImportName="SPSelectProfessorById" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectProfessorById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.SelectProfessorById_Result">
+                <ScalarProperty Name="IdProfessor" ColumnName="IdProfessor" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="IdUserProfile" ColumnName="IdUserProfile" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserPhoto" ColumnName="UserPhoto" />
+                <ScalarProperty Name="Interests" ColumnName="Interests" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="IdProvince" ColumnName="IdProvince" />
+                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
+                <ScalarProperty Name="CantonName" ColumnName="CantonName" />
+                <ScalarProperty Name="IdDistrict" ColumnName="IdDistrict" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPSelectProfessor" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectProfessor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.SelectProfessor_Result">
+                <ScalarProperty Name="IdProfessor" ColumnName="IdProfessor" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="IdUserProfile" ColumnName="IdUserProfile" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserPhoto" ColumnName="UserPhoto" />
+                <ScalarProperty Name="Interests" ColumnName="Interests" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="IdProvince" ColumnName="IdProvince" />
+                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
+                <ScalarProperty Name="CantonName" ColumnName="CantonName" />
+                <ScalarProperty Name="IdDistrict" ColumnName="IdDistrict" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

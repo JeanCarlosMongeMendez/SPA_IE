@@ -17,12 +17,17 @@ namespace SPA_IE.Models.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Canton()
         {
+            this.District = new HashSet<District>();
             this.UserProfile = new HashSet<UserProfile>();
         }
     
-        public int idCanton { get; set; }
-        public string name { get; set; }
+        public int IdCanton { get; set; }
+        public Nullable<int> IdProvinceCanton { get; set; }
+        public string Name { get; set; }
     
+        public virtual Province Province { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<District> District { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserProfile> UserProfile { get; set; }
     }

@@ -57,6 +57,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.Activities" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
@@ -155,26 +156,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BeautySolutions_ADO.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Data\Beauty_Solutions_ADO.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Beauty_Solutions_ADO.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Data\Beauty_Solutions_ADO.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Beauty_Solutions_ADO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Data\Beauty_Solutions_ADO.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Beauty_Solutions_ADO.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Data\Beauty_Solutions_ADO1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Beauty_Solutions_ADO.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\Data\Canton.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
@@ -187,11 +168,13 @@
     <Compile Include="Models\Data\Data\ProfessorData.cs" />
     <Compile Include="Models\Data\Data\ProvinceData.cs" />
     <Compile Include="Models\Data\Data\StudentData.cs" />
-    <Compile Include="Models\Data\Data\UserProfileData.cs" />
     <Compile Include="Models\Data\District.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\GetByIdCourse_Result.cs">
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Data\GetByIdCourse_Result1.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\Professor.cs">
@@ -201,6 +184,24 @@
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\SelectCourse_Result.cs">
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Data\SelectCourse_Result1.cs">
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Data\SelectProfessorById_Result.cs">
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Data\SelectProfessor_Result.cs">
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Data\SelectStudent1_Result.cs">
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Data\SelectStudentById_Result.cs">
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Data\SelectStudent_Result.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\Student.cs">
@@ -266,23 +267,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BeautySolutions_ADO.edmx</DependentUpon>
       <LastGenOutput>BeautySolutions_ADO.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Data\Beauty_Solutions_ADO.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Beauty_Solutions_ADO.edmx</DependentUpon>
-      <LastGenOutput>Beauty_Solutions_ADO.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Data\Beauty_Solutions_ADO.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Beauty_Solutions_ADO.edmx</DependentUpon>
-      <LastGenOutput>Beauty_Solutions_ADO.cs</LastGenOutput>
-    </Content>
-    <EntityDeploy Include="Models\Data\Beauty_Solutions_ADO.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Beauty_Solutions_ADO1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Data\Beauty_Solutions_ADO.edmx.diagram">
-      <DependentUpon>Beauty_Solutions_ADO.edmx</DependentUpon>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

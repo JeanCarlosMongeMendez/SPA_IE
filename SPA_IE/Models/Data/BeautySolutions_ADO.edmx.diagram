@@ -5,22 +5,25 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="6b274e2e26c241a19ca0ff997e8e01ed" Name="Diagram1">
-        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.Canton" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.Course" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.District" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.Professor" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.Province" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.Student" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.UserProfile" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
-        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__idCan__2F10007B" ManuallyRouted="false" />
-        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Course__createBy__3C69FB99" ManuallyRouted="false" />
-        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__idDis__30F848ED" ManuallyRouted="false" />
-        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Professor__creat__35BCFE0A" ManuallyRouted="false" />
-        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Professor__idUse__34C8D9D1" ManuallyRouted="false" />
-        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__idPro__300424B4" ManuallyRouted="false" />
-        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__createB__398D8EEE" ManuallyRouted="false" />
-        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__idUserP__38996AB5" ManuallyRouted="false" />
-        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__creat__31EC6D26" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.Canton" Width="1.5" PointX="3" PointY="5" />
+        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.Course" Width="1.5" PointX="9.75" PointY="5" />
+        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.District" Width="1.5" PointX="5.25" PointY="5.125" />
+        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.Professor" Width="1.5" PointX="9.75" PointY="8.5" />
+        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.Province" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.Student" Width="1.5" PointX="9.75" PointY="1.25" />
+        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.UserProfile" Width="1.5" PointX="7.5" PointY="3.25" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Canton__IdProvin__5629CD9C" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__District__IdCant__59063A47" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__IdCan__6477ECF3" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Course__CreateBy__778AC167" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__IdDis__66603565" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Professor__Creat__6E01572D" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Professor__IdUse__6D0D32F4" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__IdPro__656C112C" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__CreateB__71D1E811" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__CreateB__75A278F5" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__IdUserP__70DDC3D8" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__Creat__6754599E" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

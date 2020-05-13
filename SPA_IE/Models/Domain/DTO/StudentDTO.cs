@@ -10,6 +10,7 @@ namespace SPA_IE.Models.Data.DTO
 
         public Nullable<bool> isASIP { get; set; }
         public Nullable<bool> isActive { get; set; }
+        
 
     }
 }
