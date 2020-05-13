@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-- branch_karen_guillen
+- Branch_Lyka
 
 pool:
   vmImage: 'windows-latest'
