@@ -13,22 +13,14 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  system.debug: false
 
 steps:
-- task: NuGetToolInstaller@1
 
 - task: DotNetCoreCLI@2
-  
-displayName: Testing Unit Test
-  
-inputs:
-    
-command: 'test'
-    
-projects: '**/xUnit.CaducaRest/*.csproj'
-    
-arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
-    
-testRunTitle: 'Unit Test'
-
-
+  displayName: Testing Unit Test
+  inputs:
+    command: 'test'
+    projects: '**/xUnit.CaducaRest/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+    testRunTitle: 'Unit Test'
