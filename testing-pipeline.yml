@@ -13,22 +13,23 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  system.debug: false
 
 steps:
-- task: NuGetToolInstaller@1
+
+- task: UseDotNet@2 
+  displayName: "Instalar .NET Core 3.1.x"
+  inputs:
+        version: '3.1.103'
+        packageType: sdk
+
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'Build Project $(buildConfiguration) '
 
 - task: DotNetCoreCLI@2
-  
-displayName: Testing Unit Test
-  
-inputs:
-    
-command: 'test'
-    
-projects: '**/xUnit.CaducaRest/*.csproj'
-    
-arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
-    
-testRunTitle: 'Unit Test'
-
-
+  displayName: Testing Unit Test
+  inputs:
+    command: 'test'
+    projects: '**/xUnit.CaducaRest/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+    testRunTitle: 'Unit Test'
