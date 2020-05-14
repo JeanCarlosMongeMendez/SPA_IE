@@ -18,10 +18,11 @@ namespace SPA_IE.Controllers
             return View();
         }
 
-        public ActionResult GetStudents()
+        public PartialViewResult GetRequest()
         {
-            IEnumerable<SelectStudent_Result> students = studentData.ListAllSP();
-            return View(students);
+            IEnumerable<SelectRequestStudent_Result> students = studentData.ListAllRequestSP();
+            ViewBag.requests = students;
+            return PartialView("Index");
         }
     }
 }

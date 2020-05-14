@@ -3,6 +3,7 @@
     ViewBag.Title = "SPA_IE";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <!-- MENU -->
 <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
     <div class="container">
@@ -22,30 +23,10 @@
         <div class="collapse navbar-collapse">
 
             <ul class="nav navbar-nav navbar-nav-first">
-                <li><a href="#top" class="smoothScroll">¿Quiénes somos?</a></li>
-                <li><a href="#about" class="smoothScroll">Beneficios</a></li>
-                <li><a href="#team" class="smoothScroll">Cursos</a></li>
-                <li><a href="#courses" class="smoothScroll">Noticias</a></li>
-                <li><a href="#testimonial" class="smoothScroll">Consultas</a></li>
-                <li>
-                    <a href="#">Catálogos</a>
-                    <ul class="menuDropdown">
-                        <li><a href="#">Profesores</a></li>
-                        <li><a data-toggle="modal" data-target="#requestStudentModal">Solicitudes de Estudiantes</a></li>
-                        <li><a data-toggle="modal" data-target="#registredStudentModal">Estudiantes Registrados</a></li>
-                        <li>@Ajax.ActionLink("Ver Solicitudes",
-                                 "GetRequest",
-                                 "Student",
-                                 new AjaxOptions()
-                                 {
-                                     HttpMethod = "GET",
-                                     InsertionMode = InsertionMode.Replace,
-                                     UpdateTargetId = "AjaxContent",
-                                     OnSuccess = "onSuccessAjax",
-                                     OnFailure = "onFailureAjax"
-                                 })</li>
-                    </ul>
-                </li>
+                <li><a href="#home" class="smoothScroll">¿Quiénes somos?</a></li>
+                <li><a href="#requests" data="@Url.Action("GetRequest", "Student")" id="requestLink" class="smoothScroll">Solicitudes de Estudiantes</a></li>
+                <li><a href="#students" data="@Url.Action("GetAll", "Student")" id="studentLink" class="smoothScroll">Estudiantes Registrados</a></li>
+                <li><a href="#professors" data="@Url.Action("GetAll", "Professor")" id="professorLink" class="smoothScroll">Profesores Registrados</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -55,10 +36,6 @@
         </div>
     </div>
 </section>
-
-<div id="AjaxContent">
-
-</div>
 
 <!-- Modal Login -->
 <div id="loginModal" class="modal fade" role="dialog">
@@ -97,14 +74,16 @@
             <div class="container">
                 <label>Llenar con su información personal...</label>
             </div>
-
+            <div id="addStudentContent"></div>
             <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" value="Create" class="btn btn-default" id="addStudentSubmit" />
+                    </div>
+                </div>
                 <button type="button" class="cancelbtn" data-dismiss="modal">Cerrar</button>
             </div>
-
         </div>
-
-
     </div>
 </div>
 
@@ -208,7 +187,6 @@
                     <br />
                     <i class="fa fa-search"></i>
                     <input type="search" id="searchStudent" placeholder="Buscar...">
-                    @*@{Html.RenderAction("GetRequest", "Student");}*@
                 </div>
             </div>
 
@@ -238,7 +216,9 @@
                     <br />
                     <i class="fa fa-search"></i>
                     <input type="search" id="searchStudent" placeholder="Buscar...">
-                    @*@{Html.RenderAction("Index", "Student");}*@
+                    <div id="studentContent">
+
+                    </div>
                 </div>
             </div>
 
@@ -284,7 +264,7 @@
                     <br>
                 </form>
 
-                
+
 
             </div>
 
@@ -400,6 +380,23 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+</section>
+
+<!-- STUDENTS -->
+<section id="students">
+    <p>
+        <a data-toggle="modal" data-target="#registerModal" data="@Url.Action("Create", "Student")" id="addStudentLink" class="btn btn-primary">Agregar</a>
+    </p>
+    <div id="studentsContent"></div>
+</section>
+
+<!-- REQUESTS -->
+<section id="requests">
+    <div class="container">
+        <div class="row">
+            <div id="requestContent"></div>
         </div>
     </div>
 </section>
@@ -854,18 +851,68 @@
 <script src="~/Content/js/custom.js"></script>
 
 @section scripts {
-    @*JQUERY UNOBTRUSIVE PARA Ajax.ActionLink()*@
-    @Scripts.Render("~/bundles/jqueryajax")
-
     <script>
-        var onSuccessAjax = function () {
-            alert("Success");
-        };
-    </script>
+        $('#requestLink').on('click', function () {
+            var url = $(this).attr('data');
+            $.get(url, function (data) {
+                $('#requestContent').html(data);
+            });
+        });
 
-    <script>
-        var onFailureAjax = function () {
-            alert("Failure");
-        };
+        $('#studentLink').on('click', function () {
+            var url = $(this).attr('data');
+            $.get(url, function (data) {
+                $('#studentsContent').html(data);
+            });
+        });
+
+        $('#addStudentLink').on('click', function () {
+            var url = $(this).attr('data');
+            $.get(url, function (data) {
+                $('#addStudentContent').html(data);
+            });
+        });
+
+        $('#addStudentSubmit').on('click', function () {
+            var data = new FormData();
+            var username = $("#Username").val();
+            data.append("Username", username);
+            var password = $("#Password").val();
+            data.append("Password", password);
+            var interest = $("#Interests").val();
+            data.append("Interests", interest);
+            var email = $("#Email").val();
+            data.append("Email", email);
+            var idcard = $("#IdentificationCard").val();
+            data.append("IdentificationCard", idcard);
+            var province = $("#IdProvince").val();
+            data.append("IdProvince", province);
+            var canton = $("#IdCanton").val();
+            data.append("IdCanton", canton);
+            var district = $("#IdDistrict").val();
+            data.append("IdDistrict", district);
+            $.ajax({
+                url: '@Url.Action("Create", "Student")',
+                type: 'POST',
+                data:  data,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $('#registerModal').modal('toggle');
+                    $('#requestContent').html(data);
+                }
+            });
+        });
+
+        function aprove(link) {
+            var url = $(link).attr('data');
+            $.get(url, function (data) {
+                $('#requestContent').html(data);
+                var url = $('#studentLink').attr('data');
+                $.get(url, function (data) {
+                    $('#studentsContent').html(data);
+                });
+            });
+        }
     </script>
 }

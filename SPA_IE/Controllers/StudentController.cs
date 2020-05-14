@@ -1,6 +1,7 @@
 ﻿using SPA_IE.Models.Data;
 using SPA_IE.Models.Data.Data;
 using SPA_IE.Models.Data.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -17,40 +18,45 @@ namespace SPA_IE.Controllers
         public PartialViewResult GetAll()
         {
             IEnumerable<SelectStudent_Result> students = studentData.ListAllSP();
-            return PartialView("", students);
+            return PartialView("GetAll", students);
         }
 
         public PartialViewResult GetRequest()
         {
             IEnumerable<SelectRequestStudent_Result> students = studentData.ListAllRequestSP();
-            return PartialView("~/views/Home/Index.cshtml", students);
+            return PartialView("GetRequest", students);
         }
 
-        public ActionResult AproveRequest(int id)
+        public PartialViewResult AproveRequest(int id)
         {
             studentData.AproveRequest(id);
-            return View();
+            IEnumerable<SelectRequestStudent_Result> students = studentData.ListAllRequestSP();
+            return PartialView("GetRequest", students);
         }
 
-        public ActionResult Create()
+        public PartialViewResult Create()
         {
             var provinces = new SelectList(provinceData.ListAllProvince(), "IdProvince", "Name");
-            ViewData["provinces"] = provinces;
+            ViewBag.provinces = provinces;
 
             var cantons = new SelectList(cantonData.ListAllCanton(), "IdCanton", "Name");
-            ViewData["cantons"] = provinces;
+            ViewBag.cantons = cantons;
 
             var districts = new SelectList(districtData.ListAllDistrict(), "IdDistrict", "Name");
-            ViewData["districts"] = districts;
+            ViewBag.districts = districts;
 
-            return View();
+            return PartialView("Create");
         }
 
         [HttpPost]
-        public ActionResult Create(StudentDTO student)
+        public PartialViewResult Create(StudentDTO student)
         {
+            student.CreationDate = DateTime.Now;
+            student.isActive = false;
+            student.IsEnable = true;
             studentData.Add(student);
-            return View("Index",studentData.ListAllSP().AsEnumerable());
+            IEnumerable<SelectRequestStudent_Result> students = studentData.ListAllRequestSP();
+            return PartialView("GetRequest", students);
         }
 
         public ActionResult Edit(int id)
