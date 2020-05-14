@@ -18,9 +18,8 @@ variables:
 steps:
 
 - task: DotNetCoreCLI@2
-  displayName: Testing Unit Test
   inputs:
     command: 'test'
-    projects: '**/xUnit.CaducaRest/*.csproj'
+    projects: '**/*.csproj'
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
-    testRunTitle: 'Unit Test'
+    testRunTitle: 'My Unit Test'
