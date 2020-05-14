@@ -10,7 +10,6 @@ namespace SPA_IE.Controllers
     {
         CantonData cantonData = new CantonData();
         ProvinceData provinceData = new ProvinceData();
-        UserProfileData userProfileData = new UserProfileData();
 
 
 

@@ -15,8 +15,8 @@ namespace SPA_IE.Models.Data.Data
                 provinces = context.Province
                   .Select(provinceItem => new ProvinceDTO()
                   {
-                      IdProvince = provinceItem.idProvince,
-                      Name = provinceItem.name,
+                      IdProvince = provinceItem.IdProvince,
+                      Name = provinceItem.Name,
 
 
 
@@ -36,8 +36,8 @@ namespace SPA_IE.Models.Data.Data
                 var provinceToReturn = (from provinceItem in context.Province
                                         select new ProvinceDTO
                                         {
-                                            IdProvince = provinceItem.idProvince,
-                                            Name = provinceItem.name,
+                                            IdProvince = provinceItem.IdProvince,
+                                            Name = provinceItem.Name,
                                         }).Where(x => x.IdProvince == id).Single();
 
 

@@ -16,8 +16,9 @@ namespace SPA_IE.Models.Data.Data
                 cantons = context.Canton
                   .Select(cantonItem => new CantonDTO()
                   {
-                      IdCanton = cantonItem.idCanton,
-                      Name = cantonItem.name,
+                      IdCanton = cantonItem.IdCanton,
+                      Name = cantonItem.Name,
+                      IdProvinceCanton = cantonItem.IdProvinceCanton,
 
 
 
@@ -37,9 +38,31 @@ namespace SPA_IE.Models.Data.Data
                 var cantonToReturn = (from cantonItem in context.Canton
                                       select new CantonDTO
                                       {
-                                          IdCanton = cantonItem.idCanton,
-                                          Name = cantonItem.name,
+                                          IdCanton = cantonItem.IdCanton,
+                                          Name = cantonItem.Name,
+                                          IdProvinceCanton = cantonItem.IdProvinceCanton,
+
                                       }).Where(x => x.IdCanton == id).Single();
+
+
+                return cantonToReturn;
+
+
+            }
+        }
+        public CantonDTO GetByIdProvince(int id)
+        {
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            {
+
+                var cantonToReturn = (from cantonItem in context.Canton
+                                      select new CantonDTO
+                                      {
+                                          IdCanton = cantonItem.IdCanton,
+                                          Name = cantonItem.Name,
+                                          IdProvinceCanton = cantonItem.IdProvinceCanton,
+
+                                      }).Where(x => x.IdProvinceCanton == id).Single();
 
 
                 return cantonToReturn;

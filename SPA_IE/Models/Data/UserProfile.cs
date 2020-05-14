@@ -22,22 +22,23 @@ namespace SPA_IE.Models.Data
             this.Professor1 = new HashSet<Professor>();
             this.Student = new HashSet<Student>();
             this.Student1 = new HashSet<Student>();
+            this.Student2 = new HashSet<Student>();
             this.UserProfile1 = new HashSet<UserProfile>();
         }
     
-        public int idUserProfile { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
-        public string userPhoto { get; set; }
-        public string interests { get; set; }
-        public string email { get; set; }
-        public Nullable<bool> isAdmin { get; set; }
-        public Nullable<bool> isEnable { get; set; }
-        public Nullable<int> idCanton { get; set; }
-        public Nullable<int> idProvince { get; set; }
-        public Nullable<int> idDistrict { get; set; }
-        public Nullable<System.DateTime> creationDate { get; set; }
-        public Nullable<int> createBy { get; set; }
+        public int IdUserProfile { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string UserPhoto { get; set; }
+        public string Interests { get; set; }
+        public string Email { get; set; }
+        public Nullable<bool> IsAdmin { get; set; }
+        public Nullable<bool> IsEnable { get; set; }
+        public Nullable<int> IdCanton { get; set; }
+        public Nullable<int> IdProvince { get; set; }
+        public Nullable<int> IdDistrict { get; set; }
+        public Nullable<int> CreateBy { get; set; }
+        public Nullable<System.DateTime> CreationDate { get; set; }
     
         public virtual Canton Canton { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -52,6 +53,8 @@ namespace SPA_IE.Models.Data
         public virtual ICollection<Student> Student { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student> Student1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Student> Student2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserProfile> UserProfile1 { get; set; }
         public virtual UserProfile UserProfile2 { get; set; }

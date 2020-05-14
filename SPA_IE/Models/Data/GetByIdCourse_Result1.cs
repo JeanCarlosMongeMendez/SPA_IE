@@ -10,9 +10,8 @@
 namespace SPA_IE.Models.Data
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Course
+    public partial class GetByIdCourse_Result1
     {
         public int IdCourse { get; set; }
         public string Name { get; set; }
@@ -22,7 +21,5 @@ namespace SPA_IE.Models.Data
         public Nullable<bool> state { get; set; }
         public Nullable<int> CreateBy { get; set; }
         public Nullable<System.DateTime> CreationDate { get; set; }
-    
-        public virtual UserProfile UserProfile { get; set; }
     }
 }
