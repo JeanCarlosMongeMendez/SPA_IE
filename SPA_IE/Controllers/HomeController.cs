@@ -23,11 +23,5 @@ namespace SPA_IE.Controllers
             IEnumerable<SelectStudent_Result> students = studentData.ListAllSP();
             return View(students);
         }
-
-        public ActionResult Index2(/*your arg*/)
-        {
-            var data = provinceData.ListAllProvince();
-            return View(data);
-        }
     }
 }

@@ -14,16 +14,22 @@ namespace SPA_IE.Controllers
         private CantonData cantonData = new CantonData();
         private DistrictData districtData = new DistrictData();
 
-        public ActionResult Index()
+        public PartialViewResult GetAll()
         {
             IEnumerable<SelectStudent_Result> students = studentData.ListAllSP();
-            return View(students);
+            return PartialView("", students);
         }
 
-        public ActionResult GetRequest()
+        public PartialViewResult GetRequest()
         {
             IEnumerable<SelectRequestStudent_Result> students = studentData.ListAllRequestSP();
-            return View(students);
+            return PartialView("_Solicitudes", students);
+        }
+
+        public ActionResult AproveRequest(int id)
+        {
+            studentData.AproveRequest(id);
+            return View();
         }
 
         public ActionResult Create()

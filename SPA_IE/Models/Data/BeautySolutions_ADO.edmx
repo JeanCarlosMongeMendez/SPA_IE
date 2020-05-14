@@ -225,6 +225,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="AproveRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="IdStudent" Type="int" Mode="In" />
+        </Function>
         <Function Name="DeleteCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
           <Parameter Name="IdCourse" Type="int" Mode="In" />
         </Function>
@@ -548,6 +551,9 @@
           </FunctionImport>
           <FunctionImport Name="SPSelectProfessor" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectProfessor_Result)" />
           <FunctionImport Name="SelectRequestStudent" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectRequestStudent_Result)" />
+          <FunctionImport Name="AproveRequest">
+            <Parameter Name="IdStudent" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetByIdCourse_Result">
           <Property Type="Int32" Name="idCourse" Nullable="false" />
@@ -1292,6 +1298,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AproveRequest" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.AproveRequest" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

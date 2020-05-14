@@ -4,8 +4,6 @@
     ViewBag.Title = "SPA_IE";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>SPA_IE</h2>
-<script src="~/Scripts/ApplicationScripts/Student.js"></script>
 <!-- MENU -->
 <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
     <div class="container">
@@ -35,7 +33,18 @@
                     <ul class="menuDropdown">
                         <li><a href="#">Profesores</a></li>
                         <li><a data-toggle="modal" data-target="#requestStudentModal">Solicitudes de Estudiantes</a></li>
-                        <li><a data-toggle="modal" data-target="#">Estudiantes Registrados</a></li>
+                        <li><a data-toggle="modal" data-target="#registredStudentModal">Estudiantes Registrados</a></li>
+                        <li>@Ajax.ActionLink("Ver Solicitudes",
+                                 "GetRequest",
+                                 "Student",
+                                 new AjaxOptions()
+                                 {
+                                     HttpMethod = "GET",
+                                     InsertionMode = InsertionMode.Replace,
+                                     UpdateTargetId = "AjaxContent",
+                                     OnSuccess = "onSuccessAjax",
+                                     OnFailure = "onFailureAjax"
+                                 })</li>
                     </ul>
                 </li>
             </ul>
@@ -48,9 +57,8 @@
     </div>
 </section>
 
+<div id="AjaxContent">
 
-<div>
-    @{Html.RenderAction("Index", "Student");}
 </div>
 
 <!-- Modal Login -->
@@ -197,56 +205,45 @@
 
                 <div style="width:76%">
                     <h3 align="center">Estudiantes</h3>
-                    <h5 align="center">A continuación se muestran los estudiantes registrados en el sistema</h5>
+                    <h5 align="center">A continuación se muestran los estudiantes pendientes de registrar en el sistema</h5>
                     <br />
                     <i class="fa fa-search"></i>
                     <input type="search" id="searchStudent" placeholder="Buscar...">
-                    <table>
-                        <tr>
-                            <th>Acción </th>
-                            <th>Carnet</th>
-                            <th>Nombre</th>
-                            <th>Usuario</th>
-                            <th>Es Presidente</th>
-                        </tr>
-                        <tr>
-                            <th>
-                                <a href="" class="fa fa-trash"></a>
-                                <a href="" class="fa fa-upload"  data-toggle="modal" data-target="#addStudentModal" data-dismiss="modal"></a>
-                            </th>
-                            <td>A53490</td>
-                            <td>Valeria Leiva</td>
-                            <td>ValeA5</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <a href="" class="fa fa-trash"></a>
-                                <a href="" class="fa fa-upload"  data-toggle="modal" data-target="#addStudentModal" data-dismiss="modal"></a>
-                            </th>
-                            <td>A63188</td>
-                            <td>Karen Guillén</td>
-                            <td>Lyka4406</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <a href="" class="fa fa-trash"></a>
-                                <a class="fa fa-upload"  data-toggle="modal" data-target="#addStudentModal" data-dismiss="modal"></a>
-                            </th>
-                            <td>A00102</td>
-                            <td>Jean Monge</td>
-                            <td>JCA01</td>
-                            <td>X</td>
-                        </tr>
-                    </table>
-
+                    @*@{Html.RenderAction("GetRequest", "Student");}*@
                 </div>
             </div>
 
             <div class="modal-footer">
+                <button type="button" class="cancelbtn" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
 
-                <button type="submit" class="button" data-toggle="modal" data-target="#addStudentModal" data-dismiss="modal">Agregar Nuevo</button>
+    </div>
+</div>
+
+<!-- Modal Registred Student -->
+<div id="registredStudentModal" class="modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Registro de Estudiantes</h4>
+            </div>
+
+            <div class="container">
+
+                <div style="width:76%">
+                    <h3 align="center">Estudiantes</h3>
+                    <h5 align="center">A continuación se muestran los estudiantes registrados en el sistema</h5>
+                    <br />
+                    <i class="fa fa-search"></i>
+                    <input type="search" id="searchStudent" placeholder="Buscar...">
+                    @*@{Html.RenderAction("Index", "Student");}*@
+                </div>
+            </div>
+
+            <div class="modal-footer">
                 <button type="button" class="cancelbtn" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
@@ -856,3 +853,20 @@
 <script src="~/Content/js/owl.carousel.min.js"></script>
 <script src="~/Content/js/smoothscroll.js"></script>
 <script src="~/Content/js/custom.js"></script>
+
+@section scripts {
+    @*JQUERY UNOBTRUSIVE PARA Ajax.ActionLink()*@
+    @Scripts.Render("~/bundles/jqueryajax")
+
+    <script>
+        var onSuccessAjax = function () {
+            alert("Success");
+        };
+    </script>
+
+    <script>
+        var onFailureAjax = function () {
+            alert("Failure");
+        };
+    </script>
+}

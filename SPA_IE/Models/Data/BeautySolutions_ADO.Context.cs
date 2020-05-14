@@ -549,5 +549,14 @@ namespace SPA_IE.Models.Data
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectRequestStudent_Result>("SelectRequestStudent");
         }
+    
+        public virtual int AproveRequest(Nullable<int> idStudent)
+        {
+            var idStudentParameter = idStudent.HasValue ?
+                new ObjectParameter("IdStudent", idStudent) :
+                new ObjectParameter("IdStudent", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AproveRequest", idStudentParameter);
+        }
     }
 }
