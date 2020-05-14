@@ -16,7 +16,7 @@ namespace UnitTestSPA_IE
         [TestMethod]
         public void TestMethod1()
         {
-            string name = "Lyka";
+            string name = "Lyk";
 
             TestxTwo testxTwo = new TestxTwo();
             String result = testxTwo.stringTest("X");
