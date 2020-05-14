@@ -23,7 +23,7 @@ namespace SPA_IE.Controllers
         public PartialViewResult GetRequest()
         {
             IEnumerable<SelectRequestStudent_Result> students = studentData.ListAllRequestSP();
-            return PartialView("_Solicitudes", students);
+            return PartialView("~/views/Home/Index.cshtml", students);
         }
 
         public ActionResult AproveRequest(int id)
