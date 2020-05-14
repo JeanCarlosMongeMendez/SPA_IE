@@ -1,59 +1,11 @@
 ﻿@model IEnumerable<SPA_IE.Models.Domain.DTO.ProvinceDTO>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "SPA_IE";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Index</h2>
-
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.IdProvince)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdProvince)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
-
-</table>*@
-=======
-﻿@{
-    ViewBag.Title = "L";
-}
-
-
-<!-- PRE LOADER -->
-@*<section class="preloader">
-        <div class="spinner">
-
-            <span class="spinner-rotate"></span>
-
-        </div>
-    </section>*@
-
-
+<h2>SPA_IE</h2>
+<script src="~/Scripts/ApplicationScripts/Student.js"></script>
 <!-- MENU -->
 <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
     <div class="container">
@@ -79,28 +31,27 @@
                 <li><a href="#courses" class="smoothScroll">Noticias</a></li>
                 <li><a href="#testimonial" class="smoothScroll">Consultas</a></li>
                 <li>
-                    <a href="#">CRUD's</a>
+                    <a href="#">Catálogos</a>
                     <ul class="menuDropdown">
                         <li><a href="#">Profesores</a></li>
-                        <li><a data-toggle="modal" data-target="#crudStudentModal">Estudiantes</a></li>
+                        <li><a data-toggle="modal" data-target="#requestStudentModal">Solicitudes de Estudiantes</a></li>
+                        <li><a data-toggle="modal" data-target="#">Estudiantes Registrados</a></li>
                     </ul>
                 </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <!-- Trigger the modal with a button -->
                 <li><a data-toggle="modal" data-target="#loginModal"> Iniciar sesión</a></li>
                 <li><a data-toggle="modal" data-target="#registerModal"> Registrarme</a></li>
             </ul>
-
-
         </div>
-
-
     </div>
-
-
 </section>
+
+
+<div>
+    @{Html.RenderAction("Index", "Student");}
+</div>
 
 <!-- Modal Login -->
 <div id="loginModal" class="modal fade" role="dialog">
@@ -232,8 +183,8 @@
     </div>
 </div>
 
-<!-- Modal CRUD Student -->
-<div id="crudStudentModal" class="modal" role="dialog">
+<!-- Modal Request Student -->
+<div id="requestStudentModal" class="modal" role="dialog">
     <div class="modal-dialog modal-lg">
 
         <!-- Modal content-->
@@ -350,14 +301,6 @@
     </div>
 </div>
 
-
-
-
-
-
-
-
-
 <!-- HOME -->
 <section id="home">
     <div class="row">
@@ -464,7 +407,6 @@
         </div>
     </div>
 </section>
-
 
 <!-- Courses -->
 <section id="team">
@@ -587,7 +529,6 @@
 
 
 </section>
-
 
 <!-- News -->
 <section id="courses">
@@ -741,7 +682,6 @@
         </div>
     </div>
 </section>
-
 
 <!-- Queries -->
 <section id="testimonial">
@@ -915,6 +855,4 @@
 <script src="~/Content/js/bootstrap.min.js"></script>
 <script src="~/Content/js/owl.carousel.min.js"></script>
 <script src="~/Content/js/smoothscroll.js"></script>
-
-
 <script src="~/Content/js/custom.js"></script>

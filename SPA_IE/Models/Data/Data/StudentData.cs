@@ -8,65 +8,60 @@ namespace SPA_IE.Models.Data.Data
 {
     public class StudentData
     {
-
         public List<SelectStudent_Result> ListAllSP()
         {
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 return context.SPSelectStudent().ToList();
             }
+        }
 
+        public List<SelectRequestStudent_Result> ListAllRequestSP()
+        {
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            {
+                return context.SelectRequestStudent().ToList();
+            }
         }
 
         public int Add(StudentDTO student)
         {
             int resultToReturn;
-
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 resultToReturn = context.SPInsertUpdateStudent(student.IdStudent, student.IdentificationCard, student.IdUserProfile, student.isASIP, student.isActive, student.CreateBy, DateTime.Now, student.Username, student.Password, student.UserPhoto, student.Interests, student.Email, student.IsAdmin, student.IsEnable, student.IdProvince, student.IdCanton, student.IdDistrict, "Insert");
             }
-
             return resultToReturn;
-
         }
 
         public int Update(StudentDTO student)
         {
             int resultToReturn;
-
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 resultToReturn = context.SPInsertUpdateStudent(student.IdStudent, student.IdentificationCard, student.IdUserProfile, student.isASIP, student.isActive, student.CreateBy, DateTime.Now, student.Username, student.Password, student.UserPhoto, student.Interests, student.Email, student.IsAdmin, student.IsEnable, student.IdProvince, student.IdCanton, student.IdDistrict, "Update");
             }
-
             return resultToReturn;
-
         }
+
         public SelectStudentById_Result GetByIdStudentSP(int id)
         {
-
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 var course = context.SPSelectStudentById(id).Single();
-
                 return course;
             }
-
-
         }
+
         public int Delete(int id)
         {
-
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 var resultToReturn = context.SPDeleteStudent(id);
 
                 return resultToReturn;
             }
-
         }
-
 
         public StudentDTO GetById(int id)
         {
@@ -104,17 +99,6 @@ namespace SPA_IE.Models.Data.Data
                 return studentToReturn;
             }
         }
-
-
-
-
-
-
-
-
-
-
-
 
 
         /*

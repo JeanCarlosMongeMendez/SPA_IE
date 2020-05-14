@@ -9,16 +9,23 @@ namespace SPA_IE.Controllers
 {
     public class StudentController : Controller
     {
-        // GET: Student
-        StudentData studentData = new StudentData();
-        ProvinceData provinceData = new ProvinceData();
-        CantonData cantonData = new CantonData();
-        DistrictData districtData = new DistrictData();
+        private StudentData studentData = new StudentData();
+        private ProvinceData provinceData = new ProvinceData();
+        private CantonData cantonData = new CantonData();
+        private DistrictData districtData = new DistrictData();
+
         public ActionResult Index()
         {
             IEnumerable<SelectStudent_Result> students = studentData.ListAllSP();
             return View(students);
         }
+
+        public ActionResult GetRequest()
+        {
+            IEnumerable<SelectRequestStudent_Result> students = studentData.ListAllRequestSP();
+            return View(students);
+        }
+
         public ActionResult Create()
         {
             var provinces = new SelectList(provinceData.ListAllProvince(), "IdProvince", "Name");
@@ -37,17 +44,12 @@ namespace SPA_IE.Controllers
         public ActionResult Create(StudentDTO student)
         {
             studentData.Add(student);
-
-
             return View("Index",studentData.ListAllSP().AsEnumerable());
         }
+
         public ActionResult Edit(int id)
         {
-
             StudentDTO student = studentData.GetById(id);
-
-
-
             var provinces = new SelectList(provinceData.ListAllProvince(), "IdProvince", "Name");
             ViewData["provinces"] = provinces;
 
@@ -60,18 +62,16 @@ namespace SPA_IE.Controllers
             ViewData["idProvince"] = student.IdProvince;
             ViewData["idCanton"] = student.IdDistrict;
             ViewData["idDistrict"] = student.IdDistrict;
-
             return View(student);
-
         }
 
         [HttpPost]
         public ActionResult Edit(StudentDTO student)
         {
             studentData.Update(student);
-
             return View("Index", studentData.ListAllSP().AsEnumerable());
         }
+
         public ActionResult Delete(int id)
         {
             studentData.Delete(id);
