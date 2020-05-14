@@ -216,6 +216,8 @@
     <Compile Include="Models\Domain\DTO\ProvinceDTO.cs" />
     <Compile Include="Models\Domain\DTO\StudentDTO.cs" />
     <Compile Include="Models\Domain\DTO\UserProfileDTO.cs" />
+    <Compile Include="Models\Domain\TestOne.cs" />
+    <Compile Include="Models\Domain\TestxTwo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
