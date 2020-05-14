@@ -4,12 +4,19 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
-- branch_karen_guillen
+- Brach_Lyka
 
 pool:
   vmImage: 'windows-latest'
 
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
 steps:
+- task: NuGetToolInstaller@1
+
 - task: DotNetCoreCLI@2
   
 displayName: Testing Unit Test
