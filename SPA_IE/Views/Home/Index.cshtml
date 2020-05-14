@@ -1,12 +1,14 @@
-﻿@model IEnumerable<SPA_IE.Models.Domain.DTO.ProvinceDTO>
-
+﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "SPA_IE";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<<<<<<< HEAD
 <h2>Index</h2>
 
+=======
+>>>>>>> f5ce7d8dd74ba13934a4f13a66b06ca07519690e
 <!-- MENU -->
 <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
     <div class="container">
@@ -26,33 +28,18 @@
         <div class="collapse navbar-collapse">
 
             <ul class="nav navbar-nav navbar-nav-first">
-                <li><a href="#top" class="smoothScroll">¿Quiénes somos?</a></li>
-                <li><a href="#about" class="smoothScroll">Beneficios</a></li>
-                <li><a href="#team" class="smoothScroll">Cursos</a></li>
-                <li><a href="#courses" class="smoothScroll">Noticias</a></li>
-                <li><a href="#testimonial" class="smoothScroll">Consultas</a></li>
-                <li>
-                    <a href="#">CRUD's</a>
-                    <ul class="menuDropdown">
-                        <li><a href="#">Profesores</a></li>
-                        <li><a data-toggle="modal" data-target="#crudStudentModal">Estudiantes</a></li>
-                    </ul>
-                </li>
+                <li><a href="#home" class="smoothScroll">¿Quiénes somos?</a></li>
+                <li><a href="#requests" data="@Url.Action("GetRequest", "Student")" id="requestLink" class="smoothScroll">Solicitudes de Estudiantes</a></li>
+                <li><a href="#students" data="@Url.Action("GetAll", "Student")" id="studentLink" class="smoothScroll">Estudiantes Registrados</a></li>
+                <li><a href="#professors" data="@Url.Action("GetAll", "Professor")" id="professorLink" class="smoothScroll">Profesores Registrados</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <!-- Trigger the modal with a button -->
                 <li><a data-toggle="modal" data-target="#loginModal"> Iniciar sesión</a></li>
                 <li><a data-toggle="modal" data-target="#registerModal"> Registrarme</a></li>
             </ul>
-
-
         </div>
-
-
     </div>
-
-
 </section>
 
 <!-- Modal Login -->
@@ -92,14 +79,16 @@
             <div class="container">
                 <label>Llenar con su información personal...</label>
             </div>
-
+            <div id="addStudentContent"></div>
             <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" value="Create" class="btn btn-default" id="addStudentSubmit" />
+                    </div>
+                </div>
                 <button type="button" class="cancelbtn" data-dismiss="modal">Cerrar</button>
             </div>
-
         </div>
-
-
     </div>
 </div>
 
@@ -185,8 +174,37 @@
     </div>
 </div>
 
-<!-- Modal CRUD Student -->
-<div id="crudStudentModal" class="modal" role="dialog">
+<!-- Modal Request Student -->
+<div id="requestStudentModal" class="modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Registro de Estudiantes</h4>
+            </div>
+
+            <div class="container">
+
+                <div style="width:76%">
+                    <h3 align="center">Estudiantes</h3>
+                    <h5 align="center">A continuación se muestran los estudiantes pendientes de registrar en el sistema</h5>
+                    <br />
+                    <i class="fa fa-search"></i>
+                    <input type="search" id="searchStudent" placeholder="Buscar...">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="cancelbtn" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal Registred Student -->
+<div id="registredStudentModal" class="modal" role="dialog">
     <div class="modal-dialog modal-lg">
 
         <!-- Modal content-->
@@ -203,52 +221,13 @@
                     <br />
                     <i class="fa fa-search"></i>
                     <input type="search" id="searchStudent" placeholder="Buscar...">
-                    <table>
-                        <tr>
-                            <th>Acción </th>
-                            <th>Carnet</th>
-                            <th>Nombre</th>
-                            <th>Usuario</th>
-                            <th>Es Presidente</th>
-                        </tr>
-                        <tr>
-                            <th>
-                                <a href="" class="fa fa-trash"></a>
-                                <a href="" class="fa fa-upload"  data-toggle="modal" data-target="#addStudentModal" data-dismiss="modal"></a>
-                            </th>
-                            <td>A53490</td>
-                            <td>Valeria Leiva</td>
-                            <td>ValeA5</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <a href="" class="fa fa-trash"></a>
-                                <a href="" class="fa fa-upload"  data-toggle="modal" data-target="#addStudentModal" data-dismiss="modal"></a>
-                            </th>
-                            <td>A63188</td>
-                            <td>Karen Guillén</td>
-                            <td>Lyka4406</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <a href="" class="fa fa-trash"></a>
-                                <a class="fa fa-upload"  data-toggle="modal" data-target="#addStudentModal" data-dismiss="modal"></a>
-                            </th>
-                            <td>A00102</td>
-                            <td>Jean Monge</td>
-                            <td>JCA01</td>
-                            <td>X</td>
-                        </tr>
-                    </table>
+                    <div id="studentContent">
 
+                    </div>
                 </div>
             </div>
 
             <div class="modal-footer">
-
-                <button type="submit" class="button" data-toggle="modal" data-target="#addStudentModal" data-dismiss="modal">Agregar Nuevo</button>
                 <button type="button" class="cancelbtn" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
@@ -290,7 +269,7 @@
                     <br>
                 </form>
 
-                
+
 
             </div>
 
@@ -302,14 +281,6 @@
 
     </div>
 </div>
-
-
-
-
-
-
-
-
 
 <!-- HOME -->
 <section id="home">
@@ -418,6 +389,22 @@
     </div>
 </section>
 
+<!-- STUDENTS -->
+<section id="students">
+    <p>
+        <a data-toggle="modal" data-target="#registerModal" data="@Url.Action("Create", "Student")" id="addStudentLink" class="btn btn-primary">Agregar</a>
+    </p>
+    <div id="studentsContent"></div>
+</section>
+
+<!-- REQUESTS -->
+<section id="requests">
+    <div class="container">
+        <div class="row">
+            <div id="requestContent"></div>
+        </div>
+    </div>
+</section>
 
 <!-- Courses -->
 <section id="team">
@@ -540,7 +527,6 @@
 
 
 </section>
-
 
 <!-- News -->
 <section id="courses">
@@ -694,7 +680,6 @@
         </div>
     </div>
 </section>
-
 
 <!-- Queries -->
 <section id="testimonial">
@@ -868,6 +853,71 @@
 <script src="~/Content/js/bootstrap.min.js"></script>
 <script src="~/Content/js/owl.carousel.min.js"></script>
 <script src="~/Content/js/smoothscroll.js"></script>
-
-
 <script src="~/Content/js/custom.js"></script>
+
+@section scripts {
+    <script>
+        $('#requestLink').on('click', function () {
+            var url = $(this).attr('data');
+            $.get(url, function (data) {
+                $('#requestContent').html(data);
+            });
+        });
+
+        $('#studentLink').on('click', function () {
+            var url = $(this).attr('data');
+            $.get(url, function (data) {
+                $('#studentsContent').html(data);
+            });
+        });
+
+        $('#addStudentLink').on('click', function () {
+            var url = $(this).attr('data');
+            $.get(url, function (data) {
+                $('#addStudentContent').html(data);
+            });
+        });
+
+        $('#addStudentSubmit').on('click', function () {
+            var data = new FormData();
+            var username = $("#Username").val();
+            data.append("Username", username);
+            var password = $("#Password").val();
+            data.append("Password", password);
+            var interest = $("#Interests").val();
+            data.append("Interests", interest);
+            var email = $("#Email").val();
+            data.append("Email", email);
+            var idcard = $("#IdentificationCard").val();
+            data.append("IdentificationCard", idcard);
+            var province = $("#IdProvince").val();
+            data.append("IdProvince", province);
+            var canton = $("#IdCanton").val();
+            data.append("IdCanton", canton);
+            var district = $("#IdDistrict").val();
+            data.append("IdDistrict", district);
+            $.ajax({
+                url: '@Url.Action("Create", "Student")',
+                type: 'POST',
+                data:  data,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $('#registerModal').modal('toggle');
+                    $('#requestContent').html(data);
+                }
+            });
+        });
+
+        function aprove(link) {
+            var url = $(link).attr('data');
+            $.get(url, function (data) {
+                $('#requestContent').html(data);
+                var url = $('#studentLink').attr('data');
+                $.get(url, function (data) {
+                    $('#studentsContent').html(data);
+                });
+            });
+        }
+    </script>
+}

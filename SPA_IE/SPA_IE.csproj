@@ -195,6 +195,9 @@
     <Compile Include="Models\Data\SelectProfessor_Result.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Data\SelectRequestStudent_Result.cs">
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Data\SelectStudent1_Result.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
@@ -270,6 +273,7 @@
       <DependentUpon>BeautySolutions_ADO.edmx</DependentUpon>
       <LastGenOutput>BeautySolutions_ADO.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\ApplicationScripts\Student.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\dataTables.bootstrap.js" />
@@ -292,6 +296,8 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\jquery.dataTables.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -315,12 +321,13 @@
     <Content Include="Views\Professor\Index.cshtml" />
     <Content Include="Views\Professor\Create.cshtml" />
     <Content Include="Views\Professor\Edit.cshtml" />
-    <Content Include="Views\Student\Index.cshtml" />
-    <Content Include="Views\Student\Create.cshtml" />
-    <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\Create.cshtml" />
     <Content Include="Views\Course\Edit.cshtml" />
+    <Content Include="Views\Home\GetStudents.cshtml" />
+    <Content Include="Views\Student\GetRequest.cshtml" />
+    <Content Include="Views\Student\GetAll.cshtml" />
+    <Content Include="Views\Student\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
