@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<SPA_IE.Models.Data.SelectStudent_Result>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "GetStudents";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>GetStudents</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -110,9 +110,9 @@
             @Html.DisplayFor(modelItem => item.DistrictName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdStudent}) |
-            @Html.ActionLink("Details", "Details", new {id=item.IdStudent}) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdStudent})
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }
