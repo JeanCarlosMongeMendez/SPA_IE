@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
-using SPA_IE.Models.Data.Data;
-using SPA_IE.Models.Data.DTO;
+using SPA_IE.Models.Domain.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +12,17 @@ namespace SPA_IE.Controllers
     public class NewsController : Controller
     {
         // GET: News
+
+       
         public ActionResult Index()
         {
             return View();
         }
-        public JsonResult List()
-        {
-            IEnumerable<CommentDTO> news= null;
+
+
+        public IEnumerable<NewsDTO> newsList()
+        { 
+            IEnumerable<NewsDTO> news = null;
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44357/api/News/");
@@ -30,13 +33,13 @@ namespace SPA_IE.Controllers
                     var result = responseTask.Result;
                     if (result.IsSuccessStatusCode)
                     {
-                        var readTask = result.Content.ReadAsAsync<IList<CommentDTO>>();
+                        var readTask = result.Content.ReadAsAsync<IList<NewsDTO>>();
                         readTask.Wait();
                         news = readTask.Result;
                     }
                     else
                     {
-                        news= Enumerable.Empty<CommentDTO>();
+                        news = Enumerable.Empty<NewsDTO>();
                         ModelState.AddModelError(string.Empty, "Server error. Please contact administrator");
                     }
                 }
@@ -44,13 +47,19 @@ namespace SPA_IE.Controllers
                 {
                     throw;
                 }
+        
             }
-            return Json(news, JsonRequestBehavior.AllowGet);
+            return news;
+    }
+        public PartialViewResult List()
+        {
+          
+            return PartialView("List", newsList());
         }
 
-        public JsonResult GetById(int id)
+        public PartialViewResult Edit(int id)
         {
-            CommentDTO newsDTO = null;
+            NewsDTO newsDTO = null;
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44357/api/News/");
@@ -61,13 +70,13 @@ namespace SPA_IE.Controllers
                     var result = responseTask.Result;
                     if (result.IsSuccessStatusCode)
                     {
-                        var readTask = result.Content.ReadAsAsync<CommentDTO>();
+                        var readTask = result.Content.ReadAsAsync<NewsDTO>();
                         readTask.Wait();
                         newsDTO = readTask.Result;
                     }
                     else
                     {
-                        newsDTO = new CommentDTO();
+                        newsDTO = new NewsDTO();
                         ModelState.AddModelError(string.Empty, "Server error. Please contact administrator");
                     }
                 }
@@ -76,10 +85,11 @@ namespace SPA_IE.Controllers
                     var ex = agg_ex.InnerExceptions[0];
                 }
             }
-            return Json(newsDTO, JsonRequestBehavior.AllowGet);
+            return PartialView("Edit", newsDTO);
         }
 
-        public JsonResult Delete(int id)
+        [HttpPost]
+        public PartialViewResult Edit(NewsDTO news)
         {
             int apiResult = 0;
             using (var client = new HttpClient())
@@ -87,7 +97,9 @@ namespace SPA_IE.Controllers
                 client.BaseAddress = new Uri("https://localhost:44357/api/News/");
                 try
                 {
-                    var responseTask = client.GetAsync("DeleteNews/" + id);
+                    var json = JsonConvert.SerializeObject(news);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+                    var responseTask = client.PutAsync("PutNews", content);
                     responseTask.Wait();
                     var result = responseTask.Result;
                     if (result.IsSuccessStatusCode)
@@ -101,11 +113,18 @@ namespace SPA_IE.Controllers
                 {
                     throw;
                 }
+
             }
-            return Json(apiResult, JsonRequestBehavior.AllowGet);
+            return PartialView("List", newsList());
         }
 
-        public JsonResult Add(CommentDTO news)
+        public PartialViewResult Create()
+        {
+            return PartialView("Create");
+        }
+
+        [HttpPost]
+        public PartialViewResult Create(NewsDTO news)
         {
             int apiResult = 0;
             using (var client = new HttpClient())
@@ -130,10 +149,11 @@ namespace SPA_IE.Controllers
                     throw;
                 }
             }
-            return Json(apiResult, JsonRequestBehavior.AllowGet);
+            return PartialView("List", newsList());
         }
 
-        public JsonResult Update(CommentDTO news)
+       
+        public PartialViewResult Delete(int id)
         {
             int apiResult = 0;
             using (var client = new HttpClient())
@@ -141,9 +161,7 @@ namespace SPA_IE.Controllers
                 client.BaseAddress = new Uri("https://localhost:44357/api/News/");
                 try
                 {
-                    var json = JsonConvert.SerializeObject(news);
-                    var content = new StringContent(json, Encoding.UTF8, "application/json");
-                    var responseTask = client.PutAsync("PutNews", content);
+                    var responseTask = client.DeleteAsync("DeleteNews/" + id);
                     responseTask.Wait();
                     var result = responseTask.Result;
                     if (result.IsSuccessStatusCode)
@@ -158,7 +176,11 @@ namespace SPA_IE.Controllers
                     throw;
                 }
             }
-            return Json(apiResult, JsonRequestBehavior.AllowGet);
+            return PartialView("List", newsList());
         }
+
+       
+
+       
     }
 }

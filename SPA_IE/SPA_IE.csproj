@@ -168,10 +168,8 @@
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\Data\CantonData.cs" />
-    <Compile Include="Models\Domain\CommentDTO.cs" />
     <Compile Include="Models\Data\Data\CourseData.cs" />
     <Compile Include="Models\Data\Data\DistrictData.cs" />
-    <Compile Include="Models\Domain\NewsDTO.cs" />
     <Compile Include="Models\Data\Data\ProfessorData.cs" />
     <Compile Include="Models\Data\Data\ProvinceData.cs" />
     <Compile Include="Models\Data\Data\StudentData.cs" />
@@ -221,7 +219,9 @@
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Domain\DTO\CantonDTO.cs" />
+    <Compile Include="Models\Domain\DTO\CommentDTO.cs" />
     <Compile Include="Models\Domain\DTO\DistrictDTO.cs" />
+    <Compile Include="Models\Domain\DTO\NewsDTO.cs" />
     <Compile Include="Models\Domain\DTO\ProfessorDTO.cs" />
     <Compile Include="Models\Domain\DTO\ProvinceDTO.cs" />
     <Compile Include="Models\Domain\DTO\StudentDTO.cs" />
@@ -335,12 +335,16 @@
     <Content Include="Views\Student\GetRequest.cshtml" />
     <Content Include="Views\Student\GetAll.cshtml" />
     <Content Include="Views\Student\Create.cshtml" />
+    <Content Include="Views\News\List.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\Comment\List.cshtml" />
+    <Content Include="Views\Comment\Edit.cshtml" />
+    <Content Include="Views\Comment\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\.vs\Base\v16\" />
-    <Folder Include="Views\Comment\" />
-    <Folder Include="Views\News\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

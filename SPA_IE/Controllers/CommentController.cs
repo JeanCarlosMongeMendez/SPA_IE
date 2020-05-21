@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using SPA_IE.Models.Data.Data;
+using SPA_IE.Models.Domain.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ namespace SPA_IE.Controllers
         {
             return View();
         }
-        public JsonResult List()
+        public IEnumerable<CommentDTO> commentsList()
         {
             IEnumerable<CommentDTO> comments = null;
             using (var client = new HttpClient())
@@ -44,11 +44,21 @@ namespace SPA_IE.Controllers
                 {
                     throw;
                 }
+
             }
-            return Json(comments, JsonRequestBehavior.AllowGet);
+            return comments;
+
         }
 
-        public JsonResult GetById(int id)
+
+        public PartialViewResult List()
+        {
+
+            return PartialView("List", commentsList());
+        }
+
+
+        public PartialViewResult Edit(int id)
         {
             CommentDTO commentDTO = null;
             using (var client = new HttpClient())
@@ -76,10 +86,11 @@ namespace SPA_IE.Controllers
                     var ex = agg_ex.InnerExceptions[0];
                 }
             }
-            return Json(commentDTO, JsonRequestBehavior.AllowGet);
+            return PartialView("Edit", commentDTO);
         }
 
-        public JsonResult Delete(int id)
+        [HttpPost]
+        public PartialViewResult Edit(CommentDTO comment)
         {
             int apiResult = 0;
             using (var client = new HttpClient())
@@ -87,61 +98,7 @@ namespace SPA_IE.Controllers
                 client.BaseAddress = new Uri("https://localhost:44357/api/Comment/");
                 try
                 {
-                    var responseTask = client.GetAsync("DeleteComment/" + id);
-                    responseTask.Wait();
-                    var result = responseTask.Result;
-                    if (result.IsSuccessStatusCode)
-                    {
-                        var readTask = result.Content.ReadAsAsync<Int32>();
-                        readTask.Wait();
-                        apiResult = readTask.Result;
-                    }
-                }
-                catch
-                {
-                    throw;
-                }
-            }
-            return Json(apiResult, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult Add(CommentDTO news)
-        {
-            int apiResult = 0;
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("https://localhost:44357/api/Comment/");
-                try
-                {
-                    var json = JsonConvert.SerializeObject(news);
-                    var content = new StringContent(json, Encoding.UTF8, "application/json");
-                    var responseTask = client.PostAsync("PostComment", content);
-                    responseTask.Wait();
-                    var result = responseTask.Result;
-                    if (result.IsSuccessStatusCode)
-                    {
-                        var readTask = result.Content.ReadAsAsync<Int32>();
-                        readTask.Wait();
-                        apiResult = readTask.Result;
-                    }
-                }
-                catch
-                {
-                    throw;
-                }
-            }
-            return Json(apiResult, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult Update(CommentDTO news)
-        {
-            int apiResult = 0;
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("https://localhost:44357/api/Comment/");
-                try
-                {
-                    var json = JsonConvert.SerializeObject(news);
+                    var json = JsonConvert.SerializeObject(comment);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
                     var responseTask = client.PutAsync("PutComment", content);
                     responseTask.Wait();
@@ -158,7 +115,68 @@ namespace SPA_IE.Controllers
                     throw;
                 }
             }
-            return Json(apiResult, JsonRequestBehavior.AllowGet);
+            return PartialView("List", commentsList());
         }
+
+        public PartialViewResult Create()
+        {
+
+            return PartialView("Create");
+        }
+
+        [HttpPost]
+        public PartialViewResult Create(CommentDTO comment)
+        {
+            int apiResult = 0;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44357/api/Comment/");
+                try
+                {
+                    var json = JsonConvert.SerializeObject(comment);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+                    var responseTask = client.PostAsync("PostComment", content);
+                    responseTask.Wait();
+                    var result = responseTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var readTask = result.Content.ReadAsAsync<Int32>();
+                        readTask.Wait();
+                        apiResult = readTask.Result;
+                    }
+                }
+                catch
+                {
+                    throw;
+                }
+            }
+            return PartialView("List", commentsList());
+        }
+        public PartialViewResult Delete(int id)
+        {
+            int apiResult = 0;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44357/api/Comment/");
+                try
+                {
+                    var responseTask = client.DeleteAsync("DeleteComment/" + id);
+                    responseTask.Wait();
+                    var result = responseTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var readTask = result.Content.ReadAsAsync<Int32>();
+                        readTask.Wait();
+                        apiResult = readTask.Result;
+                    }
+                }
+                catch
+                {
+                    throw;
+                }
+            }
+            return PartialView("List", commentsList());
+        }
+   
     }
 }
