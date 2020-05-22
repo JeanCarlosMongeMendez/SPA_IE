@@ -13,6 +13,25 @@
           <Property Name="IdProvince" Type="int" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="IdComment" />
+          </Key>
+          <Property Name="IdComment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUserProfile" Type="int" Nullable="false" />
+          <Property Name="IdConsultation" Type="int" Nullable="false" />
+          <Property Name="Commentary" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Consultation">
+          <Key>
+            <PropertyRef Name="IdConsultation" />
+          </Key>
+          <Property Name="IdConsultation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCourse" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="IdTransmitter" Type="int" />
+          <Property Name="IdReceiver" Type="int" />
+        </EntityType>
         <EntityType Name="Course">
           <Key>
             <PropertyRef Name="IdCourse" />
@@ -50,6 +69,17 @@
           </Key>
           <Property Name="IdProvince" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="idSchedule" />
+          </Key>
+          <Property Name="idSchedule" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCourse" Type="int" Nullable="false" />
+          <Property Name="IdProfessor" Type="int" Nullable="false" />
+          <Property Name="Day" Type="date" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="FinalTime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -90,6 +120,66 @@
             </Principal>
             <Dependent Role="Canton">
               <PropertyRef Name="IdProvince" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__IdConsu__0B91BA14">
+          <End Role="Consultation" Type="Self.Consultation" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consultation">
+              <PropertyRef Name="IdConsultation" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="IdConsultation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__IdUserP__0A9D95DB">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="IdUserProfile" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="IdUserProfile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Consultat__IdCou__05D8E0BE">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="Consultation" Type="Self.Consultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="IdCourse" />
+            </Principal>
+            <Dependent Role="Consultation">
+              <PropertyRef Name="IdCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Consultat__IdRec__07C12930">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+          <End Role="Consultation" Type="Self.Consultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="IdUserProfile" />
+            </Principal>
+            <Dependent Role="Consultation">
+              <PropertyRef Name="IdReceiver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Consultat__IdTra__06CD04F7">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+          <End Role="Consultation" Type="Self.Consultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="IdUserProfile" />
+            </Principal>
+            <Dependent Role="Consultation">
+              <PropertyRef Name="IdTransmitter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -228,6 +318,15 @@
         <Function Name="AproveRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
           <Parameter Name="IdStudent" Type="int" Mode="In" />
         </Function>
+        <Function Name="DeleteAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="IdAppointment" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteComment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="IdComment" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteConsultation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="IdConsultation" Type="int" Mode="In" />
+        </Function>
         <Function Name="DeleteCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
           <Parameter Name="IdCourse" Type="int" Mode="In" />
         </Function>
@@ -237,8 +336,44 @@
         <Function Name="DeleteStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
           <Parameter Name="IdUserProfile" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetByIComment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="IdComment" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetByIdAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="IdAppointment" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetByIdConsultation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="IdConsultation" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetByIdCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
           <Parameter Name="IdCourse" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertUpdateAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="IdAppointment" Type="int" Mode="In" />
+          <Parameter Name="IdProfessor" Type="int" Mode="In" />
+          <Parameter Name="IdStudent" Type="int" Mode="In" />
+          <Parameter Name="IdCourse" Type="int" Mode="In" />
+          <Parameter Name="IdSchedule" Type="int" Mode="In" />
+          <Parameter Name="StatusApprovedDisapproved" Type="bit" Mode="In" />
+          <Parameter Name="VirtualOn_Site" Type="bit" Mode="In" />
+          <Parameter Name="ReasonForAppointment" Type="nvarchar" Mode="In" />
+          <Parameter Name="ProfessorResponse" Type="bit" Mode="In" />
+          <Parameter Name="Action" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="InsertUpdateComment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="IdComment" Type="int" Mode="In" />
+          <Parameter Name="IdUserProfile" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdConsultation" Type="int" Mode="In" />
+          <Parameter Name="Commentary" Type="nvarchar" Mode="In" />
+          <Parameter Name="Action" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="InsertUpdateConsultation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="IdConsultation" Type="int" Mode="In" />
+          <Parameter Name="IdCourse" Type="int" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdTransmitter" Type="int" Mode="In" />
+          <Parameter Name="IdReceiver" Type="int" Mode="In" />
+          <Parameter Name="Action" Type="varchar" Mode="In" />
         </Function>
         <Function Name="InsertUpdateCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
           <Parameter Name="IdCourse" Type="int" Mode="In" />
@@ -287,6 +422,9 @@
           <Parameter Name="IdDistrict" Type="int" Mode="In" />
           <Parameter Name="Action" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SelectAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020" />
+        <Function Name="SelectComment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020" />
+        <Function Name="SelectConsultation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020" />
         <Function Name="SelectCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020" />
         <Function Name="SelectProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020" />
         <Function Name="SelectProfessorById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
@@ -299,15 +437,38 @@
         </Function>
         <EntityContainer Name="IF4101_BeatySolutions_ISem_2020Model1StoreContainer">
           <EntitySet Name="Canton" EntityType="Self.Canton" Schema="BS_ISem_2020" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="BS_ISem_2020" store:Type="Tables" />
+          <EntitySet Name="Consultation" EntityType="Self.Consultation" Schema="BS_ISem_2020" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="BS_ISem_2020" store:Type="Tables" />
           <EntitySet Name="District" EntityType="Self.District" Schema="BS_ISem_2020" store:Type="Tables" />
           <EntitySet Name="Professor" EntityType="Self.Professor" Schema="BS_ISem_2020" store:Type="Tables" />
           <EntitySet Name="Province" EntityType="Self.Province" Schema="BS_ISem_2020" store:Type="Tables" />
+          <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="BS_ISem_2020" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="BS_ISem_2020" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="BS_ISem_2020" store:Type="Tables" />
           <AssociationSet Name="FK__Canton__IdProvin__5629CD9C" Association="Self.FK__Canton__IdProvin__5629CD9C">
             <End Role="Province" EntitySet="Province" />
             <End Role="Canton" EntitySet="Canton" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__IdConsu__0B91BA14" Association="Self.FK__Comment__IdConsu__0B91BA14">
+            <End Role="Consultation" EntitySet="Consultation" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__IdUserP__0A9D95DB" Association="Self.FK__Comment__IdUserP__0A9D95DB">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Consultat__IdCou__05D8E0BE" Association="Self.FK__Consultat__IdCou__05D8E0BE">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Consultation" EntitySet="Consultation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Consultat__IdRec__07C12930" Association="Self.FK__Consultat__IdRec__07C12930">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Consultation" EntitySet="Consultation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Consultat__IdTra__06CD04F7" Association="Self.FK__Consultat__IdTra__06CD04F7">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Consultation" EntitySet="Consultation" />
           </AssociationSet>
           <AssociationSet Name="FK__Course__CreateBy__778AC167" Association="Self.FK__Course__CreateBy__778AC167">
             <End Role="UserProfile" EntitySet="UserProfile" />
@@ -552,8 +713,79 @@
           <FunctionImport Name="SPSelectProfessor" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectProfessor_Result)" />
           <FunctionImport Name="SelectRequestStudent" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectRequestStudent_Result)" />
           <FunctionImport Name="AproveRequest">
-            <Parameter Name="IdStudent" Mode="In" Type="Int32" />
+          <Parameter Name="IdStudent" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="Consultation" EntityType="IF4101_BeatySolutions_ISem_2020Model1.Consultation" />
+          <EntitySet Name="Schedule" EntityType="IF4101_BeatySolutions_ISem_2020Model1.Schedule" />
+          <AssociationSet Name="FK__Consultat__IdCou__05D8E0BE" Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Consultat__IdCou__05D8E0BE">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Consultation" EntitySet="Consultation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Consultat__IdRec__07C12930" Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Consultat__IdRec__07C12930">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Consultation" EntitySet="Consultation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Consultat__IdTra__06CD04F7" Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Consultat__IdTra__06CD04F7">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Consultation" EntitySet="Consultation" />
+          </AssociationSet>
+          <FunctionImport Name="DeleteConsultation">
+          <Parameter Name="IdConsultation" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetByIdConsultation" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.GetByIdConsultation_Result)">
+          <Parameter Name="IdConsultation" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertUpdateConsultation">
+            <Parameter Name="IdConsultation" Mode="In" Type="Int32" />
+            <Parameter Name="IdCourse" Mode="In" Type="Int32" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="IdTransmitter" Mode="In" Type="Int32" />
+            <Parameter Name="IdReceiver" Mode="In" Type="Int32" />
+            <Parameter Name="Action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SelectConsultation" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectConsultation_Result)" />
+          <EntitySet Name="Comment" EntityType="IF4101_BeatySolutions_ISem_2020Model1.Comment" />
+          <AssociationSet Name="FK__Comment__IdConsu__0B91BA14" Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Comment__IdConsu__0B91BA14">
+            <End Role="Consultation" EntitySet="Consultation" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__IdUserP__0A9D95DB" Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Comment__IdUserP__0A9D95DB">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <FunctionImport Name="DeleteComment">
+          <Parameter Name="IdComment" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetByIComment" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.GetByIComment_Result)">
+          <Parameter Name="IdComment" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertUpdateComment">
+            <Parameter Name="IdComment" Mode="In" Type="Int32" />
+            <Parameter Name="IdUserProfile" Mode="In" Type="String" />
+            <Parameter Name="IdConsultation" Mode="In" Type="Int32" />
+            <Parameter Name="Commentary" Mode="In" Type="String" />
+            <Parameter Name="Action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SelectComment" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectComment_Result)" />
+          <FunctionImport Name="DeleteAppointment">
+            <Parameter Name="IdAppointment" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetByIdAppointment" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.GetByIdAppointment_Result)">
+            <Parameter Name="IdAppointment" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertUpdateAppointment">
+            <Parameter Name="IdAppointment" Mode="In" Type="Int32" />
+            <Parameter Name="IdProfessor" Mode="In" Type="Int32" />
+            <Parameter Name="IdStudent" Mode="In" Type="Int32" />
+            <Parameter Name="IdCourse" Mode="In" Type="Int32" />
+            <Parameter Name="IdSchedule" Mode="In" Type="Int32" />
+            <Parameter Name="StatusApprovedDisapproved" Mode="In" Type="Boolean" />
+            <Parameter Name="VirtualOn_Site" Mode="In" Type="Boolean" />
+            <Parameter Name="ReasonForAppointment" Mode="In" Type="String" />
+            <Parameter Name="ProfessorResponse" Mode="In" Type="Boolean" />
+            <Parameter Name="Action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SelectAppointment" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectAppointment_Result)" />
         </EntityContainer>
         <ComplexType Name="GetByIdCourse_Result">
           <Property Type="Int32" Name="idCourse" Nullable="false" />
@@ -703,6 +935,7 @@
           <Property Name="CreateBy" Type="Int32" />
           <Property Name="CreationDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="UserProfile" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Course__CreateBy__778AC167" FromRole="Course" ToRole="UserProfile" />
+          <NavigationProperty Name="Consultation" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Consultat__IdCou__05D8E0BE" FromRole="Course" ToRole="Consultation" />
         </EntityType>
         <EntityType Name="District">
           <Key>
@@ -778,6 +1011,9 @@
           <NavigationProperty Name="Student2" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__IdUserP__70DDC3D8" FromRole="UserProfile" ToRole="Student" />
           <NavigationProperty Name="UserProfile1" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__Creat__6754599E" FromRole="UserProfile" ToRole="UserProfile1" />
           <NavigationProperty Name="UserProfile2" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__Creat__6754599E" FromRole="UserProfile1" ToRole="UserProfile" />
+          <NavigationProperty Name="Consultation" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Consultat__IdRec__07C12930" FromRole="UserProfile" ToRole="Consultation" />
+          <NavigationProperty Name="Consultation1" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Consultat__IdTra__06CD04F7" FromRole="UserProfile" ToRole="Consultation" />
+          <NavigationProperty Name="Comment" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Comment__IdUserP__0A9D95DB" FromRole="UserProfile" ToRole="Comment" />
         </EntityType>
         <Association Name="FK__Canton__IdProvin__5629CD9C">
           <End Type="IF4101_BeatySolutions_ISem_2020Model1.Province" Role="Province" Multiplicity="0..1" />
@@ -966,6 +1202,170 @@
           <Property Type="String" Name="CantonName" Nullable="false" MaxLength="100" />
           <Property Type="Int32" Name="IdDistrict" Nullable="true" />
           <Property Type="String" Name="DistrictName" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="Consultation">
+          <Key>
+            <PropertyRef Name="IdConsultation" />
+          </Key>
+          <Property Name="IdConsultation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCourse" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IdTransmitter" Type="Int32" />
+          <Property Name="IdReceiver" Type="Int32" />
+          <NavigationProperty Name="Course" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Consultat__IdCou__05D8E0BE" FromRole="Consultation" ToRole="Course" />
+          <NavigationProperty Name="UserProfile" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Consultat__IdRec__07C12930" FromRole="Consultation" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfile1" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Consultat__IdTra__06CD04F7" FromRole="Consultation" ToRole="UserProfile" />
+          <NavigationProperty Name="Comment" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Comment__IdConsu__0B91BA14" FromRole="Consultation" ToRole="Comment" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="idSchedule" />
+          </Key>
+          <Property Name="idSchedule" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCourse" Type="Int32" Nullable="false" />
+          <Property Name="IdProfessor" Type="Int32" Nullable="false" />
+          <Property Name="Day" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FinalTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK__Consultat__IdCou__05D8E0BE">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Course" Role="Course" Multiplicity="0..1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Consultation" Role="Consultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="IdCourse" />
+            </Principal>
+            <Dependent Role="Consultation">
+              <PropertyRef Name="IdCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Consultat__IdRec__07C12930">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Consultation" Role="Consultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="IdUserProfile" />
+            </Principal>
+            <Dependent Role="Consultation">
+              <PropertyRef Name="IdReceiver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Consultat__IdTra__06CD04F7">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Consultation" Role="Consultation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="IdUserProfile" />
+            </Principal>
+            <Dependent Role="Consultation">
+              <PropertyRef Name="IdTransmitter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="GetByIdConsultation_Result">
+          <Property Type="Int32" Name="IdConsultation" Nullable="false" />
+          <Property Type="Int32" Name="IdCourse" Nullable="true" />
+          <Property Type="String" Name="NameCourse" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="IdTransmitter" Nullable="true" />
+          <Property Type="String" Name="NameTransmitter" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="IdReceiver" Nullable="true" />
+          <Property Type="String" Name="NameReceiver" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SelectConsultation_Result">
+          <Property Type="Int32" Name="IdConsultation" Nullable="false" />
+          <Property Type="Int32" Name="IdCourse" Nullable="true" />
+          <Property Type="String" Name="NameCourse" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="IdTransmitter" Nullable="true" />
+          <Property Type="String" Name="NameTransmitter" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="IdReceiver" Nullable="true" />
+          <Property Type="String" Name="NameReceiver" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="IdComment" />
+          </Key>
+          <Property Name="IdComment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUserProfile" Type="Int32" Nullable="false" />
+          <Property Name="IdConsultation" Type="Int32" Nullable="false" />
+          <Property Name="Commentary" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Consultation" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Comment__IdConsu__0B91BA14" FromRole="Comment" ToRole="Consultation" />
+          <NavigationProperty Name="UserProfile" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Comment__IdUserP__0A9D95DB" FromRole="Comment" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="FK__Comment__IdConsu__0B91BA14">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Consultation" Role="Consultation" Multiplicity="1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consultation">
+              <PropertyRef Name="IdConsultation" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="IdConsultation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__IdUserP__0A9D95DB">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="IdUserProfile" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="IdUserProfile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="GetByIComment_Result">
+          <Property Type="Int32" Name="IdComment" Nullable="false" />
+          <Property Type="Int32" Name="IdUserProfile" Nullable="false" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="IdConsultation" Nullable="false" />
+          <Property Type="String" Name="Commentary" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="SelectComment_Result">
+          <Property Type="Int32" Name="IdComment" Nullable="false" />
+          <Property Type="Int32" Name="IdUserProfile" Nullable="false" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="IdConsultation" Nullable="false" />
+          <Property Type="String" Name="Commentary" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="GetByIdAppointment_Result">
+          <Property Type="Int32" Name="IdAppointment" Nullable="false" />
+          <Property Type="Int32" Name="IdProfessor" Nullable="false" />
+          <Property Type="String" Name="NameProfessor" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="IdStudent" Nullable="false" />
+          <Property Type="String" Name="NameStudent" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="IdCourse" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="idSchedule" Nullable="false" />
+          <Property Type="DateTime" Name="Day" Nullable="false" />
+          <Property Type="DateTime" Name="StartTime" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="FinalTime" Nullable="false" Precision="23" />
+          <Property Type="Boolean" Name="StatusApprovedDisapproved" Nullable="true" />
+          <Property Type="Boolean" Name="VirtualOn_Site" Nullable="true" />
+          <Property Type="String" Name="ReasonForAppointment" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="ProfessorResponse" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SelectAppointment_Result">
+          <Property Type="Int32" Name="IdAppointment" Nullable="false" />
+          <Property Type="Int32" Name="IdProfessor" Nullable="false" />
+          <Property Type="String" Name="NameProfessor" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="IdStudent" Nullable="false" />
+          <Property Type="String" Name="NameStudent" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="IdCourse" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="idSchedule" Nullable="false" />
+          <Property Type="DateTime" Name="Day" Nullable="false" />
+          <Property Type="DateTime" Name="StartTime" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="FinalTime" Nullable="false" Precision="23" />
+          <Property Type="Boolean" Name="StatusApprovedDisapproved" Nullable="true" />
+          <Property Type="Boolean" Name="VirtualOn_Site" Nullable="true" />
+          <Property Type="String" Name="ReasonForAppointment" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="ProfessorResponse" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1299,6 +1699,137 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="AproveRequest" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.AproveRequest" />
+          <EntitySetMapping Name="Consultation">
+            <EntityTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.Consultation">
+              <MappingFragment StoreEntitySet="Consultation">
+                <ScalarProperty Name="IdReceiver" ColumnName="IdReceiver" />
+                <ScalarProperty Name="IdTransmitter" ColumnName="IdTransmitter" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IdCourse" ColumnName="IdCourse" />
+                <ScalarProperty Name="IdConsultation" ColumnName="IdConsultation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schedule">
+            <EntityTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.Schedule">
+              <MappingFragment StoreEntitySet="Schedule">
+                <ScalarProperty Name="FinalTime" ColumnName="FinalTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="IdProfessor" ColumnName="IdProfessor" />
+                <ScalarProperty Name="IdCourse" ColumnName="IdCourse" />
+                <ScalarProperty Name="idSchedule" ColumnName="idSchedule" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DeleteConsultation" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.DeleteConsultation" />
+          <FunctionImportMapping FunctionImportName="GetByIdConsultation" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.GetByIdConsultation">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.GetByIdConsultation_Result">
+                <ScalarProperty Name="IdConsultation" ColumnName="IdConsultation" />
+                <ScalarProperty Name="IdCourse" ColumnName="IdCourse" />
+                <ScalarProperty Name="NameCourse" ColumnName="NameCourse" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IdTransmitter" ColumnName="IdTransmitter" />
+                <ScalarProperty Name="NameTransmitter" ColumnName="NameTransmitter" />
+                <ScalarProperty Name="IdReceiver" ColumnName="IdReceiver" />
+                <ScalarProperty Name="NameReceiver" ColumnName="NameReceiver" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InsertUpdateConsultation" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.InsertUpdateConsultation" />
+          <FunctionImportMapping FunctionImportName="SelectConsultation" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectConsultation">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.SelectConsultation_Result">
+                <ScalarProperty Name="IdConsultation" ColumnName="IdConsultation" />
+                <ScalarProperty Name="IdCourse" ColumnName="IdCourse" />
+                <ScalarProperty Name="NameCourse" ColumnName="NameCourse" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IdTransmitter" ColumnName="IdTransmitter" />
+                <ScalarProperty Name="NameTransmitter" ColumnName="NameTransmitter" />
+                <ScalarProperty Name="IdReceiver" ColumnName="IdReceiver" />
+                <ScalarProperty Name="NameReceiver" ColumnName="NameReceiver" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Comment">
+            <EntityTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="Commentary" ColumnName="Commentary" />
+                <ScalarProperty Name="IdConsultation" ColumnName="IdConsultation" />
+                <ScalarProperty Name="IdUserProfile" ColumnName="IdUserProfile" />
+                <ScalarProperty Name="IdComment" ColumnName="IdComment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DeleteComment" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.DeleteComment" />
+          <FunctionImportMapping FunctionImportName="GetByIComment" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.GetByIComment">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.GetByIComment_Result">
+                <ScalarProperty Name="IdComment" ColumnName="IdComment" />
+                <ScalarProperty Name="IdUserProfile" ColumnName="IdUserProfile" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="IdConsultation" ColumnName="IdConsultation" />
+                <ScalarProperty Name="Commentary" ColumnName="Commentary" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InsertUpdateComment" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.InsertUpdateComment" />
+          <FunctionImportMapping FunctionImportName="SelectComment" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectComment">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.SelectComment_Result">
+                <ScalarProperty Name="IdComment" ColumnName="IdComment" />
+                <ScalarProperty Name="IdUserProfile" ColumnName="IdUserProfile" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="IdConsultation" ColumnName="IdConsultation" />
+                <ScalarProperty Name="Commentary" ColumnName="Commentary" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DeleteAppointment" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.DeleteAppointment" />
+          <FunctionImportMapping FunctionImportName="GetByIdAppointment" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.GetByIdAppointment">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.GetByIdAppointment_Result">
+                <ScalarProperty Name="IdAppointment" ColumnName="IdAppointment" />
+                <ScalarProperty Name="IdProfessor" ColumnName="IdProfessor" />
+                <ScalarProperty Name="NameProfessor" ColumnName="NameProfessor" />
+                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+                <ScalarProperty Name="NameStudent" ColumnName="NameStudent" />
+                <ScalarProperty Name="IdCourse" ColumnName="IdCourse" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="idSchedule" ColumnName="idSchedule" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="FinalTime" ColumnName="FinalTime" />
+                <ScalarProperty Name="StatusApprovedDisapproved" ColumnName="StatusApprovedDisapproved" />
+                <ScalarProperty Name="VirtualOn_Site" ColumnName="VirtualOn_Site" />
+                <ScalarProperty Name="ReasonForAppointment" ColumnName="ReasonForAppointment" />
+                <ScalarProperty Name="ProfessorResponse" ColumnName="ProfessorResponse" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InsertUpdateAppointment" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.InsertUpdateAppointment" />
+          <FunctionImportMapping FunctionImportName="SelectAppointment" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectAppointment">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.SelectAppointment_Result">
+                <ScalarProperty Name="IdAppointment" ColumnName="IdAppointment" />
+                <ScalarProperty Name="IdProfessor" ColumnName="IdProfessor" />
+                <ScalarProperty Name="NameProfessor" ColumnName="NameProfessor" />
+                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+                <ScalarProperty Name="NameStudent" ColumnName="NameStudent" />
+                <ScalarProperty Name="IdCourse" ColumnName="IdCourse" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="idSchedule" ColumnName="idSchedule" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="FinalTime" ColumnName="FinalTime" />
+                <ScalarProperty Name="StatusApprovedDisapproved" ColumnName="StatusApprovedDisapproved" />
+                <ScalarProperty Name="VirtualOn_Site" ColumnName="VirtualOn_Site" />
+                <ScalarProperty Name="ReasonForAppointment" ColumnName="ReasonForAppointment" />
+                <ScalarProperty Name="ProfessorResponse" ColumnName="ProfessorResponse" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
