@@ -11,15 +11,12 @@ namespace SPA_IE.Models.Data
 {
     using System;
     
-    public partial class GetByIdCourse_Result
+    public partial class SelectComment_Result
     {
-        public int idCourse { get; set; }
-        public string name { get; set; }
-        public bool state { get; set; }
-        public string semestrer { get; set; }
-        public string description { get; set; }
-        public string image { get; set; }
-        public Nullable<int> createBy { get; set; }
-        public Nullable<System.DateTime> creationDate { get; set; }
+        public int IdComment { get; set; }
+        public int IdUserProfile { get; set; }
+        public string Username { get; set; }
+        public int IdConsultation { get; set; }
+        public string Commentary { get; set; }
     }
 }

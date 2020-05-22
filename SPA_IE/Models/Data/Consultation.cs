@@ -12,23 +12,24 @@ namespace SPA_IE.Models.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Canton
+    public partial class Consultation
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Canton()
+        public Consultation()
         {
-            this.District = new HashSet<District>();
-            this.UserProfile = new HashSet<UserProfile>();
+            this.Comment = new HashSet<Comment>();
         }
     
-        public int IdCanton { get; set; }
-        public Nullable<int> IdProvinceCanton { get; set; }
-        public string Name { get; set; }
+        public int IdConsultation { get; set; }
+        public Nullable<int> IdCourse { get; set; }
+        public string Description { get; set; }
+        public Nullable<int> IdTransmitter { get; set; }
+        public Nullable<int> IdReceiver { get; set; }
     
-        public virtual Province Province { get; set; }
+        public virtual Course Course { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
+        public virtual UserProfile UserProfile1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<District> District { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserProfile> UserProfile { get; set; }
+        public virtual ICollection<Comment> Comment { get; set; }
     }
 }
