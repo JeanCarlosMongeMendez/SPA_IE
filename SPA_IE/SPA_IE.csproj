@@ -326,6 +326,7 @@
     <Content Include="Views\Student\GetRequest.cshtml" />
     <Content Include="Views\Student\GetAll.cshtml" />
     <Content Include="Views\Student\Create.cshtml" />
+    <Content Include="Views\Student\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -59,7 +59,7 @@ namespace SPA_IE.Controllers
             return PartialView("GetRequest", students);
         }
 
-        public ActionResult Edit(int id)
+        public PartialViewResult Edit(int id)
         {
             StudentDTO student = studentData.GetById(id);
             var provinces = new SelectList(provinceData.ListAllProvince(), "IdProvince", "Name");
@@ -74,7 +74,7 @@ namespace SPA_IE.Controllers
             ViewData["idProvince"] = student.IdProvince;
             ViewData["idCanton"] = student.IdDistrict;
             ViewData["idDistrict"] = student.IdDistrict;
-            return View(student);
+            return PartialView("Edit", student);
         }
 
         [HttpPost]
