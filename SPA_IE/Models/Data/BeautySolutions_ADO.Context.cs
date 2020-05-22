@@ -34,6 +34,7 @@ namespace SPA_IE.Models.Data
         public virtual DbSet<Province> Province { get; set; }
         public virtual DbSet<Student> Student { get; set; }
         public virtual DbSet<UserProfile> UserProfile { get; set; }
+        public virtual DbSet<Appointment> Appointment { get; set; }
         public virtual DbSet<Consultation> Consultation { get; set; }
         public virtual DbSet<Schedule> Schedule { get; set; }
         public virtual DbSet<Comment> Comment { get; set; }

@@ -5,6 +5,20 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="IF4101_BeatySolutions_ISem_2020Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Appointment">
+          <Key>
+            <PropertyRef Name="IdAppointment" />
+          </Key>
+          <Property Name="IdAppointment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProfessor" Type="int" />
+          <Property Name="IdStudent" Type="int" />
+          <Property Name="IdCourse" Type="int" />
+          <Property Name="IdSchedule" Type="int" />
+          <Property Name="StatusApprovedDisapproved" Type="bit" />
+          <Property Name="VirtualOn_Site" Type="bit" />
+          <Property Name="ReasonForAppointment" Type="nvarchar" MaxLength="200" />
+          <Property Name="ProfessorResponse" Type="bit" />
+        </EntityType>
         <EntityType Name="Canton">
           <Key>
             <PropertyRef Name="IdCanton" />
@@ -111,6 +125,18 @@
           <Property Name="CreateBy" Type="int" />
           <Property Name="CreationDate" Type="datetime" />
         </EntityType>
+        <Association Name="FK__Appointme__IdStu__02084FDA">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="IdStudent" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="IdStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Canton__IdProvin__5629CD9C">
           <End Role="Province" Type="Self.Province" Multiplicity="0..1" />
           <End Role="Canton" Type="Self.Canton" Multiplicity="*" />
@@ -436,6 +462,7 @@
           <Parameter Name="IdUserProfile" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="IF4101_BeatySolutions_ISem_2020Model1StoreContainer">
+          <EntitySet Name="Appointment" EntityType="Self.Appointment" Schema="BS_ISem_2020" store:Type="Tables" />
           <EntitySet Name="Canton" EntityType="Self.Canton" Schema="BS_ISem_2020" store:Type="Tables" />
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="BS_ISem_2020" store:Type="Tables" />
           <EntitySet Name="Consultation" EntityType="Self.Consultation" Schema="BS_ISem_2020" store:Type="Tables" />
@@ -446,6 +473,10 @@
           <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="BS_ISem_2020" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="BS_ISem_2020" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="BS_ISem_2020" store:Type="Tables" />
+          <AssociationSet Name="FK__Appointme__IdStu__02084FDA" Association="Self.FK__Appointme__IdStu__02084FDA">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Appointment" EntitySet="Appointment" />
+          </AssociationSet>
           <AssociationSet Name="FK__Canton__IdProvin__5629CD9C" Association="Self.FK__Canton__IdProvin__5629CD9C">
             <End Role="Province" EntitySet="Province" />
             <End Role="Canton" EntitySet="Canton" />
@@ -715,6 +746,11 @@
           <FunctionImport Name="AproveRequest">
           <Parameter Name="IdStudent" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="Appointment" EntityType="IF4101_BeatySolutions_ISem_2020Model1.Appointment" />
+          <AssociationSet Name="FK__Appointme__IdStu__02084FDA" Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Appointme__IdStu__02084FDA">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Appointment" EntitySet="Appointment" />
+          </AssociationSet>
           <EntitySet Name="Consultation" EntityType="IF4101_BeatySolutions_ISem_2020Model1.Consultation" />
           <EntitySet Name="Schedule" EntityType="IF4101_BeatySolutions_ISem_2020Model1.Schedule" />
           <AssociationSet Name="FK__Consultat__IdCou__05D8E0BE" Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Consultat__IdCou__05D8E0BE">
@@ -982,6 +1018,7 @@
           <NavigationProperty Name="UserProfile" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__CreateB__71D1E811" FromRole="Student" ToRole="UserProfile" />
           <NavigationProperty Name="UserProfile1" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__CreateB__75A278F5" FromRole="Student" ToRole="UserProfile" />
           <NavigationProperty Name="UserProfile2" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__IdUserP__70DDC3D8" FromRole="Student" ToRole="UserProfile" />
+          <NavigationProperty Name="Appointment" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Appointme__IdStu__02084FDA" FromRole="Student" ToRole="Appointment" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
@@ -1203,6 +1240,33 @@
           <Property Type="Int32" Name="IdDistrict" Nullable="true" />
           <Property Type="String" Name="DistrictName" Nullable="false" MaxLength="100" />
         </ComplexType>
+      <EntityType Name="Appointment">
+          <Key>
+            <PropertyRef Name="IdAppointment" />
+          </Key>
+          <Property Name="IdAppointment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProfessor" Type="Int32" />
+          <Property Name="IdStudent" Type="Int32" />
+          <Property Name="IdCourse" Type="Int32" />
+          <Property Name="IdSchedule" Type="Int32" />
+          <Property Name="StatusApprovedDisapproved" Type="Boolean" />
+          <Property Name="VirtualOn_Site" Type="Boolean" />
+          <Property Name="ReasonForAppointment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ProfessorResponse" Type="Boolean" />
+          <NavigationProperty Name="Student" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Appointme__IdStu__02084FDA" FromRole="Appointment" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK__Appointme__IdStu__02084FDA">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Appointment" Role="Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="IdStudent" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="IdStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="Consultation">
           <Key>
             <PropertyRef Name="IdConsultation" />
@@ -1699,6 +1763,21 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="AproveRequest" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.AproveRequest" />
+        <EntitySetMapping Name="Appointment">
+            <EntityTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.Appointment">
+              <MappingFragment StoreEntitySet="Appointment">
+                <ScalarProperty Name="ProfessorResponse" ColumnName="ProfessorResponse" />
+                <ScalarProperty Name="ReasonForAppointment" ColumnName="ReasonForAppointment" />
+                <ScalarProperty Name="VirtualOn_Site" ColumnName="VirtualOn_Site" />
+                <ScalarProperty Name="StatusApprovedDisapproved" ColumnName="StatusApprovedDisapproved" />
+                <ScalarProperty Name="IdSchedule" ColumnName="IdSchedule" />
+                <ScalarProperty Name="IdCourse" ColumnName="IdCourse" />
+                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+                <ScalarProperty Name="IdProfessor" ColumnName="IdProfessor" />
+                <ScalarProperty Name="IdAppointment" ColumnName="IdAppointment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Consultation">
             <EntityTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.Consultation">
               <MappingFragment StoreEntitySet="Consultation">

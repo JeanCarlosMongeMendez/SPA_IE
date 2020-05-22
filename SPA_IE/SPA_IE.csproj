@@ -146,6 +146,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Data\Appointment.cs">
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Data\BeautySolutions_ADO.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -173,6 +176,7 @@
     <Compile Include="Models\Data\Course.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Data\Data\AppointmentData.cs" />
     <Compile Include="Models\Data\Data\CantonData.cs" />
     <Compile Include="Models\Data\Data\CourseData.cs" />
     <Compile Include="Models\Data\Data\DistrictData.cs" />
@@ -245,6 +249,7 @@
     <Compile Include="Models\Data\UserProfile.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Domain\DTO\AppoitmentDTO.cs" />
     <Compile Include="Models\Domain\DTO\CantonDTO.cs" />
     <Compile Include="Models\Domain\DTO\CommentDTO.cs" />
     <Compile Include="Models\Domain\DTO\DistrictDTO.cs" />
