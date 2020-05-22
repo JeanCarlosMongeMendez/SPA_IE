@@ -10,16 +10,16 @@
 namespace SPA_IE.Models.Data
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class GetByIdCourse_Result
+    public partial class Comment
     {
-        public int idCourse { get; set; }
-        public string name { get; set; }
-        public bool state { get; set; }
-        public string semestrer { get; set; }
-        public string description { get; set; }
-        public string image { get; set; }
-        public Nullable<int> createBy { get; set; }
-        public Nullable<System.DateTime> creationDate { get; set; }
+        public int IdComment { get; set; }
+        public int IdUserProfile { get; set; }
+        public int IdConsultation { get; set; }
+        public string Commentary { get; set; }
+    
+        public virtual Consultation Consultation { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
     }
 }

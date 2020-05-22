@@ -70,10 +70,9 @@ namespace SPA_IE.Controllers
 
             var districts = new SelectList(districtData.ListAllDistrict(), "IdDistrict", "Name");
             ViewData["districts"] = districts;
-
-            ViewData["idProvince"] = student.IdProvince;
-            ViewData["idCanton"] = student.IdDistrict;
-            ViewData["idDistrict"] = student.IdDistrict;
+            ViewData["IdProvince"] = student.IdProvince;
+            ViewData["IdCanton"] = student.IdDistrict;
+            ViewData["IdDistrict"] = student.IdDistrict;
             return View(student);
         }
 
