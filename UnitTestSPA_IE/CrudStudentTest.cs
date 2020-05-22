@@ -21,13 +21,14 @@ namespace UnitTestSPA_IE
             //Arrange
             StudentController studentController = new StudentController();
             StudentDTO student = new StudentDTO();
-            student.IdStudent= 1000;
-            student.IdentificationCard = "B79038";
+            
+            student.IdentificationCard = "B79038-TestStudent";
             student.isASIP = false;
             student.isActive = true;
 
             //Act
             ActionResult result = studentController.Create(student) as ActionResult;
+
 
             //Assert
             Assert.IsNotNull(result);

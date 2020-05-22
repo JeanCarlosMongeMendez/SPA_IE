@@ -24,6 +24,8 @@
         <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__CreateB__75A278F5" />
         <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Student__IdUserP__70DDC3D8" />
         <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__Creat__6754599E" />
+        <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.Appointment" Width="1.5" PointX="12" PointY="1.375" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Appointme__IdStu__02084FDA" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
