@@ -25,5 +25,6 @@ namespace SPA_IE.Models.Data
         public Nullable<bool> ProfessorResponse { get; set; }
     
         public virtual Student Student { get; set; }
+        public virtual Schedule Schedule { get; set; }
     }
 }
