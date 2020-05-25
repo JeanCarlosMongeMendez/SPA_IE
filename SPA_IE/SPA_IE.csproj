@@ -137,6 +137,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\ConsultationController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -178,6 +179,7 @@
     </Compile>
     <Compile Include="Models\Data\Data\AppointmentData.cs" />
     <Compile Include="Models\Data\Data\CantonData.cs" />
+    <Compile Include="Models\Data\Data\ConsultationData.cs" />
     <Compile Include="Models\Data\Data\CourseData.cs" />
     <Compile Include="Models\Data\Data\DistrictData.cs" />
     <Compile Include="Models\Data\Data\ProfessorData.cs" />
@@ -252,6 +254,7 @@
     <Compile Include="Models\Domain\DTO\AppoitmentDTO.cs" />
     <Compile Include="Models\Domain\DTO\CantonDTO.cs" />
     <Compile Include="Models\Domain\DTO\CommentDTO.cs" />
+    <Compile Include="Models\Domain\DTO\ConsultationDTO.cs" />
     <Compile Include="Models\Domain\DTO\DistrictDTO.cs" />
     <Compile Include="Models\Domain\DTO\NewsDTO.cs" />
     <Compile Include="Models\Domain\DTO\ProfessorDTO.cs" />
@@ -377,6 +380,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\.vs\Base\v16\" />
+    <Folder Include="Views\Consultation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

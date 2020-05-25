@@ -822,6 +822,7 @@
             <Parameter Name="Action" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SelectAppointment" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectAppointment_Result)" />
+          <FunctionImport Name="SPSelectConsultation" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectConsultation_Result)" />
         </EntityContainer>
         <ComplexType Name="GetByIdCourse_Result">
           <Property Type="Int32" Name="idCourse" Nullable="false" />
@@ -1276,10 +1277,6 @@
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="IdTransmitter" Type="Int32" />
           <Property Name="IdReceiver" Type="Int32" />
-          <NavigationProperty Name="Course" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Consultat__IdCou__05D8E0BE" FromRole="Consultation" ToRole="Course" />
-          <NavigationProperty Name="UserProfile" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Consultat__IdRec__07C12930" FromRole="Consultation" ToRole="UserProfile" />
-          <NavigationProperty Name="UserProfile1" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Consultat__IdTra__06CD04F7" FromRole="Consultation" ToRole="UserProfile" />
-          <NavigationProperty Name="Comment" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Comment__IdConsu__0B91BA14" FromRole="Consultation" ToRole="Comment" />
         </EntityType>
         <EntityType Name="Schedule">
           <Key>
@@ -1906,6 +1903,20 @@
                 <ScalarProperty Name="VirtualOn_Site" ColumnName="VirtualOn_Site" />
                 <ScalarProperty Name="ReasonForAppointment" ColumnName="ReasonForAppointment" />
                 <ScalarProperty Name="ProfessorResponse" ColumnName="ProfessorResponse" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPSelectConsultation" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectConsultation">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.SelectConsultation_Result">
+                <ScalarProperty Name="IdConsultation" ColumnName="IdConsultation" />
+                <ScalarProperty Name="IdCourse" ColumnName="IdCourse" />
+                <ScalarProperty Name="NameCourse" ColumnName="NameCourse" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IdTransmitter" ColumnName="IdTransmitter" />
+                <ScalarProperty Name="NameTransmitter" ColumnName="NameTransmitter" />
+                <ScalarProperty Name="IdReceiver" ColumnName="IdReceiver" />
+                <ScalarProperty Name="NameReceiver" ColumnName="NameReceiver" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

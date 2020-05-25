@@ -1,5 +1,4 @@
-// La generación de código T4 está habilitada para el modelo 'C:\Users\Nee\Documents\UCR\SPA_IE\SPA_IE\Models\Data\BeautySolutions_ADO.edmx'. 
-// La generación de código T4 está habilitada para el modelo 'C:\Users\Valeria\Documents\1semestre2020_Virtual\Lenguajes_2020\Proyecto\SPA_IE\SPA_IE\Models\Data\BeautySolutions_ADO.edmx'. 
+﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\Valeria\Documents\1semestre2020_Virtual\Lenguajes_2020\Proyecto\SPA_IE\SPA_IE\Models\Data\BeautySolutions_ADO.edmx'. 
 // Para habilitar la generación de código heredada, cambie el valor de la propiedad del diseñador 'Estrategia de generación de código'
 // por 'ObjectContext heredado'. Esta propiedad está disponible en la ventana Propiedades cuando se abre
 // el modelo en el diseñador.

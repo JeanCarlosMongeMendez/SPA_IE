@@ -730,5 +730,10 @@ namespace SPA_IE.Models.Data
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectAppointment_Result>("SelectAppointment");
         }
+    
+        public virtual ObjectResult<SelectConsultation_Result> SPSelectConsultation()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectConsultation_Result>("SPSelectConsultation");
+        }
     }
 }

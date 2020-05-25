@@ -14,22 +14,10 @@ namespace SPA_IE.Models.Data
     
     public partial class Consultation
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Consultation()
-        {
-            this.Comment = new HashSet<Comment>();
-        }
-    
         public int IdConsultation { get; set; }
         public Nullable<int> IdCourse { get; set; }
         public string Description { get; set; }
         public Nullable<int> IdTransmitter { get; set; }
         public Nullable<int> IdReceiver { get; set; }
-    
-        public virtual Course Course { get; set; }
-        public virtual UserProfile UserProfile { get; set; }
-        public virtual UserProfile UserProfile1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comment { get; set; }
     }
 }
