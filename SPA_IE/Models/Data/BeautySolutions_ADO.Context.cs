@@ -735,5 +735,52 @@ namespace SPA_IE.Models.Data
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectConsultation_Result>("SPSelectConsultation");
         }
+    
+        public virtual int SPInsertUpdateConsultation(Nullable<int> idConsultation, Nullable<int> idCourse, string description, Nullable<int> idTransmitter, Nullable<int> idReceiver, string action)
+        {
+            var idConsultationParameter = idConsultation.HasValue ?
+                new ObjectParameter("IdConsultation", idConsultation) :
+                new ObjectParameter("IdConsultation", typeof(int));
+    
+            var idCourseParameter = idCourse.HasValue ?
+                new ObjectParameter("IdCourse", idCourse) :
+                new ObjectParameter("IdCourse", typeof(int));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var idTransmitterParameter = idTransmitter.HasValue ?
+                new ObjectParameter("IdTransmitter", idTransmitter) :
+                new ObjectParameter("IdTransmitter", typeof(int));
+    
+            var idReceiverParameter = idReceiver.HasValue ?
+                new ObjectParameter("IdReceiver", idReceiver) :
+                new ObjectParameter("IdReceiver", typeof(int));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("Action", action) :
+                new ObjectParameter("Action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPInsertUpdateConsultation", idConsultationParameter, idCourseParameter, descriptionParameter, idTransmitterParameter, idReceiverParameter, actionParameter);
+        }
+    
+        public virtual int SPDeleteConsultation(Nullable<int> idConsultation)
+        {
+            var idConsultationParameter = idConsultation.HasValue ?
+                new ObjectParameter("IdConsultation", idConsultation) :
+                new ObjectParameter("IdConsultation", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPDeleteConsultation", idConsultationParameter);
+        }
+    
+        public virtual ObjectResult<GetByIdConsultation_Result> SPGetByIdConsultation(Nullable<int> idConsultation)
+        {
+            var idConsultationParameter = idConsultation.HasValue ?
+                new ObjectParameter("IdConsultation", idConsultation) :
+                new ObjectParameter("IdConsultation", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetByIdConsultation_Result>("SPGetByIdConsultation", idConsultationParameter);
+        }
     }
 }

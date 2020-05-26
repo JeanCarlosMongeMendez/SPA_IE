@@ -1,0 +1,69 @@
+﻿@model IEnumerable<SPA_IE.Models.Data.SelectConsultation_Result>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdConsultation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameCourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdTransmitter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameTransmitter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdReceiver)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameReceiver)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdConsultation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdTransmitter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameTransmitter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdReceiver)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameReceiver)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdConsultation }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdConsultation }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdConsultation })
+        </td>
+    </tr>
+}
+
+</table>

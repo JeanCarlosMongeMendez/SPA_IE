@@ -5,7 +5,7 @@ using System.Web;
 
 namespace SPA_IE.Models.Domain.DTO
 {
-    public class CommentDTO
+    public class CommentAPIDTO
     {
         public int IdComment { get; set; }
         public int IdNews { get; set; }

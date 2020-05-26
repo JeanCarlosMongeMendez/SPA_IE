@@ -823,6 +823,20 @@
           </FunctionImport>
           <FunctionImport Name="SelectAppointment" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectAppointment_Result)" />
           <FunctionImport Name="SPSelectConsultation" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectConsultation_Result)" />
+          <FunctionImport Name="SPInsertUpdateConsultation">
+            <Parameter Name="IdConsultation" Mode="In" Type="Int32" />
+            <Parameter Name="IdCourse" Mode="In" Type="Int32" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="IdTransmitter" Mode="In" Type="Int32" />
+            <Parameter Name="IdReceiver" Mode="In" Type="Int32" />
+            <Parameter Name="Action" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPDeleteConsultation">
+            <Parameter Name="IdConsultation" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPGetByIdConsultation" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.GetByIdConsultation_Result)">
+            <Parameter Name="IdConsultation" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetByIdCourse_Result">
           <Property Type="Int32" Name="idCourse" Nullable="false" />
@@ -1909,6 +1923,22 @@
           <FunctionImportMapping FunctionImportName="SPSelectConsultation" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectConsultation">
             <ResultMapping>
               <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.SelectConsultation_Result">
+                <ScalarProperty Name="IdConsultation" ColumnName="IdConsultation" />
+                <ScalarProperty Name="IdCourse" ColumnName="IdCourse" />
+                <ScalarProperty Name="NameCourse" ColumnName="NameCourse" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IdTransmitter" ColumnName="IdTransmitter" />
+                <ScalarProperty Name="NameTransmitter" ColumnName="NameTransmitter" />
+                <ScalarProperty Name="IdReceiver" ColumnName="IdReceiver" />
+                <ScalarProperty Name="NameReceiver" ColumnName="NameReceiver" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPInsertUpdateConsultation" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.InsertUpdateConsultation" />
+          <FunctionImportMapping FunctionImportName="SPDeleteConsultation" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.DeleteConsultation" />
+          <FunctionImportMapping FunctionImportName="SPGetByIdConsultation" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.GetByIdConsultation">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.GetByIdConsultation_Result">
                 <ScalarProperty Name="IdConsultation" ColumnName="IdConsultation" />
                 <ScalarProperty Name="IdCourse" ColumnName="IdCourse" />
                 <ScalarProperty Name="NameCourse" ColumnName="NameCourse" />

@@ -10,16 +10,16 @@ using System.Web.Mvc;
 
 namespace SPA_IE.Controllers
 {
-    public class CommentController : Controller
+    public class CommentAPIController : Controller
     {
         // GET: Comment
         public ActionResult Index()
         {
             return View();
         }
-        public IEnumerable<CommentDTO> commentsList()
+        public IEnumerable<CommentAPIDTO> commentsList()
         {
-            IEnumerable<CommentDTO> comments = null;
+            IEnumerable<CommentAPIDTO> comments = null;
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44357/api/Comment/");
@@ -30,13 +30,13 @@ namespace SPA_IE.Controllers
                     var result = responseTask.Result;
                     if (result.IsSuccessStatusCode)
                     {
-                        var readTask = result.Content.ReadAsAsync<IList<CommentDTO>>();
+                        var readTask = result.Content.ReadAsAsync<IList<CommentAPIDTO>>();
                         readTask.Wait();
                         comments = readTask.Result;
                     }
                     else
                     {
-                        comments = Enumerable.Empty<CommentDTO>();
+                        comments = Enumerable.Empty<CommentAPIDTO>();
                         ModelState.AddModelError(string.Empty, "Server error. Please contact administrator");
                     }
                 }
@@ -60,7 +60,7 @@ namespace SPA_IE.Controllers
 
         public PartialViewResult Edit(int id)
         {
-            CommentDTO commentDTO = null;
+            CommentAPIDTO commentDTO = null;
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44357/api/Comment/");
@@ -71,13 +71,13 @@ namespace SPA_IE.Controllers
                     var result = responseTask.Result;
                     if (result.IsSuccessStatusCode)
                     {
-                        var readTask = result.Content.ReadAsAsync<CommentDTO>();
+                        var readTask = result.Content.ReadAsAsync<CommentAPIDTO>();
                         readTask.Wait();
                         commentDTO = readTask.Result;
                     }
                     else
                     {
-                        commentDTO = new CommentDTO();
+                        commentDTO = new CommentAPIDTO();
                         ModelState.AddModelError(string.Empty, "Server error. Please contact administrator");
                     }
                 }
@@ -90,7 +90,7 @@ namespace SPA_IE.Controllers
         }
 
         [HttpPost]
-        public PartialViewResult Edit(CommentDTO comment)
+        public PartialViewResult Edit(CommentAPIDTO comment)
         {
             int apiResult = 0;
             using (var client = new HttpClient())
@@ -125,7 +125,7 @@ namespace SPA_IE.Controllers
         }
 
         [HttpPost]
-        public PartialViewResult Create(CommentDTO comment)
+        public PartialViewResult Create(CommentAPIDTO comment)
         {
             int apiResult = 0;
             using (var client = new HttpClient())
