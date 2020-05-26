@@ -1,0 +1,63 @@
+﻿@model IEnumerable<SPA_IE.Models.Domain.DTO.NewsDTO>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdNews)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdUserCreator)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Documentation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NewsType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdNews)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdUserCreator)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Documentation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NewsType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdNews }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdNews }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdNews })
+        </td>
+    </tr>
+}
+
+</table>
