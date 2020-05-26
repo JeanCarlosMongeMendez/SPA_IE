@@ -125,6 +125,18 @@
           <Property Name="CreateBy" Type="int" />
           <Property Name="CreationDate" Type="datetime" />
         </EntityType>
+        <Association Name="FK__Appointme__IdSch__02FC7413">
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="0..1" />
+          <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schedule">
+              <PropertyRef Name="idSchedule" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="IdSchedule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Appointme__IdStu__02084FDA">
           <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
           <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
@@ -457,6 +469,7 @@
           <Parameter Name="IdUserProfile" Type="int" Mode="In" />
         </Function>
         <Function Name="SelectRequestStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020" />
+        <Function Name="SelectSchedule" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020" />
         <Function Name="SelectStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020" />
         <Function Name="SelectStudentById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
           <Parameter Name="IdUserProfile" Type="int" Mode="In" />
@@ -473,6 +486,10 @@
           <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="BS_ISem_2020" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="BS_ISem_2020" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="BS_ISem_2020" store:Type="Tables" />
+          <AssociationSet Name="FK__Appointme__IdSch__02FC7413" Association="Self.FK__Appointme__IdSch__02FC7413">
+            <End Role="Schedule" EntitySet="Schedule" />
+            <End Role="Appointment" EntitySet="Appointment" />
+          </AssociationSet>
           <AssociationSet Name="FK__Appointme__IdStu__02084FDA" Association="Self.FK__Appointme__IdStu__02084FDA">
             <End Role="Student" EntitySet="Student" />
             <End Role="Appointment" EntitySet="Appointment" />
@@ -804,10 +821,10 @@
           </FunctionImport>
           <FunctionImport Name="SelectComment" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectComment_Result)" />
           <FunctionImport Name="DeleteAppointment">
-            <Parameter Name="IdAppointment" Mode="In" Type="Int32" />
+          <Parameter Name="IdAppointment" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetByIdAppointment" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.GetByIdAppointment_Result)">
-            <Parameter Name="IdAppointment" Mode="In" Type="Int32" />
+          <Parameter Name="IdAppointment" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="InsertUpdateAppointment">
             <Parameter Name="IdAppointment" Mode="In" Type="Int32" />
@@ -822,6 +839,12 @@
             <Parameter Name="Action" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SelectAppointment" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectAppointment_Result)" />
+          <AssociationSet Name="FK__Appointme__IdSch__02FC7413" Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Appointme__IdSch__02FC7413">
+            <End Role="Schedule" EntitySet="Schedule" />
+            <End Role="Appointment" EntitySet="Appointment" />
+          </AssociationSet>
+          <FunctionImport Name="SelectSchedule" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectSchedule_Result)" />
+          <FunctionImport Name="SPSelectSchedule" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectSchedule_Result)" />
         </EntityContainer>
         <ComplexType Name="GetByIdCourse_Result">
           <Property Type="Int32" Name="idCourse" Nullable="false" />
@@ -1254,6 +1277,7 @@
           <Property Name="ReasonForAppointment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="ProfessorResponse" Type="Boolean" />
           <NavigationProperty Name="Student" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Appointme__IdStu__02084FDA" FromRole="Appointment" ToRole="Student" />
+          <NavigationProperty Name="Schedule" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Appointme__IdSch__02FC7413" FromRole="Appointment" ToRole="Schedule" />
         </EntityType>
         <Association Name="FK__Appointme__IdStu__02084FDA">
           <End Type="IF4101_BeatySolutions_ISem_2020Model1.Student" Role="Student" Multiplicity="0..1" />
@@ -1291,6 +1315,7 @@
           <Property Name="Day" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FinalTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Appointment" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Appointme__IdSch__02FC7413" FromRole="Schedule" ToRole="Appointment" />
         </EntityType>
         <Association Name="FK__Consultat__IdCou__05D8E0BE">
           <End Type="IF4101_BeatySolutions_ISem_2020Model1.Course" Role="Course" Multiplicity="0..1" />
@@ -1430,6 +1455,26 @@
           <Property Type="Boolean" Name="VirtualOn_Site" Nullable="true" />
           <Property Type="String" Name="ReasonForAppointment" Nullable="true" MaxLength="200" />
           <Property Type="Boolean" Name="ProfessorResponse" Nullable="true" />
+        </ComplexType>
+        <Association Name="FK__Appointme__IdSch__02FC7413">
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Schedule" Role="Schedule" Multiplicity="0..1" />
+          <End Type="IF4101_BeatySolutions_ISem_2020Model1.Appointment" Role="Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schedule">
+              <PropertyRef Name="idSchedule" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="IdSchedule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="SelectSchedule_Result">
+          <Property Type="Int32" Name="idSchedule" Nullable="false" />
+          <Property Type="Int32" Name="IdCourse" Nullable="false" />
+          <Property Type="Int32" Name="IdProfessor" Nullable="false" />
+          <Property Type="DateTime" Name="Day" Nullable="false" />
+          <Property Type="DateTime" Name="StartTime" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="FinalTime" Nullable="false" Precision="23" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1906,6 +1951,30 @@
                 <ScalarProperty Name="VirtualOn_Site" ColumnName="VirtualOn_Site" />
                 <ScalarProperty Name="ReasonForAppointment" ColumnName="ReasonForAppointment" />
                 <ScalarProperty Name="ProfessorResponse" ColumnName="ProfessorResponse" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectSchedule" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectSchedule">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.SelectSchedule_Result">
+                <ScalarProperty Name="idSchedule" ColumnName="idSchedule" />
+                <ScalarProperty Name="IdCourse" ColumnName="IdCourse" />
+                <ScalarProperty Name="IdProfessor" ColumnName="IdProfessor" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="FinalTime" ColumnName="FinalTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPSelectSchedule" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectSchedule">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.SelectSchedule_Result">
+                <ScalarProperty Name="idSchedule" ColumnName="idSchedule" />
+                <ScalarProperty Name="IdCourse" ColumnName="IdCourse" />
+                <ScalarProperty Name="IdProfessor" ColumnName="IdProfessor" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="FinalTime" ColumnName="FinalTime" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

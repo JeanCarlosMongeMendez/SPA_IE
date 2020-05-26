@@ -1,4 +1,5 @@
-﻿using SPA_IE.Models.Data.DTO;
+﻿using SPA_IE.Models.Data;
+using SPA_IE.Models.Data.DTO;
 using System;
 using System.Activities.Tracking;
 using System.Collections.Generic;
@@ -8,16 +9,17 @@ using System.Web;
 namespace SPA_IE.Models.Domain.DTO
 {
     public class AppoitmentDTO
-    {
-        public int IdAppointMent { get; set; }
-        public int Professor { get; set; }
-        public int Student { get; set; }
-        public int Course { get; set; }
-        public int Schedule { get; set; }
-        public bool statusApprovedDisapproved { get; set; }
-        public bool virtualOn_Site { get; set; }
-        public string reasonForAppointment { get; set; }
-        public bool professorResponse { get; set; }
-        
+    {    
+
+        public int IdAppointment { get; set; }
+        public Nullable<int> IdProfessor { get; set; }
+        public Nullable<int> IdStudent { get; set; }
+        public Nullable<int> IdCourse { get; set; }
+        public Nullable<int> IdSchedule { get; set; }
+        public Nullable<bool> StatusApprovedDisapproved { get; set; }
+        public Nullable<bool> VirtualOn_Site { get; set; }
+        public string ReasonForAppointment { get; set; }
+        public Nullable<bool> ProfessorResponse { get; set; }
+
     }
 }

@@ -730,5 +730,15 @@ namespace SPA_IE.Models.Data
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectAppointment_Result>("SelectAppointment");
         }
+    
+        public virtual ObjectResult<SelectSchedule_Result> SelectSchedule()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectSchedule_Result>("SelectSchedule");
+        }
+    
+        public virtual ObjectResult<SelectSchedule_Result> SPSelectSchedule()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectSchedule_Result>("SPSelectSchedule");
+        }
     }
 }

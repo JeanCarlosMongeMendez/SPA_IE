@@ -36,6 +36,7 @@
         <EntityTypeShape EntityType="IF4101_BeatySolutions_ISem_2020Model1.Comment" Width="1.5" PointX="14.625" PointY="5.25" />
         <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Comment__IdConsu__0B91BA14" />
         <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Comment__IdUserP__0A9D95DB" />
+        <AssociationConnector Association="IF4101_BeatySolutions_ISem_2020Model1.FK__Appointme__IdSch__02FC7413" />
 
       </Diagram>
     </edmx:Diagrams>
