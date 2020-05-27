@@ -1,34 +1,31 @@
 ﻿@model IEnumerable<SPA_IE.Models.Data.SelectStudent_Result>
 
 
-<table class="table">
-    <tr>
+<table>
+    <tr class="title">
         <th>
-            @Html.DisplayNameFor(model => model.IdentificationCard)
+            Carnét
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsASIP)
+            ASIP
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreateBy)
+            Creado por
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreationDate)
+            Fecha de creación 
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Username)
+            Usuario
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            Correo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ProvinceName)
+            Provincia
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CantonName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DistrictName)
+            Acciones
         </th>
     </tr>
 
@@ -56,10 +53,9 @@
             @Html.DisplayFor(modelItem => item.ProvinceName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CantonName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DistrictName)
+            <a data="@Url.Action("GetById", "Student", routeValues: new {id = item.IdStudent})" id="editStudentLink" class="btn btn-primary" onclick="editStudent(this)">Editar</a>
+            <a data="@Url.Action("GetById", "Student", routeValues: new {id = item.IdStudent})" id="detailsStudentLink" class="btn btn-primary" onclick="detailsStudent(this)">Detalles</a>
+            <a data="@Url.Action("Delete", "Student", routeValues: new {id = item.IdStudent})" id="deleteStudentLink" class="btn btn-primary" onclick="deleteStudent(this)">Eliminar</a>
         </td>
     </tr>
 }

@@ -375,6 +375,7 @@
     <Content Include="Views\Student\GetRequest.cshtml" />
     <Content Include="Views\Student\GetAll.cshtml" />
     <Content Include="Views\Student\Create.cshtml" />
+    <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\News\List.cshtml" />
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\News\Create.cshtml" />
@@ -382,8 +383,9 @@
     <Content Include="Views\Comment\Edit.cshtml" />
     <Content Include="Views\Comment\Create.cshtml" />
     <Content Include="Views\Appointment\Create.cshtml" />
-    <Content Include="Views\Appointment\GetRequest.cshtml" />
     <Content Include="Views\Appointment\GetAll.cshtml" />
+    <Content Include="Views\Appointment\GetRequest.cshtml" />
+    <Content Include="Views\Student\GetById.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

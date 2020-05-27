@@ -44,10 +44,17 @@ namespace SPA_IE.Models.Data.Data
 
         public int Update(StudentDTO student)
         {
-            int resultToReturn;
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            int resultToReturn = 0;
+            try
             {
-                resultToReturn = context.SPInsertUpdateStudent(student.IdStudent, student.IdentificationCard, student.IdUserProfile, student.isASIP, student.isActive, student.CreateBy, DateTime.Now, student.Username, student.Password, student.UserPhoto, student.Interests, student.Email, student.IsAdmin, student.IsEnable, student.IdProvince, student.IdCanton, student.IdDistrict, "Update");
+                using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+                {
+                    resultToReturn = context.SPInsertUpdateStudent(student.IdStudent, student.IdentificationCard, student.IdUserProfile, student.isASIP, student.isActive, student.CreateBy, DateTime.Now, student.Username, student.Password, student.UserPhoto, student.Interests, student.Email, student.IsAdmin, student.IsEnable, student.IdProvince, student.IdCanton, student.IdDistrict, "Update");
+                }
+            }
+            catch
+            {
+                throw;
             }
             return resultToReturn;
         }
