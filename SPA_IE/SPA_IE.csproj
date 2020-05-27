@@ -203,6 +203,9 @@
     <Compile Include="Models\Data\GetByIdCourse_Result1.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Data\GetByNameCourse_Result.cs">
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Data\Professor.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
@@ -236,7 +239,9 @@
     <Compile Include="Models\Data\SelectRequestStudent_Result.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Data\SelectSchedule_Result.cs" />
+    <Compile Include="Models\Data\SelectSchedule_Result.cs">
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Data\SelectStudent1_Result.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
@@ -255,14 +260,14 @@
     <Compile Include="Models\Domain\DTO\AppoitmentDTO.cs" />
     <Compile Include="Models\Domain\DTO\CantonDTO.cs" />
     <Compile Include="Models\Domain\DTO\CommentDTO.cs" />
+    <Compile Include="Models\Domain\DTO\CourseDTO.cs" />
     <Compile Include="Models\Domain\DTO\DistrictDTO.cs" />
     <Compile Include="Models\Domain\DTO\NewsDTO.cs" />
     <Compile Include="Models\Domain\DTO\ProfessorDTO.cs" />
     <Compile Include="Models\Domain\DTO\ProvinceDTO.cs" />
+    <Compile Include="Models\Domain\DTO\ScheduleDTO.cs" />
     <Compile Include="Models\Domain\DTO\StudentDTO.cs" />
     <Compile Include="Models\Domain\DTO\UserProfileDTO.cs" />
-    <Compile Include="Models\Domain\TestOne.cs" />
-    <Compile Include="Models\Domain\TestxTwo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -384,17 +389,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\.vs\Base\v16\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\.vs\Base\config\applicationhost.config" />
-    <Content Include="Content\.vs\ProjectSettings.json" />
-    <Content Include="Content\.vs\slnx.sqlite" />
-    <Content Include="Content\.vs\VSWorkspaceState.json" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
