@@ -16,5 +16,10 @@ namespace SPA_IE.Models.Data.Data.Tests
         {
             Assert.AreEqual(1,1);
         }
+        [TestMethod()]
+        public void AddTestFail()
+        {
+            Assert.AreEqual(1, 2);
+        }
     }
 }
