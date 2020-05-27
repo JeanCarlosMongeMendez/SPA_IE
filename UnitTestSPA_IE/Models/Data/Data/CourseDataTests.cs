@@ -14,6 +14,7 @@ namespace SPA_IE.Models.Data.Data.Tests
     public class CourseDataTests
     {
 
+
         [TestMethod()]
         public void AddCourseTest()
         {
@@ -54,10 +55,10 @@ namespace SPA_IE.Models.Data.Data.Tests
              //Act
 
                 //Correct
-                //course = courseData.GetByNameCourse("Lenguajes Test");
+                course = courseData.GetByNameCourse("Lenguajes Test");
 
                 //Fail
-                course = courseData.GetByNameCourse("Lenguajes");
+                //course = courseData.GetByNameCourse("Lenguajes");
 
              //Assert
 
