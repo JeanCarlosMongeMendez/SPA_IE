@@ -1,19 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Ajax.Utilities;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace SPA_IE.Models.Data.Data
 {
     public class CourseData
     {
-
         public List<Course> ListAllCourseSP()
         {
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 return context.SPSelectCourse().ToList();
-
             }
-
         }
 
         public int Add(Course course)
@@ -22,11 +22,10 @@ namespace SPA_IE.Models.Data.Data
 
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
-                resultToReturn = context.SPInsertUpdateCourse(course.IdCourse, course.Name, course.state, course.Semestrer, course.Description,course.Image, "Insert");
+                resultToReturn = context.SPInsertUpdateCourse(course.IdCourse, course.Name, course.state, course.Semestrer, course.Description, course.Image, "Insert");
             }
 
             return resultToReturn;
-
         }
 
         public int Update(Course course)
@@ -39,30 +38,46 @@ namespace SPA_IE.Models.Data.Data
             }
 
             return resultToReturn;
-
         }
+
         public Course GetByIdCourse(int id)
         {
-
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 var course = context.SPGetByIdCourse(id).Single();
-
+            
                 return course;
             }
-
-
         }
+
         public int Delete(int id)
         {
-
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 var resultToReturn = context.SPDeleteCourse(id);
 
                 return resultToReturn;
             }
-
         }
+
+        ////TEST
+        public Course GetByNameCourse(string name)
+        {
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            {
+                var course = new Course();
+                try 
+                {
+                    course = context.SPGetByNameCourse(name).Single();
+                }
+                 catch (Exception e)
+                {
+                    Console.WriteLine(e.GetType()); 
+                }
+
+                return course;
+            }
+        }
+
     }
 }

@@ -740,5 +740,32 @@ namespace SPA_IE.Models.Data
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectSchedule_Result>("SPSelectSchedule");
         }
+    
+        public virtual ObjectResult<GetByNameCourse_Result> GetByNameCourse(string name)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetByNameCourse_Result>("GetByNameCourse", nameParameter);
+        }
+    
+        public virtual ObjectResult<Course> SPGetByNameCourse(string name)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Course>("SPGetByNameCourse", nameParameter);
+        }
+    
+        public virtual ObjectResult<Course> SPGetByNameCourse(string name, MergeOption mergeOption)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Course>("SPGetByNameCourse", mergeOption, nameParameter);
+        }
     }
 }
