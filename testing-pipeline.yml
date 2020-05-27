@@ -36,3 +36,4 @@ steps:
       !**\*TestAdapter.dll
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
+    configuration: $(BuildConfiguration) --logger "trx"
