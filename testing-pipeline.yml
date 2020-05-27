@@ -37,3 +37,9 @@ steps:
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
     configuration: $(BuildConfiguration) --logger "trx"
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'VSTest'
+    testResultsFiles: '**/TEST-*.xml'
+    failTaskOnFailedTests: true
