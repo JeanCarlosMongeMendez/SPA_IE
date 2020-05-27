@@ -136,6 +136,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="Models\Data\Data\DistrictData.cs" />
     <Compile Include="Models\Data\Data\ProfessorData.cs" />
     <Compile Include="Models\Data\Data\ProvinceData.cs" />
+    <Compile Include="Models\Data\Data\ScheduleData.cs" />
     <Compile Include="Models\Data\Data\StudentData.cs" />
     <Compile Include="Models\Data\District.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
@@ -199,6 +201,9 @@
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\GetByIdCourse_Result1.cs">
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Data\GetByNameCourse_Result.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\Professor.cs">
@@ -234,6 +239,9 @@
     <Compile Include="Models\Data\SelectRequestStudent_Result.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Data\SelectSchedule_Result.cs">
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Data\SelectStudent1_Result.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
@@ -252,14 +260,14 @@
     <Compile Include="Models\Domain\DTO\AppoitmentDTO.cs" />
     <Compile Include="Models\Domain\DTO\CantonDTO.cs" />
     <Compile Include="Models\Domain\DTO\CommentDTO.cs" />
+    <Compile Include="Models\Domain\DTO\CourseDTO.cs" />
     <Compile Include="Models\Domain\DTO\DistrictDTO.cs" />
     <Compile Include="Models\Domain\DTO\NewsDTO.cs" />
     <Compile Include="Models\Domain\DTO\ProfessorDTO.cs" />
     <Compile Include="Models\Domain\DTO\ProvinceDTO.cs" />
+    <Compile Include="Models\Domain\DTO\ScheduleDTO.cs" />
     <Compile Include="Models\Domain\DTO\StudentDTO.cs" />
     <Compile Include="Models\Domain\DTO\UserProfileDTO.cs" />
-    <Compile Include="Models\Domain\TestOne.cs" />
-    <Compile Include="Models\Domain\TestxTwo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -373,6 +381,9 @@
     <Content Include="Views\Comment\List.cshtml" />
     <Content Include="Views\Comment\Edit.cshtml" />
     <Content Include="Views\Comment\Create.cshtml" />
+    <Content Include="Views\Appointment\Create.cshtml" />
+    <Content Include="Views\Appointment\GetRequest.cshtml" />
+    <Content Include="Views\Appointment\GetAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
