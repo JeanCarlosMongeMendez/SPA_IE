@@ -54,10 +54,10 @@ namespace SPA_IE.Models.Data.Data.Tests
              //Act
 
                 //Correct
-                course = courseData.GetByNameCourse("Lenguajes Test");
+                //course = courseData.GetByNameCourse("Lenguajes Test");
 
                 //Fail
-                //course = courseData.GetByNameCourse("Lenguajes");
+                course = courseData.GetByNameCourse("Lenguajes");
 
              //Assert
 
