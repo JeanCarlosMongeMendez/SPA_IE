@@ -53,13 +53,14 @@ namespace SPA_IE.Models.Data.Data.Tests
             
              //Act
 
-                course = courseData.GetByNameCourse("Lenguajes Test");
+                //course = courseData.GetByNameCourse("Lenguajes Test");
+                course = courseData.GetByNameCourse("Lenguajes");
 
              //Assert
 
-                Assert.AreEqual("Lenguajes Test", course.Name);
-                Assert.AreEqual("1", course.Semestrer);
-                Assert.AreEqual("El curso más importante de la carrera.", course.Description);
+            Assert.AreEqual("Lenguajes Test", course.Name);
+            Assert.AreEqual("1", course.Semestrer);
+            Assert.AreEqual("El curso más importante de la carrera.", course.Description);
             }
         }
 
