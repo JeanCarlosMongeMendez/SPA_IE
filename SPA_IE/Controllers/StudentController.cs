@@ -59,6 +59,20 @@ namespace SPA_IE.Controllers
             return PartialView("GetRequest", students);
         }
 
+        public PartialViewResult GetById(int id)
+        {
+            var provinces = new SelectList(provinceData.ListAllProvince(), "IdProvince", "Name");
+            ViewBag.provinces = provinces;
+
+            var cantons = new SelectList(cantonData.ListAllCanton(), "IdCanton", "Name");
+            ViewBag.cantons = cantons;
+
+            var districts = new SelectList(districtData.ListAllDistrict(), "IdDistrict", "Name");
+            ViewBag.districts = districts;
+            var student = studentData.GetById(id);
+            return PartialView("GetById", student);
+        }
+
         public PartialViewResult Edit(int id)
         {
             StudentDTO student = studentData.GetById(id);
@@ -79,10 +93,18 @@ namespace SPA_IE.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(StudentDTO student)
+        public PartialViewResult Edit(StudentDTO student)
         {
-            studentData.Update(student);
-            return View("Index", studentData.ListAllSP().AsEnumerable());
+            try
+            {
+                studentData.Update(student);
+                IEnumerable<SelectStudent_Result> students = studentData.ListAllSP();
+                return PartialView("GetAll", students);
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public ActionResult Delete(int id)

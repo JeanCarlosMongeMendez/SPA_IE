@@ -66,22 +66,23 @@
 </div>
 
 <!-- Register Modal -->
-<div id="registerModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+<div id="studentModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-xl">
 
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="container">
-                <label>Llenar con su información personal...</label>
+            <div class="container title">
+                <label id="studentModalTitle"></label>
             </div>
-            <div id="addStudentContent"></div>
+            <div id="studentContent"></div>
             <div class="modal-footer">
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="button" value="Create" class="btn btn-default" id="addStudentSubmit" />
+                        <button type="button" class="btn btn-primary" id="addStudentSubmit" >Agregar</button>
+                        <button type="button" class="btn btn-primary" id="updateStudentSubmit">Actualizar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
-                <button type="button" class="cancelbtn" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
@@ -386,10 +387,29 @@
 
 <!-- STUDENTS -->
 <section id="students">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="section-title">
+                    <h2>Lista de estudiantes registrados en el sistema</h2>
+                </div>
+            </div>
+            <hr />
+            <div class="col-xs-12">
+                <a data-toggle="modal" data-target="#studentModal" data="@Url.Action("Create", "Student")" id="addStudentLink" class="btn btn-primary">Agregar</a>
+            </div>
+            <hr />
+            <div class="col-xs-12">
+                <div id="studentsContent"></div>
+            </div>
+        </div>
+    </div>
+
+
     <p>
-        <a data-toggle="modal" data-target="#registerModal" data="@Url.Action("Create", "Student")" id="addStudentLink" class="btn btn-primary">Agregar</a>
+        
     </p>
-    <div id="studentsContent"></div>
+    
 </section>
 
 <!-- REQUESTS -->
@@ -843,7 +863,6 @@
     </div>
 </footer>
 
-
 <script src="~/Content/js/jquery.js"></script>
 <script src="~/Content/js/bootstrap.min.js"></script>
 <script src="~/Content/js/owl.carousel.min.js"></script>
@@ -876,7 +895,10 @@
         $('#addStudentLink').on('click', function () {
             var url = $(this).attr('data');
             $.get(url, function (data) {
-                $('#addStudentContent').html(data);
+                $('#studentModalTitle').html('Agregar');
+                $('#updateStudentSubmit').hide();
+                $('#addStudentSubmit').show();
+                $('#studentContent').html(data);
             });
         });
 
@@ -905,11 +927,91 @@
                 processData: false,
                 contentType: false,
                 success: function (data) {
-                    $('#registerModal').modal('toggle');
-                    $('#requestContent').html(data);
+                    $('#studentModal').modal('toggle');
+                    $('#studentContent').html(data);
                 }
             });
         });
+
+        function editStudent(link) {
+            var url = $(link).attr('data');
+            $.get(url, function (data) {
+                $('#studentModalTitle').html('Actuaizar');
+                $('#updateStudentSubmit').show();
+                $('#addStudentSubmit').hide();
+                $('#studentModal').modal('toggle');
+                $('#studentContent').html(data);
+            });
+        };
+
+        function detailsStudent(link) {
+            var url = $(link).attr('data');
+            $.get(url, function (data) {
+                $('#studentModalTitle').html('Detalles');
+                $('#updateStudentSubmit').hide();
+                $('#addStudentSubmit').hide();
+                $('#studentModal').modal('toggle');
+                $('#studentContent').html(data);
+                UnableForm();
+            });
+        };
+
+        function deleteStudent(link) {
+            var url = $(link).attr('data');
+            console.log(url);
+            var confirmationDelete = confirm("¿Desea eliminar el estudiante " +  + "?");
+            if (confirmationDelete) {
+                $.get(url, function (data) {
+
+                });
+            } else {
+            }
+        };
+
+        $('#updateStudentSubmit').on('click', function () {
+            var data = new FormData();
+
+            var id = $("#IdStudent").val();
+            data.append("IdStudent", id);
+            var username = $("#Username").val();
+            data.append("Username", username);
+            var password = $("#Password").val();
+            data.append("Password", password);
+            var interest = $("#Interests").val();
+            data.append("Interests", interest);
+            var email = $("#Email").val();
+            data.append("Email", email);
+            var idcard = $("#IdentificationCard").val();
+            data.append("IdentificationCard", idcard);
+            var province = $("#IdProvince").val();
+            data.append("IdProvince", province);
+            var canton = $("#IdCanton").val();
+            data.append("IdCanton", canton);
+            var district = $("#IdDistrict").val();
+            data.append("IdDistrict", district);
+            $.ajax({
+                url: '@Url.Action("Edit", "Student")',
+                type: 'POST',
+                data:  data,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $('#studentModal').modal('toggle');
+                    $('#studentContent').html(data);
+                }
+            });
+        });
+
+        function UnableForm() {
+            $("#IdCanton").attr('disabled', 'disabled');
+            $("#IdDistrict").attr('disabled', 'disabled');
+            $("#Username").prop("readonly", true);
+            $("#Password").prop("readonly", true);
+            $("#IdProvince").attr('disabled', 'disabled');
+            $("#Interests").prop("readonly", true);
+            $("#Email").prop("readonly", true);
+            $("#IdentificationCard").prop("readonly", true);
+        }
 
         function aprove(link) {
             var url = $(link).attr('data');
@@ -921,5 +1023,6 @@
                 });
             });
         }
+
     </script>
 }
