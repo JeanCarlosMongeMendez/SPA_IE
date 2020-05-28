@@ -368,9 +368,6 @@
         <Function Name="DeleteCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
           <Parameter Name="IdCourse" Type="int" Mode="In" />
         </Function>
-        <Function Name="DeleteCourseByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
-          <Parameter Name="Name" Type="varchar" Mode="In" />
-        </Function>
         <Function Name="DeleteProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
           <Parameter Name="IdUserProfile" Type="int" Mode="In" />
         </Function>
@@ -406,7 +403,7 @@
         </Function>
         <Function Name="InsertUpdateComment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
           <Parameter Name="IdComment" Type="int" Mode="In" />
-          <Parameter Name="IdUserProfile" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdUserProfile" Type="int" Mode="In" />
           <Parameter Name="IdConsultation" Type="int" Mode="In" />
           <Parameter Name="Commentary" Type="nvarchar" Mode="In" />
           <Parameter Name="Action" Type="varchar" Mode="In" />
@@ -465,6 +462,9 @@
           <Parameter Name="IdCanton" Type="int" Mode="In" />
           <Parameter Name="IdDistrict" Type="int" Mode="In" />
           <Parameter Name="Action" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="RejectRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="IdStudent" Type="int" Mode="In" />
         </Function>
         <Function Name="SelectAppointment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020" />
         <Function Name="SelectComment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020" />
@@ -820,7 +820,7 @@
           </FunctionImport>
           <FunctionImport Name="InsertUpdateComment">
             <Parameter Name="IdComment" Mode="In" Type="Int32" />
-            <Parameter Name="IdUserProfile" Mode="In" Type="String" />
+            <Parameter Name="IdUserProfile" Mode="In" Type="Int32" />
             <Parameter Name="IdConsultation" Mode="In" Type="Int32" />
             <Parameter Name="Commentary" Mode="In" Type="String" />
             <Parameter Name="Action" Mode="In" Type="String" />
@@ -856,6 +856,9 @@
           </FunctionImport>
           <FunctionImport Name="SPGetByNameCourse" EntitySet="Course" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.Course)">
           <Parameter Name="Name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="RejectRequest">
+            <Parameter Name="IdStudent" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetByIdCourse_Result">
@@ -2016,6 +2019,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SPGetByNameCourse" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.GetByNameCourse">
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RejectRequest" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.RejectRequest" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
