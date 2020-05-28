@@ -3,9 +3,6 @@
 <table class="table">
     <tr>
         <th>
-            Aprobar
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.IdentificationCard)
         </th>
         <th>
@@ -27,18 +24,12 @@
             @Html.DisplayNameFor(model => model.ProvinceName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CantonName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DistrictName)
+            Aprobar
         </th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            <a data="@Url.Action("AproveRequest", "Student", routeValues: new {id = item.IdStudent})" id="aproveRequestLink" class="btn btn-primary" onclick="aprove(this)">Aprobar</a>
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.IdentificationCard)
         </td>
@@ -61,10 +52,7 @@
             @Html.DisplayFor(modelItem => item.ProvinceName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CantonName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DistrictName)
+            <a data="@Url.Action("AproveRequest", "Student", routeValues: new {id = item.IdStudent})" id="aproveRequestLink" class="btn btn-primary" onclick="aprove(this)">Aprobar</a>
         </td>
     </tr>
 }
