@@ -59,7 +59,21 @@ namespace SPA_IE.Controllers
             return PartialView("GetRequest", students);
         }
 
-        public ActionResult Edit(int id)
+        public PartialViewResult GetById(int id)
+        {
+            var provinces = new SelectList(provinceData.ListAllProvince(), "IdProvince", "Name");
+            ViewBag.provinces = provinces;
+
+            var cantons = new SelectList(cantonData.ListAllCanton(), "IdCanton", "Name");
+            ViewBag.cantons = cantons;
+
+            var districts = new SelectList(districtData.ListAllDistrict(), "IdDistrict", "Name");
+            ViewBag.districts = districts;
+            var student = studentData.GetById(id);
+            return PartialView("GetById", student);
+        }
+
+        public PartialViewResult Edit(int id)
         {
             StudentDTO student = studentData.GetById(id);
             var provinces = new SelectList(provinceData.ListAllProvince(), "IdProvince", "Name");
@@ -70,24 +84,42 @@ namespace SPA_IE.Controllers
 
             var districts = new SelectList(districtData.ListAllDistrict(), "IdDistrict", "Name");
             ViewData["districts"] = districts;
-
+            
             ViewData["idProvince"] = student.IdProvince;
             ViewData["idCanton"] = student.IdDistrict;
             ViewData["idDistrict"] = student.IdDistrict;
-            return View(student);
+            return PartialView("Edit", student);
+
         }
 
         [HttpPost]
-        public ActionResult Edit(StudentDTO student)
+        public PartialViewResult Edit(StudentDTO student)
         {
-            studentData.Update(student);
-            return View("Index", studentData.ListAllSP().AsEnumerable());
+            try
+            {
+                studentData.Update(student);
+                IEnumerable<SelectStudent_Result> students = studentData.ListAllSP();
+                return PartialView("GetAll", students);
+            }
+            catch
+            {
+                throw;
+            }
         }
 
-        public ActionResult Delete(int id)
+        [HttpPost]
+        public PartialViewResult Delete(int id)
         {
-            studentData.Delete(id);
-            return View("Index", studentData.ListAllSP().AsEnumerable());
+            try
+            {
+                studentData.Delete(id);
+                IEnumerable<SelectRequestStudent_Result> students = studentData.ListAllRequestSP();
+                return PartialView("GetRequest", students);
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }
