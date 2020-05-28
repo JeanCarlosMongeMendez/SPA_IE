@@ -14,7 +14,7 @@ namespace SPA_IE.Models.Data.Data.Tests
         [TestMethod()]
         public void AddTest()
         {
-            Assert.AreEqual(1,1);
+            Assert.AreEqual(2,2);
         }
         [TestMethod()]
         public void AddTestFail()
