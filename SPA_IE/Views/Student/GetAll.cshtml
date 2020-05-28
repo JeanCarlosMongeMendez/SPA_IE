@@ -55,7 +55,7 @@
         <td>
             <a data="@Url.Action("GetById", "Student", routeValues: new {id = item.IdStudent})" id="editStudentLink" class="btn btn-primary" onclick="editStudent(this)">Editar</a>
             <a data="@Url.Action("GetById", "Student", routeValues: new {id = item.IdStudent})" id="detailsStudentLink" class="btn btn-primary" onclick="detailsStudent(this)">Detalles</a>
-            <a data="@Url.Action("Delete", "Student", routeValues: new {id = item.IdStudent})" id="deleteStudentLink" class="btn btn-primary" onclick="deleteStudent(this)">Eliminar</a>
+            <a data="@Url.Action("GetById", "Student", routeValues: new {id = item.IdStudent})" id="deleteStudentLink" class="btn btn-primary" onclick="deleteStudent(this)">Eliminar</a>
         </td>
     </tr>
 }

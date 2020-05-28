@@ -107,10 +107,19 @@ namespace SPA_IE.Controllers
             }
         }
 
-        public ActionResult Delete(int id)
+        [HttpPost]
+        public PartialViewResult Delete(int id)
         {
-            studentData.Delete(id);
-            return View("Index", studentData.ListAllSP().AsEnumerable());
+            try
+            {
+                studentData.Delete(id);
+                IEnumerable<SelectRequestStudent_Result> students = studentData.ListAllRequestSP();
+                return PartialView("GetRequest", students);
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }
