@@ -24,8 +24,9 @@
 
             <ul class="nav navbar-nav navbar-nav-first">
                 <li><a href="#home" class="smoothScroll">¿Quiénes somos?</a></li>
-                <li><a href="#requests" data="@Url.Action("GetRequest", "Student")" id="requestLink" class="smoothScroll">Solicitudes de Estudiantes</a></li>
+                <li><a href="#about" class="smoothScroll">Beneficios</a></li>
                 <li><a href="#students" data="@Url.Action("GetAll", "Student")" id="studentLink" class="smoothScroll">Estudiantes Registrados</a></li>
+                <li><a href="#requests" data="@Url.Action("GetRequest", "Student")" id="requestLink" class="smoothScroll">Solicitudes de Estudiantes</a></li>
                 <li><a href="#professors" data="@Url.Action("GetAll", "Professor")" id="professorLink" class="smoothScroll">Profesores Registrados</a></li>
             </ul>
 
@@ -87,6 +88,28 @@
     </div>
 </div>
 
+<!-- Professor Modal -->
+<div id="professorModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="container title">
+                <label id="professorModalTitle"></label>
+            </div>
+            <div id="professorContent"></div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="button" class="btn btn-primary" id="addProfessorSubmit" >Agregar</button>
+                        <button type="button" class="btn btn-primary" id="updateProfessorSubmit">Actualizar</button>
+                        <button type="button" class="btn btn-danger" id="deleteProfessorSubmit">Eliminar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Modal Add Course -->
 <div id="addCourseModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -138,133 +161,6 @@
                 <input type="checkbox" id="state" name="state" value="disponible">
                 <label for="state">Disponible</label>
                 <br>
-
-            </div>
-
-            <div class="modal-footer">
-                <button type="submit" class="button">Agregar</button>
-                <button type="button" class="cancelbtn" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<!-- Modal ConfirmDelete-->
-<div class="modal fade" id="confirmDeleteModal" role="dialog">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Eliminar</h4>
-            </div>
-            <div class="modal-body">
-                <p>¿Está seguro de eliminar este curso?</p>
-
-                <button type="button">Aceptar</button>
-                <button type="button" class="cancelbtn" data-dismiss="modal">Cancelar</button>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal Request Student -->
-<div id="requestStudentModal" class="modal" role="dialog">
-    <div class="modal-dialog modal-lg">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Registro de Estudiantes</h4>
-            </div>
-
-            <div class="container">
-
-                <div style="width:76%">
-                    <h3 align="center">Estudiantes</h3>
-                    <h5 align="center">A continuación se muestran los estudiantes pendientes de registrar en el sistema</h5>
-                    <br />
-                    <i class="fa fa-search"></i>
-                    <input type="search" id="searchStudent" placeholder="Buscar...">
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="cancelbtn" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<!-- Modal Registred Student -->
-<div id="registredStudentModal" class="modal" role="dialog">
-    <div class="modal-dialog modal-lg">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Registro de Estudiantes</h4>
-            </div>
-
-            <div class="container">
-
-                <div style="width:76%">
-                    <h3 align="center">Estudiantes</h3>
-                    <h5 align="center">A continuación se muestran los estudiantes registrados en el sistema</h5>
-                    <br />
-                    <i class="fa fa-search"></i>
-                    <input type="search" id="searchStudent" placeholder="Buscar...">
-                    <div id="studentContent">
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="cancelbtn" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<!-- Modal Add Student -->
-<div id="addStudentModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-
-                <h4 class="modal-title">Agregar/Modificar Estudiante</h4>
-            </div>
-
-            <div class="container">
-
-                <form>
-                    <input type="text" placeholder="Carnet" required>
-                    <br>
-                    <br>
-                    <input type="text" placeholder="Nombre" required>
-                    <br>
-                    <br>
-
-                    <select class="btn btn-default" id="semester">
-                        <option selected="selected">Seleccione el usuario...</option>
-                        <option value="1">User1</option>
-                        <option value="2">Abc01</option>
-                        <option value="3">A3publi</option>
-                    </select>
-                    <br>
-                    <br>
-                    <input type="checkbox" id="isASIP" name="state" value="x">
-                    <label for="isASIP">Es presidente</label>
-                    <br>
-                </form>
-
-
 
             </div>
 
@@ -403,19 +299,46 @@
             </div>
         </div>
     </div>
-
-
-    <p>
-        
-    </p>
-    
 </section>
 
 <!-- REQUESTS -->
-<section id="requests">
+<section id="requests" style="display:none;">
     <div class="container">
         <div class="row">
-            <div id="requestContent"></div>
+            <div class="col-xs-12">
+                <div class="section-title">
+                    <h2>Lista de solicitudes de estudiantes</h2>
+                </div>
+            </div>
+            <hr />
+            <div class="col-xs-12">
+                <div class="row">
+                    <div id="requestContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROFESSORS -->
+<section id="professors" style="display:none;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="section-title">
+                    <h2>Lista de profesores</h2>
+                </div>
+            </div>
+            <hr />
+            <div class="col-xs-12">
+                <a data-toggle="modal" data-target="#professorModal" data="@Url.Action("Create", "Professor")" id="addProfessorLink" class="btn btn-primary">Agregar</a>
+            </div>
+            <hr />
+            <div class="col-xs-12">
+                <div class="row">
+                    <div id="professorsContent"></div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -871,16 +794,10 @@
 @section scripts {
     <script>
         $('#requestLink').on('click', function () {
+            $('#requests').show();
             var url = $(this).attr('data');
             $.get(url, function (data) {
                 $('#requestContent').html(data);
-            });
-        });
-
-        $('#editLink').on('click', function () {
-            var url = $(this).attr('data');
-            $.get(url, function (data) {
-                $('#editContent').html(data);
             });
         });
 
@@ -889,6 +806,14 @@
             var url = $(this).attr('data');
             $.get(url, function (data) {
                 $('#studentsContent').html(data);
+            });
+        });
+
+        $('#professorLink').on('click', function () {
+            $('#professors').show();
+            var url = $(this).attr('data');
+            $.get(url, function (data) {
+                $('#professorsContent').html(data);
             });
         });
 
@@ -941,8 +866,8 @@
                 $('#updateStudentSubmit').show();
                 $('#addStudentSubmit').hide();
                 $('#deleteStudentSubmit').hide();
-                $('#studentModal').modal('toggle');
                 $('#studentContent').html(data);
+                $('#studentModal').modal('toggle');
             });
         };
 
@@ -1058,6 +983,13 @@
                 $.get(url, function (data) {
                     $('#studentsContent').html(data);
                 });
+            });
+        }
+
+        function reject(link) {
+            var url = $(link).attr('data');
+            $.get(url, function (data) {
+                $('#requestContent').html(data);
             });
         }
 

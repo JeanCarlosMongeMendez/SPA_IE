@@ -14,39 +14,53 @@ namespace SPA_IE.Controllers
         ProvinceData provinceData = new ProvinceData();
         CantonData cantonData = new CantonData();
         DistrictData districtData = new DistrictData();
-        public ActionResult Index()
+
+        public PartialViewResult GetAll()
         {
             IEnumerable<SelectProfessor_Result> professors = professorData.ListAllSP();
-            return View(professors);
+            return PartialView("GetAll", professors);
         }
-        public ActionResult Create()
+
+        public PartialViewResult Create()
         {
             var provinces = new SelectList(provinceData.ListAllProvince(), "IdProvince", "Name");
-            ViewData["provinces"] = provinces;
+            ViewBag.provinces = provinces;
 
             var cantons = new SelectList(cantonData.ListAllCanton(), "IdCanton", "Name");
-            ViewData["cantons"] = cantons;
-            var districts = new SelectList(districtData.ListAllDistrict(), "IdDistrict", "Name");
-            ViewData["districts"] = districts;
+            ViewBag.cantons = cantons;
 
-            return View();
+            var districts = new SelectList(districtData.ListAllDistrict(), "IdDistrict", "Name");
+            ViewBag.districts = districts;
+
+            return PartialView("Create");
         }
 
         [HttpPost]
-        public ActionResult Create(ProfessorDTO professor)
+        public PartialViewResult Create(ProfessorDTO professor)
         {
+            professor.IsEnable = true;
             professorData.Add(professor);
-           
-
-            return View("Index", professorData.ListAllSP().AsEnumerable());
+            IEnumerable<SelectProfessor_Result> students = professorData.ListAllSP();
+            return PartialView("GetAll", students);
         }
-        public ActionResult Edit(int id)
+
+        public PartialViewResult GetById(int id)
         {
+            var provinces = new SelectList(provinceData.ListAllProvince(), "IdProvince", "Name");
+            ViewBag.provinces = provinces;
 
+            var cantons = new SelectList(cantonData.ListAllCanton(), "IdCanton", "Name");
+            ViewBag.cantons = cantons;
+
+            var districts = new SelectList(districtData.ListAllDistrict(), "IdDistrict", "Name");
+            ViewBag.districts = districts;
+            var professor = professorData.GetById(id);
+            return PartialView("GetById", professor);
+        }
+
+        public PartialViewResult Edit(int id)
+        {
             ProfessorDTO professor = professorData.GetById(id);
-
-
-
             var provinces = new SelectList(provinceData.ListAllProvince(), "IdProvince", "Name");
             ViewData["provinces"] = provinces;
 
@@ -59,24 +73,37 @@ namespace SPA_IE.Controllers
             ViewData["idProvince"] = professor.IdProvince;
             ViewData["idCanton"] = professor.IdDistrict;
             ViewData["idDistrict"] = professor.IdDistrict;
-
-            return View(professor);
-
+            return PartialView("Edit", professor);
         }
 
         [HttpPost]
-        public ActionResult Edit(ProfessorDTO professor)
+        public PartialViewResult Edit(ProfessorDTO professor)
         {
-            professorData.Update(professor);
-
-            return View("Index", professorData.ListAllSP().AsEnumerable());
+            try
+            {
+                professorData.Update(professor);
+                IEnumerable<SelectProfessor_Result> professors = professorData.ListAllSP();
+                return PartialView("GetAll", professors);
+            }
+            catch
+            {
+                throw;
+            }
         }
-        public ActionResult Delete(int id)
+
+        [HttpPost]
+        public PartialViewResult Delete(int id)
         {
-            professorData.Delete(id);
-            return View("Index", professorData.ListAllSP().AsEnumerable());
+            try
+            {
+                professorData.Delete(id);
+                IEnumerable<SelectProfessor_Result> professors = professorData.ListAllSP();
+                return PartialView("GetAll", professors);
+            }
+            catch
+            {
+                throw;
+            }
         }
-
-
     }
 }
