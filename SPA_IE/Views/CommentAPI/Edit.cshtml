@@ -1,4 +1,4 @@
-﻿@model SPA_IE.Models.Domain.DTO.CommentDTO
+﻿@model SPA_IE.Models.Domain.DTO.CommentAPIDTO
 
 
 @using (Html.BeginForm())
@@ -6,7 +6,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>CommentDTO</h4>
+        <h4>CommentAPIDTO</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

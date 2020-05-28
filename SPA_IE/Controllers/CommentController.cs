@@ -9,17 +9,17 @@ using System.Web.Mvc;
 
 namespace SPA_IE.Controllers
 {
-    public class ConsultationController : Controller
+    public class CommentController : Controller
     {
-        private ConsultationData consultationData = new ConsultationData();
-      
-
+        // GET: Comment
+        CommentData commentData = new CommentData();
         public PartialViewResult GetAll()
         {
             try
             {
-                IEnumerable<SelectConsultation_Result> consultations = consultationData.ListAllSP();
-            return PartialView("GetAll", consultations);
+                IEnumerable<SelectComment_Result> comments = commentData.ListAllSP();
+            return PartialView("GetAll", comments);
+            
             }
             catch
             {
@@ -27,7 +27,7 @@ namespace SPA_IE.Controllers
             }
         }
 
-       
+
         public PartialViewResult Create()
         {
             try
@@ -41,13 +41,13 @@ namespace SPA_IE.Controllers
         }
 
         [HttpPost]
-        public PartialViewResult Create(ConsultationDTO   consultation)
+        public PartialViewResult Create(CommentDTO comment)
         {
             try
             {
-                consultationData.Add(consultation);
-            IEnumerable<SelectConsultation_Result> consultations = consultationData.ListAllSP();
-            return PartialView("GetAll", consultations);
+
+                commentData.Add(comment);
+            return PartialView("GetAll", commentData.ListAllSP().AsEnumerable());
             }
             catch
             {
@@ -59,9 +59,10 @@ namespace SPA_IE.Controllers
         {
             try
             {
-                ConsultationDTO consultation = consultationData.GetById(id);
-           
-            return PartialView(consultation);
+                
+            CommentDTO comment = commentData.GetById(id);
+
+            return PartialView(comment);
             }
             catch
             {
@@ -70,12 +71,12 @@ namespace SPA_IE.Controllers
         }
 
         [HttpPost]
-        public PartialViewResult Edit(ConsultationDTO consultation)
+        public PartialViewResult Edit(CommentDTO comment)
         {
             try
             {
-                consultationData.Update(consultation);
-            return PartialView("GetAll", consultationData.ListAllSP().AsEnumerable());
+                commentData.Update(comment);
+            return PartialView("GetAll", commentData.ListAllSP().AsEnumerable());
             }
             catch
             {
@@ -87,8 +88,8 @@ namespace SPA_IE.Controllers
         {
             try
             {
-                consultationData.Delete(id);
-            return PartialView("GetAll", consultationData.ListAllSP().AsEnumerable());
+                commentData.Delete(id);
+            return PartialView("GetAll", commentData.ListAllSP().AsEnumerable());
             }
             catch
             {

@@ -10,9 +10,16 @@ namespace SPA_IE.Models.Data.Data
     {
         public List<SelectConsultation_Result> ListAllSP()
         {
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            try
+            {
+                using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 return context.SPSelectConsultation().ToList();
+                }
+            }
+            catch
+            {
+                throw;
             }
         }
 
@@ -20,9 +27,16 @@ namespace SPA_IE.Models.Data.Data
         public int Add(ConsultationDTO consultation)
         {
             int resultToReturn;
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            try
+            {
+                using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 resultToReturn = context.SPInsertUpdateConsultation(consultation.IdConsultation, consultation.IdCourse, consultation.Description, consultation.IdTransmitter, consultation.IdReceiver,"Insert");
+            }
+            }
+            catch
+            {
+                throw;
             }
             return resultToReturn;
         }
@@ -30,35 +44,58 @@ namespace SPA_IE.Models.Data.Data
         public int Update(ConsultationDTO consultation)
         {
             int resultToReturn;
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            try
+            {
+                using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 resultToReturn = context.SPInsertUpdateConsultation(consultation.IdConsultation, consultation.IdCourse, consultation.Description, consultation.IdTransmitter, consultation.IdReceiver, "Update");
+            }
+            }
+            catch
+            {
+                throw;
             }
             return resultToReturn;
         }
 
         public GetByIdConsultation_Result GetByIdStudentSP(int id)
         {
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            try
+            {
+                using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 var consulation = context.SPGetByIdConsultation(id).Single();
                 return consulation;
+            }
+            }
+            catch
+            {
+                throw;
             }
         }
 
         public int Delete(int id)
         {
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            try
+            {
+                using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 var resultToReturn = context.SPDeleteConsultation(id);
 
                 return resultToReturn;
+                }
+            }
+            catch
+            {
+                throw;
             }
         }
 
         public ConsultationDTO GetById(int id)
         {
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            try
+            {
+                using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 var consultationToReturn = (from consultation in context.Consultation
                                        join course in context.Course on consultation.IdCourse equals course.IdCourse
@@ -77,6 +114,11 @@ namespace SPA_IE.Models.Data.Data
 
                                        }).Where(x => x.IdConsultation == id ).Single();
                 return consultationToReturn;
+                }
+            }
+            catch
+            {
+                throw;
             }
         }
     }

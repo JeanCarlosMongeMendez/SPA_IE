@@ -633,15 +633,15 @@ namespace SPA_IE.Models.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetByIComment_Result>("GetByIComment", idCommentParameter);
         }
     
-        public virtual int InsertUpdateComment(Nullable<int> idComment, string idUserProfile, Nullable<int> idConsultation, string commentary, string action)
+        public virtual int InsertUpdateComment(Nullable<int> idComment, Nullable<int> idUserProfile, Nullable<int> idConsultation, string commentary, string action)
         {
             var idCommentParameter = idComment.HasValue ?
                 new ObjectParameter("IdComment", idComment) :
                 new ObjectParameter("IdComment", typeof(int));
     
-            var idUserProfileParameter = idUserProfile != null ?
+            var idUserProfileParameter = idUserProfile.HasValue ?
                 new ObjectParameter("IdUserProfile", idUserProfile) :
-                new ObjectParameter("IdUserProfile", typeof(string));
+                new ObjectParameter("IdUserProfile", typeof(int));
     
             var idConsultationParameter = idConsultation.HasValue ?
                 new ObjectParameter("IdConsultation", idConsultation) :
@@ -781,6 +781,49 @@ namespace SPA_IE.Models.Data
                 new ObjectParameter("IdConsultation", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetByIdConsultation_Result>("SPGetByIdConsultation", idConsultationParameter);
+        }
+    
+        public virtual int SPInsertUpdateComment(Nullable<int> idComment, Nullable<int> idUserProfile, Nullable<int> idConsultation, string commentary, string action)
+        {
+            var idCommentParameter = idComment.HasValue ?
+                new ObjectParameter("IdComment", idComment) :
+                new ObjectParameter("IdComment", typeof(int));
+    
+            var idUserProfileParameter = idUserProfile.HasValue ?
+                new ObjectParameter("IdUserProfile", idUserProfile) :
+                new ObjectParameter("IdUserProfile", typeof(int));
+    
+            var idConsultationParameter = idConsultation.HasValue ?
+                new ObjectParameter("IdConsultation", idConsultation) :
+                new ObjectParameter("IdConsultation", typeof(int));
+    
+            var commentaryParameter = commentary != null ?
+                new ObjectParameter("Commentary", commentary) :
+                new ObjectParameter("Commentary", typeof(string));
+    
+            var actionParameter = action != null ?
+                new ObjectParameter("Action", action) :
+                new ObjectParameter("Action", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPInsertUpdateComment", idCommentParameter, idUserProfileParameter, idConsultationParameter, commentaryParameter, actionParameter);
+        }
+    
+        public virtual ObjectResult<GetByIComment_Result> SPGetByIComment(Nullable<int> idComment)
+        {
+            var idCommentParameter = idComment.HasValue ?
+                new ObjectParameter("IdComment", idComment) :
+                new ObjectParameter("IdComment", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetByIComment_Result>("SPGetByIComment", idCommentParameter);
+        }
+    
+        public virtual int SPDeleteComment(Nullable<int> idComment)
+        {
+            var idCommentParameter = idComment.HasValue ?
+                new ObjectParameter("IdComment", idComment) :
+                new ObjectParameter("IdComment", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPDeleteComment", idCommentParameter);
         }
     }
 }

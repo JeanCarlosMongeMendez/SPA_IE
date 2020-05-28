@@ -137,6 +137,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CommentAPIController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\ConsultationController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -179,6 +180,7 @@
     </Compile>
     <Compile Include="Models\Data\Data\AppointmentData.cs" />
     <Compile Include="Models\Data\Data\CantonData.cs" />
+    <Compile Include="Models\Data\Data\CommentData.cs" />
     <Compile Include="Models\Data\Data\ConsultationData.cs" />
     <Compile Include="Models\Data\Data\CourseData.cs" />
     <Compile Include="Models\Data\Data\DistrictData.cs" />
@@ -254,6 +256,7 @@
     <Compile Include="Models\Domain\DTO\AppoitmentDTO.cs" />
     <Compile Include="Models\Domain\DTO\CantonDTO.cs" />
     <Compile Include="Models\Domain\DTO\CommentAPIDTO.cs" />
+    <Compile Include="Models\Domain\DTO\CommentDTO.cs" />
     <Compile Include="Models\Domain\DTO\ConsultationDTO.cs" />
     <Compile Include="Models\Domain\DTO\DistrictDTO.cs" />
     <Compile Include="Models\Domain\DTO\NewsDTO.cs" />
@@ -379,6 +382,9 @@
     <Content Include="Views\Consultation\GetAll.cshtml" />
     <Content Include="Views\Consultation\Create.cshtml" />
     <Content Include="Views\Consultation\Edit.cshtml" />
+    <Content Include="Views\Comment\GetAll.cshtml" />
+    <Content Include="Views\Comment\Create.cshtml" />
+    <Content Include="Views\Comment\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
