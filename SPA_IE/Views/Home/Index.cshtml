@@ -24,8 +24,9 @@
 
             <ul class="nav navbar-nav navbar-nav-first">
                 <li><a href="#home" class="smoothScroll">¿Quiénes somos?</a></li>
-                <li><a href="#requests" data="@Url.Action("GetRequest", "Student")" id="requestLink" class="smoothScroll">Solicitudes de Estudiantes</a></li>
+                <li><a href="#about" class="smoothScroll">Beneficios</a></li>
                 <li><a href="#students" data="@Url.Action("GetAll", "Student")" id="studentLink" class="smoothScroll">Estudiantes Registrados</a></li>
+                <li><a href="#requests" data="@Url.Action("GetRequest", "Student")" id="requestLink" class="smoothScroll">Solicitudes de Estudiantes</a></li>
                 <li><a href="#professors" data="@Url.Action("GetAll", "Professor")" id="professorLink" class="smoothScroll">Profesores Registrados</a></li>
             </ul>
 
@@ -65,23 +66,45 @@
     </div>
 </div>
 
-<!-- Register Modal -->
-<div id="registerModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
+<!-- Student Modal -->
+<div id="studentModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <div class="container">
-                <label>Llenar con su información personal...</label>
+            <div class="container title">
+                <label id="studentModalTitle"></label>
             </div>
-            <div id="addStudentContent"></div>
+            <div id="studentContent"></div>
             <div class="modal-footer">
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="button" value="Create" class="btn btn-default" id="addStudentSubmit" />
+                        <button type="button" class="btn btn-primary" id="addStudentSubmit" >Agregar</button>
+                        <button type="button" class="btn btn-primary" id="updateStudentSubmit">Actualizar</button>
+                        <button type="button" class="btn btn-danger" id="deleteStudentSubmit">Eliminar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
-                <button type="button" class="cancelbtn" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Professor Modal -->
+<div id="professorModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="container title">
+                <label id="professorModalTitle"></label>
+            </div>
+            <div id="professorContent"></div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="button" class="btn btn-primary" id="addProfessorSubmit" >Agregar</button>
+                        <button type="button" class="btn btn-primary" id="updateProfessorSubmit">Actualizar</button>
+                        <button type="button" class="btn btn-danger" id="deleteProfessorSubmit">Eliminar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -138,133 +161,6 @@
                 <input type="checkbox" id="state" name="state" value="disponible">
                 <label for="state">Disponible</label>
                 <br>
-
-            </div>
-
-            <div class="modal-footer">
-                <button type="submit" class="button">Agregar</button>
-                <button type="button" class="cancelbtn" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<!-- Modal ConfirmDelete-->
-<div class="modal fade" id="confirmDeleteModal" role="dialog">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Eliminar</h4>
-            </div>
-            <div class="modal-body">
-                <p>¿Está seguro de eliminar este curso?</p>
-
-                <button type="button">Aceptar</button>
-                <button type="button" class="cancelbtn" data-dismiss="modal">Cancelar</button>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal Request Student -->
-<div id="requestStudentModal" class="modal" role="dialog">
-    <div class="modal-dialog modal-lg">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Registro de Estudiantes</h4>
-            </div>
-
-            <div class="container">
-
-                <div style="width:76%">
-                    <h3 align="center">Estudiantes</h3>
-                    <h5 align="center">A continuación se muestran los estudiantes pendientes de registrar en el sistema</h5>
-                    <br />
-                    <i class="fa fa-search"></i>
-                    <input type="search" id="searchStudent" placeholder="Buscar...">
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="cancelbtn" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<!-- Modal Registred Student -->
-<div id="registredStudentModal" class="modal" role="dialog">
-    <div class="modal-dialog modal-lg">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Registro de Estudiantes</h4>
-            </div>
-
-            <div class="container">
-
-                <div style="width:76%">
-                    <h3 align="center">Estudiantes</h3>
-                    <h5 align="center">A continuación se muestran los estudiantes registrados en el sistema</h5>
-                    <br />
-                    <i class="fa fa-search"></i>
-                    <input type="search" id="searchStudent" placeholder="Buscar...">
-                    <div id="studentContent">
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="cancelbtn" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<!-- Modal Add Student -->
-<div id="addStudentModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-
-                <h4 class="modal-title">Agregar/Modificar Estudiante</h4>
-            </div>
-
-            <div class="container">
-
-                <form>
-                    <input type="text" placeholder="Carnet" required>
-                    <br>
-                    <br>
-                    <input type="text" placeholder="Nombre" required>
-                    <br>
-                    <br>
-
-                    <select class="btn btn-default" id="semester">
-                        <option selected="selected">Seleccione el usuario...</option>
-                        <option value="1">User1</option>
-                        <option value="2">Abc01</option>
-                        <option value="3">A3publi</option>
-                    </select>
-                    <br>
-                    <br>
-                    <input type="checkbox" id="isASIP" name="state" value="x">
-                    <label for="isASIP">Es presidente</label>
-                    <br>
-                </form>
-
-
 
             </div>
 
@@ -385,18 +281,64 @@
 </section>
 
 <!-- STUDENTS -->
-<section id="students">
-    <p>
-        <a data-toggle="modal" data-target="#registerModal" data="@Url.Action("Create", "Student")" id="addStudentLink" class="btn btn-primary">Agregar</a>
-    </p>
-    <div id="studentsContent"></div>
+<section id="students" style="display:none">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="section-title">
+                    <h2>Lista de estudiantes registrados en el sistema</h2>
+                </div>
+            </div>
+            <hr />
+            <div class="col-xs-12">
+                <a data-toggle="modal" data-target="#studentModal" data="@Url.Action("Create", "Student")" id="addStudentLink" class="btn btn-primary">Agregar</a>
+            </div>
+            <hr />
+            <div class="col-xs-12">
+                <div id="studentsContent"></div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <!-- REQUESTS -->
-<section id="requests">
+<section id="requests" style="display:none;">
     <div class="container">
         <div class="row">
-            <div id="requestContent"></div>
+            <div class="col-xs-12">
+                <div class="section-title">
+                    <h2>Lista de solicitudes de estudiantes</h2>
+                </div>
+            </div>
+            <hr />
+            <div class="col-xs-12">
+                <div class="row">
+                    <div id="requestContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROFESSORS -->
+<section id="professors" style="display:none;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="section-title">
+                    <h2>Lista de profesores</h2>
+                </div>
+            </div>
+            <hr />
+            <div class="col-xs-12">
+                <a data-toggle="modal" data-target="#professorModal" data="@Url.Action("Create", "Professor")" id="addProfessorLink" class="btn btn-primary">Agregar</a>
+            </div>
+            <hr />
+            <div class="col-xs-12">
+                <div class="row">
+                    <div id="professorsContent"></div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -843,7 +785,6 @@
     </div>
 </footer>
 
-
 <script src="~/Content/js/jquery.js"></script>
 <script src="~/Content/js/bootstrap.min.js"></script>
 <script src="~/Content/js/owl.carousel.min.js"></script>
@@ -853,6 +794,7 @@
 @section scripts {
     <script>
         $('#requestLink').on('click', function () {
+            $('#requests').show();
             var url = $(this).attr('data');
             $.get(url, function (data) {
                 $('#requestContent').html(data);
@@ -860,16 +802,29 @@
         });
 
         $('#studentLink').on('click', function () {
+            $('#students').show();
             var url = $(this).attr('data');
             $.get(url, function (data) {
                 $('#studentsContent').html(data);
             });
         });
 
+        $('#professorLink').on('click', function () {
+            $('#professors').show();
+            var url = $(this).attr('data');
+            $.get(url, function (data) {
+                $('#professorsContent').html(data);
+            });
+        });
+
         $('#addStudentLink').on('click', function () {
             var url = $(this).attr('data');
             $.get(url, function (data) {
-                $('#addStudentContent').html(data);
+                $('#studentModalTitle').html('Agregar');
+                $('#updateStudentSubmit').hide();
+                $('#addStudentSubmit').show();
+                $('#deleteStudentSubmit').hide();
+                $('#studentContent').html(data);
             });
         });
 
@@ -898,11 +853,127 @@
                 processData: false,
                 contentType: false,
                 success: function (data) {
-                    $('#registerModal').modal('toggle');
+                    $('#studentModal').modal('toggle');
                     $('#requestContent').html(data);
                 }
             });
         });
+
+        function editStudent(link) {
+            var url = $(link).attr('data');
+            $.get(url, function (data) {
+                $('#studentModalTitle').html('Actuaizar');
+                $('#updateStudentSubmit').show();
+                $('#addStudentSubmit').hide();
+                $('#deleteStudentSubmit').hide();
+                $('#studentContent').html(data);
+                $('#studentModal').modal('toggle');
+            });
+        };
+
+        function detailsStudent(link) {
+            var url = $(link).attr('data');
+            $.get(url, function (data) {
+                $('#studentModalTitle').html('Detalles');
+                $('#updateStudentSubmit').hide();
+                $('#addStudentSubmit').hide();
+                $('#deleteStudentSubmit').hide();
+                $('#studentModal').modal('toggle');
+                $('#studentContent').html(data);
+                UnableForm();
+            });
+        };
+
+        function deleteStudent(link) {
+            var url = $(link).attr('data');
+            $.get(url, function (data) {
+                $('#studentModalTitle').html('Eliminar');
+                $('#updateStudentSubmit').hide();
+                $('#addStudentSubmit').hide();
+                $('#deleteStudentSubmit').show();
+                $('#studentModal').modal('toggle');
+                $('#studentContent').html(data);
+                UnableForm();
+            });
+        };
+
+        $('#updateStudentSubmit').on('click', function () {
+            var data = new FormData();
+
+            var id = $("#IdStudent").val();
+            data.append("IdStudent", id);
+            var idUser = $("#IdUserProfile").val();
+            data.append("IdUserProfile", idUser);
+            var username = $("#Username").val();
+            data.append("Username", username);
+            var password = $("#Password").val();
+            data.append("Password", password);
+            var interest = $("#Interests").val();
+            data.append("Interests", interest);
+            var email = $("#Email").val();
+            data.append("Email", email);
+            var idcard = $("#IdentificationCard").val();
+            data.append("IdentificationCard", idcard);
+            var province = $("#IdProvince").val();
+            data.append("IdProvince", province);
+            var canton = $("#IdCanton").val();
+            data.append("IdCanton", canton);
+            var district = $("#IdDistrict").val();
+            data.append("IdDistrict", district);
+            var isAsip = $("#isASIP").val();
+            data.append("IsASIP", isAsip);
+            var createBy = $("#CreateBy").val();
+            data.append("CreateBy", createBy);
+            var creationDate = $("#CreationDate").val();
+            data.append("CreationDate", creationDate);
+            data.append("IsActive", true);
+            data.append("IsEnable", true);
+            data.append("IsAdmin", false);
+            $.ajax({
+                url: '@Url.Action("Edit", "Student")',
+                type: 'POST',
+                data:  data,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $('#studentModal').modal('toggle');
+                    var url = $('#studentLink').attr('data');
+                    $.get(url, function (data) {
+                        $('#studentsContent').html(data);
+                    });
+                }
+            });
+        });
+
+        $('#deleteStudentSubmit').on('click', function () {
+            var idUser = $('#IdUserProfile').val();
+            $.ajax({
+                url: '/Student/Delete/' + idUser,
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $('#studentModal').modal('toggle');
+                    var url = $('#studentLink').attr('data');
+                    $.get(url, function (data) {
+                        $('#studentsContent').html(data);
+                    });
+                }
+            });
+        });
+
+        function UnableForm() {
+            $("#IdCanton").attr('disabled', 'disabled');
+            $("#IdDistrict").attr('disabled', 'disabled');
+            $("#isASIP").attr('disabled', 'disabled');
+            $("#Username").prop("readonly", true);
+            $("#Password").prop("readonly", true);
+            $("#IdProvince").attr('disabled', 'disabled');
+            $("#Interests").prop("readonly", true);
+            $("#UserPhoto").prop("readonly", true);
+            $("#Email").prop("readonly", true);
+            $("#IdentificationCard").prop("readonly", true);
+        }
 
         function aprove(link) {
             var url = $(link).attr('data');
@@ -914,5 +985,13 @@
                 });
             });
         }
+
+        function reject(link) {
+            var url = $(link).attr('data');
+            $.get(url, function (data) {
+                $('#requestContent').html(data);
+            });
+        }
+
     </script>
 }

@@ -10,17 +10,14 @@
 namespace SPA_IE.Models.Data
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Professor
+    public partial class SelectSchedule_Result
     {
+        public int idSchedule { get; set; }
+        public int IdCourse { get; set; }
         public int IdProfessor { get; set; }
-        public string Degree { get; set; }
-        public Nullable<int> IdUserProfile { get; set; }
-        public Nullable<int> CreateBy { get; set; }
-        public Nullable<System.DateTime> CreationDate { get; set; }
-    
-        public virtual UserProfile UserProfile { get; set; }
-        public virtual UserProfile UserProfile1 { get; set; }
+        public System.DateTime Day { get; set; }
+        public System.DateTime StartTime { get; set; }
+        public System.DateTime FinalTime { get; set; }
     }
 }
