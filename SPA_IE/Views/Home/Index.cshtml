@@ -973,6 +973,19 @@
         });
 
 
+        $('#addProfessorLink').on('click', function () {
+            var url = $(this).attr('data');
+            $.get(url, function (data) {
+                $('#professorModalTitle').html('Agregar');
+                $('#updateProfessorSubmit').hide();
+                $('#addProfessorSubmit').show();
+                $('#deleteProfessorSubmit').hide();
+                $('#professorContent').html(data);
+                $("#IdCanton").attr('disabled', 'disabled');
+                $("#IdDistrict").attr('disabled', 'disabled');
+            });
+        });
+
          function editProfessor(link) {
             var url = $(link).attr('data');
             $.get(url, function (data) {
@@ -1021,8 +1034,8 @@
             data.append("Interests", interest);
             var email = $("#Email").val();
             data.append("Email", email);
-            var idcard = $("#IdentificationCard").val();
-            data.append("IdentificationCard", idcard);
+            var idcard = $("#Degree").val();
+            data.append("Degree", idcard);
             var province = $("#IdProvince").val();
             data.append("IdProvince", province);
             var canton = $("#IdCanton").val();
@@ -1030,14 +1043,14 @@
             var district = $("#IdDistrict").val();
             data.append("IdDistrict", district);
             $.ajax({
-                url: '@Url.Action("Create", "Student")',
+                url: '@Url.Action("Create", "Professor")',
                 type: 'POST',
                 data:  data,
                 processData: false,
                 contentType: false,
                 success: function (data) {
-                    $('#studentModal').modal('toggle');
-                    $('#requestContent').html(data);
+                    $('#professorModal').modal('toggle');
+                    $('#professorsContent').html(data);
                 }
             });
         });
@@ -1134,14 +1147,14 @@
             let optionList = document.getElementById('IdDistrict').options;
             optionList.add(new Option("-- Seleccionar Distrito --", -1))
             $.ajax({
-                url: "/Home/GetCantonsByProvince/" + value,
+                url: "/Home/GetDistrictsByCanton/" + value,
                 type: "GET",
                 contentType: "application/json;charset=utf-8",
                 dataType: "json",
                 success: function (result) {
                     $("#IdDistrict").prop("disabled", false);  
                     $.each(result, function (index, object) {
-                        optionList.add(new Option(object.Name, object.IdCanton))
+                        optionList.add(new Option(object.Name, object.IdDistrict))
                     })
                 },
                 error: function (errorMessage) {
