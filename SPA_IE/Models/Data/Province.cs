@@ -14,19 +14,7 @@ namespace SPA_IE.Models.Data
     
     public partial class Province
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Province()
-        {
-            this.Canton = new HashSet<Canton>();
-            this.UserProfile = new HashSet<UserProfile>();
-        }
-    
         public int IdProvince { get; set; }
         public string Name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Canton> Canton { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserProfile> UserProfile { get; set; }
     }
 }

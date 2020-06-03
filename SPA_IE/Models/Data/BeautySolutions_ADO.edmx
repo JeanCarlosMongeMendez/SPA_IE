@@ -992,9 +992,6 @@
           <Property Name="IdCanton" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdProvinceCanton" Type="Int32" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Province" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Canton__IdProvin__5629CD9C" FromRole="Canton" ToRole="Province" />
-          <NavigationProperty Name="District" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__District__IdCant__59063A47" FromRole="Canton" ToRole="District" />
-          <NavigationProperty Name="UserProfile" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__IdCan__6477ECF3" FromRole="Canton" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
@@ -1018,8 +1015,6 @@
           <Property Name="IdDistrict" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdCantonDistrict" Type="Int32" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Canton" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__District__IdCant__59063A47" FromRole="District" ToRole="Canton" />
-          <NavigationProperty Name="UserProfile" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__IdDis__66603565" FromRole="District" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="Professor">
           <Key>
@@ -1039,8 +1034,6 @@
           </Key>
           <Property Name="IdProvince" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Canton" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__Canton__IdProvin__5629CD9C" FromRole="Province" ToRole="Canton" />
-          <NavigationProperty Name="UserProfile" Relationship="IF4101_BeatySolutions_ISem_2020Model1.FK__UserProfi__IdPro__656C112C" FromRole="Province" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="Student">
           <Key>

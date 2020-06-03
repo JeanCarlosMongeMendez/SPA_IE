@@ -25,9 +25,17 @@
             <ul class="nav navbar-nav navbar-nav-first">
                 <li><a href="#home" class="smoothScroll">¿Quiénes somos?</a></li>
                 <li><a href="#about" class="smoothScroll">Beneficios</a></li>
-                <li><a href="#students" data="@Url.Action("GetAll", "Student")" id="studentLink" class="smoothScroll">Estudiantes Registrados</a></li>
-                <li><a href="#requests" data="@Url.Action("GetRequest", "Student")" id="requestLink" class="smoothScroll">Solicitudes de Estudiantes</a></li>
-                <li><a href="#professors" data="@Url.Action("GetAll", "Professor")" id="professorLink" class="smoothScroll">Profesores Registrados</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Estudiantes
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#students" data="@Url.Action("GetAll", "Student")" id="studentLink" class="smoothScroll">Registrados</a></li>
+                        <li><a href="#requests" data="@Url.Action("GetRequest", "Student")" id="requestLink" class="smoothScroll">Solicitudes</a></li>
+                    </ul>
+                </li>
+                <li><a href="#professors" data="@Url.Action("GetAll", "Professor")" id="professorLink" class="smoothScroll">Profesores</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -961,6 +969,26 @@
                 }
             });
         });
+
+        function ddlProvince(value) {
+            $("#IdCanton").empty();
+            let optionList = document.getElementById('IdCanton').options;
+            optionList.add(new Option("-- Seleccionar Canton --", -1))
+            $.ajax({
+                url: "/Home/GetCantonsByProvince/" + value,
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    $.each(result, function (index, object) {
+                        optionList.add(new Option(object.Name, object.IdCanton))
+                    })
+                },
+                error: function (errorMessage) {
+                    alert(errorMessage.responseText);
+                }
+            })
+        };
 
         function UnableForm() {
             $("#IdCanton").attr('disabled', 'disabled');
