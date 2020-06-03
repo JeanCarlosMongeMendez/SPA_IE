@@ -44,6 +44,9 @@
             @Html.DisplayFor(modelItem => item.Degree)
         </td>
         <td>
+            <a data="@Url.Action("GetById", "Professor", routeValues: new {id = item.IdProfessor})" id="editProfessorLink" class="btn btn-primary" onclick="editProfessor(this)">Editar</a>
+            <a data="@Url.Action("GetById", "Professor", routeValues: new {id = item.IdProfessor})" id="detailsProfessorLink" class="btn btn-primary" onclick="detailsProfessor(this)">Detalles</a>
+            <a data="@Url.Action("GetById", "Professor", routeValues: new {id = item.IdProfessor})" id="deleteProfessorLink" class="btn btn-primary" onclick="deleteProfessor(this)">Eliminar</a>
         </td>
     </tr>
 }

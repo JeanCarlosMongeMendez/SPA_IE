@@ -838,37 +838,6 @@
             });
         });
 
-        $('#addStudentSubmit').on('click', function () {
-            var data = new FormData();
-            var username = $("#Username").val();
-            data.append("Username", username);
-            var password = $("#Password").val();
-            data.append("Password", password);
-            var interest = $("#Interests").val();
-            data.append("Interests", interest);
-            var email = $("#Email").val();
-            data.append("Email", email);
-            var idcard = $("#IdentificationCard").val();
-            data.append("IdentificationCard", idcard);
-            var province = $("#IdProvince").val();
-            data.append("IdProvince", province);
-            var canton = $("#IdCanton").val();
-            data.append("IdCanton", canton);
-            var district = $("#IdDistrict").val();
-            data.append("IdDistrict", district);
-            $.ajax({
-                url: '@Url.Action("Create", "Student")',
-                type: 'POST',
-                data:  data,
-                processData: false,
-                contentType: false,
-                success: function (data) {
-                    $('#studentModal').modal('toggle');
-                    $('#requestContent').html(data);
-                }
-            });
-        });
-
         function editStudent(link) {
             var url = $(link).attr('data');
             $.get(url, function (data) {
@@ -906,6 +875,37 @@
                 UnableForm();
             });
         };
+
+        $('#addStudentSubmit').on('click', function () {
+            var data = new FormData();
+            var username = $("#Username").val();
+            data.append("Username", username);
+            var password = $("#Password").val();
+            data.append("Password", password);
+            var interest = $("#Interests").val();
+            data.append("Interests", interest);
+            var email = $("#Email").val();
+            data.append("Email", email);
+            var idcard = $("#IdentificationCard").val();
+            data.append("IdentificationCard", idcard);
+            var province = $("#IdProvince").val();
+            data.append("IdProvince", province);
+            var canton = $("#IdCanton").val();
+            data.append("IdCanton", canton);
+            var district = $("#IdDistrict").val();
+            data.append("IdDistrict", district);
+            $.ajax({
+                url: '@Url.Action("Create", "Student")',
+                type: 'POST',
+                data:  data,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $('#studentModal').modal('toggle');
+                    $('#requestContent').html(data);
+                }
+            });
+        });
 
         $('#updateStudentSubmit').on('click', function () {
             var data = new FormData();
@@ -971,6 +971,46 @@
                 }
             });
         });
+
+
+         function editProfessor(link) {
+            var url = $(link).attr('data');
+            $.get(url, function (data) {
+                $('#professorModalTitle').html('Actuaizar');
+                $('#updateProfessorSubmit').show();
+                $('#addProfessorSubmit').hide();
+                $('#deleteProfessorSubmit').hide();
+                $('#professorContent').html(data);
+                $('#professorModal').modal('toggle');
+            });
+        };
+
+        function detailsProfessor(link) {
+            var url = $(link).attr('data');
+            $.get(url, function (data) {
+                $('#professorModalTitle').html('Detalles');
+                $('#updateProfessorSubmit').hide();
+                $('#addProfessorSubmit').hide();
+                $('#deleteProfessorSubmit').hide();
+                $('#professorModal').modal('toggle');
+                $('#professorContent').html(data);
+                UnableForm();
+            });
+        };
+
+        function deleteProfessor(link) {
+            var url = $(link).attr('data');
+            $.get(url, function (data) {
+                $('#studentModalTitle').html('Eliminar');
+                $('#updateStudentSubmit').hide();
+                $('#addStudentSubmit').hide();
+                $('#deleteStudentSubmit').show();
+                $('#studentModal').modal('toggle');
+                $('#studentContent').html(data);
+                UnableForm();
+            });
+        };
+
 
         function ddlProvince(value) {
             $("#IdCanton").empty();
