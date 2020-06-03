@@ -44,16 +44,14 @@ namespace SPA_IE.Models.Data.Data
         }
         public SelectProfessorById_Result GetByIdProfessorSP(int id)
         {
-
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 var professor= context.SPSelectProfessorById(id).Single();
 
                 return professor;
             }
-
-
         }
+
         public int Delete(int id)
         {
 
@@ -221,5 +219,83 @@ namespace SPA_IE.Models.Data.Data
                 return resultToReturn;
             }
         }*/
+
+        ////TEST
+        //public Professor GetProfessorByUsername(string username)
+        //{
+        //    using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+        //    {
+        //        var professorResult = context.SelectProfessorByUsername(username).Single();
+        //        var professor = new Professor();
+                
+        //        try
+        //        {
+        //            professor.IdProfessor = professorResult.IdProfessor;
+        //            professor.Degree = professorResult.Degree;
+        //            professor.CreateBy = professorResult.CreateBy;
+        //            professor.CreationDate = professorResult.CreationDate;
+        //            professor.UserProfile = new UserProfile
+        //            {
+        //                IdUserProfile = Convert.ToInt32(professorResult.IdUserProfile),
+        //                Username = professorResult.Username,
+        //                Password = professorResult.Password,
+        //                UserPhoto = professorResult.UserPhoto,
+        //                Interests = professorResult.Interests,
+        //                Email = professorResult.Email,
+        //                IsAdmin = professorResult.IsAdmin,
+        //                IsEnable = professorResult.IsEnable,
+        //                IdCanton = professorResult.IdCanton,
+        //                IdProvince = professorResult.IdProvince,
+        //                IdDistrict = professorResult.IdDistrict,
+        //                CreateBy = professorResult.CreateBy,
+        //                CreationDate = professorResult.CreationDate
+        //            };
+                        
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            Console.WriteLine(e.GetType());
+        //        }
+
+        //        return professor;
+        //    }
+        //}
+
+
+        public ProfessorDTO GetByUsername(string username)
+        {
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            {
+                var professorToReturn = (from professor in context.Professor
+                                         join userProfile in context.UserProfile on professor.IdUserProfile equals userProfile.IdUserProfile
+                                         join province in context.Province on userProfile.IdProvince equals province.IdProvince
+                                         join canton in context.Canton on userProfile.IdCanton equals canton.IdCanton
+                                         join district in context.District on userProfile.IdDistrict equals district.IdDistrict
+                                         select new ProfessorDTO
+                                         {
+                                             IdProfessor = professor.IdProfessor,
+                                             Degree = professor.Degree,
+                                             IdUserProfile = userProfile.IdUserProfile,
+                                             CreateBy = professor.CreateBy,
+                                             CreationDate = professor.CreationDate,
+                                             Username = userProfile.Username,
+                                             Password = userProfile.Password,
+                                             UserPhoto = userProfile.UserPhoto,
+                                             Interests = userProfile.Interests,
+                                             Email = userProfile.Email,
+                                             IsAdmin = userProfile.IsAdmin,
+                                             IsEnable = userProfile.IsEnable,
+                                             IdProvince = userProfile.IdProvince,
+                                             NameProvince = province.Name,
+                                             IdCanton = userProfile.IdCanton,
+                                             NameCanton = canton.Name,
+                                             IdDistrict = userProfile.IdDistrict,
+                                             NameDistrict = district.Name,
+
+                                         }).Where(x => x.Username == username && x.IsEnable == true).Single();
+                return professorToReturn;
+            }
+        }
+
     }
 }

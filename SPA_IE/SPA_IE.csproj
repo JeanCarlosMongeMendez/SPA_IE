@@ -243,6 +243,9 @@
     <Compile Include="Models\Data\SelectProfessorById_Result.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Data\SelectProfessorByUsername_Result.cs">
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Data\SelectProfessor_Result.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
@@ -256,6 +259,9 @@
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\SelectStudentById_Result.cs">
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Data\SelectStudentByUsername_Result.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\SelectStudent_Result.cs">

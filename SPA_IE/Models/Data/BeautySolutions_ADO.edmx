@@ -368,9 +368,6 @@
         <Function Name="DeleteCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
           <Parameter Name="IdCourse" Type="int" Mode="In" />
         </Function>
-        <Function Name="DeleteCourseByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
-          <Parameter Name="Name" Type="varchar" Mode="In" />
-        </Function>
         <Function Name="DeleteProfessor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
           <Parameter Name="IdUserProfile" Type="int" Mode="In" />
         </Function>
@@ -406,7 +403,7 @@
         </Function>
         <Function Name="InsertUpdateComment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
           <Parameter Name="IdComment" Type="int" Mode="In" />
-          <Parameter Name="IdUserProfile" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdUserProfile" Type="int" Mode="In" />
           <Parameter Name="IdConsultation" Type="int" Mode="In" />
           <Parameter Name="Commentary" Type="nvarchar" Mode="In" />
           <Parameter Name="Action" Type="varchar" Mode="In" />
@@ -474,11 +471,17 @@
         <Function Name="SelectProfessorById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
           <Parameter Name="IdUserProfile" Type="int" Mode="In" />
         </Function>
+        <Function Name="SelectProfessorByUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="Username" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="SelectRequestStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020" />
         <Function Name="SelectSchedule" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020" />
         <Function Name="SelectStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020" />
         <Function Name="SelectStudentById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
           <Parameter Name="IdUserProfile" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SelectStudentByUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="BS_ISem_2020">
+          <Parameter Name="Username" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="IF4101_BeatySolutions_ISem_2020Model1StoreContainer">
           <EntitySet Name="Appointment" EntityType="Self.Appointment" Schema="BS_ISem_2020" store:Type="Tables" />
@@ -820,7 +823,7 @@
           </FunctionImport>
           <FunctionImport Name="InsertUpdateComment">
             <Parameter Name="IdComment" Mode="In" Type="Int32" />
-            <Parameter Name="IdUserProfile" Mode="In" Type="String" />
+            <Parameter Name="IdUserProfile" Mode="In" Type="Int32" />
             <Parameter Name="IdConsultation" Mode="In" Type="Int32" />
             <Parameter Name="Commentary" Mode="In" Type="String" />
             <Parameter Name="Action" Mode="In" Type="String" />
@@ -856,6 +859,18 @@
           </FunctionImport>
           <FunctionImport Name="SPGetByNameCourse" EntitySet="Course" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.Course)">
           <Parameter Name="Name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SelectProfessorByUsername" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectProfessorByUsername_Result)">
+            <Parameter Name="Username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SelectStudentByUsername" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectStudentByUsername_Result)">
+            <Parameter Name="Username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPSelectProfessorByUsername" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectProfessorByUsername_Result)">
+            <Parameter Name="Username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPSelectStudentByUsername" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectStudentByUsername_Result)">
+            <Parameter Name="Username" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetByIdCourse_Result">
@@ -1498,6 +1513,48 @@
           <Property Type="Int32" Name="CreateBy" Nullable="true" />
           <Property Type="DateTime" Name="CreationDate" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="SelectProfessorByUsername_Result">
+          <Property Type="Int32" Name="IdProfessor" Nullable="false" />
+          <Property Type="String" Name="Degree" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="IdUserProfile" Nullable="true" />
+          <Property Type="Int32" Name="CreateBy" Nullable="true" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="UserPhoto" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Interests" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsAdmin" Nullable="true" />
+          <Property Type="Boolean" Name="IsEnable" Nullable="true" />
+          <Property Type="Int32" Name="IdProvince" Nullable="true" />
+          <Property Type="String" Name="ProvinceName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="IdCanton" Nullable="true" />
+          <Property Type="String" Name="CantonName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="IdDistrict" Nullable="true" />
+          <Property Type="String" Name="DistrictName" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SelectStudentByUsername_Result">
+          <Property Type="Int32" Name="IdStudent" Nullable="false" />
+          <Property Type="String" Name="IdentificationCard" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="IdUserProfile" Nullable="true" />
+          <Property Type="Boolean" Name="IsASIP" Nullable="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="Int32" Name="CreateBy" Nullable="true" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="UserPhoto" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Interests" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsAdmin" Nullable="true" />
+          <Property Type="Boolean" Name="IsEnable" Nullable="true" />
+          <Property Type="Int32" Name="IdProvince" Nullable="true" />
+          <Property Type="String" Name="ProvinceName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="IdCanton" Nullable="true" />
+          <Property Type="String" Name="CantonName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="IdDistrict" Nullable="true" />
+          <Property Type="String" Name="DistrictName" Nullable="false" MaxLength="100" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2015,6 +2072,106 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SPGetByNameCourse" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.GetByNameCourse">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectProfessorByUsername" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectProfessorByUsername">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.SelectProfessorByUsername_Result">
+                <ScalarProperty Name="IdProfessor" ColumnName="IdProfessor" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="IdUserProfile" ColumnName="IdUserProfile" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserPhoto" ColumnName="UserPhoto" />
+                <ScalarProperty Name="Interests" ColumnName="Interests" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="IdProvince" ColumnName="IdProvince" />
+                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
+                <ScalarProperty Name="CantonName" ColumnName="CantonName" />
+                <ScalarProperty Name="IdDistrict" ColumnName="IdDistrict" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectStudentByUsername" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectStudentByUsername">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.SelectStudentByUsername_Result">
+                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+                <ScalarProperty Name="IdentificationCard" ColumnName="IdentificationCard" />
+                <ScalarProperty Name="IdUserProfile" ColumnName="IdUserProfile" />
+                <ScalarProperty Name="IsASIP" ColumnName="IsASIP" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserPhoto" ColumnName="UserPhoto" />
+                <ScalarProperty Name="Interests" ColumnName="Interests" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="IdProvince" ColumnName="IdProvince" />
+                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
+                <ScalarProperty Name="CantonName" ColumnName="CantonName" />
+                <ScalarProperty Name="IdDistrict" ColumnName="IdDistrict" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPSelectProfessorByUsername" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectProfessorByUsername">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.SelectProfessorByUsername_Result">
+                <ScalarProperty Name="IdProfessor" ColumnName="IdProfessor" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="IdUserProfile" ColumnName="IdUserProfile" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserPhoto" ColumnName="UserPhoto" />
+                <ScalarProperty Name="Interests" ColumnName="Interests" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="IdProvince" ColumnName="IdProvince" />
+                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
+                <ScalarProperty Name="CantonName" ColumnName="CantonName" />
+                <ScalarProperty Name="IdDistrict" ColumnName="IdDistrict" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPSelectStudentByUsername" FunctionName="IF4101_BeatySolutions_ISem_2020Model1.Store.SelectStudentByUsername">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IF4101_BeatySolutions_ISem_2020Model1.SelectStudentByUsername_Result">
+                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+                <ScalarProperty Name="IdentificationCard" ColumnName="IdentificationCard" />
+                <ScalarProperty Name="IdUserProfile" ColumnName="IdUserProfile" />
+                <ScalarProperty Name="IsASIP" ColumnName="IsASIP" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserPhoto" ColumnName="UserPhoto" />
+                <ScalarProperty Name="Interests" ColumnName="Interests" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="IdProvince" ColumnName="IdProvince" />
+                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
+                <ScalarProperty Name="CantonName" ColumnName="CantonName" />
+                <ScalarProperty Name="IdDistrict" ColumnName="IdDistrict" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
           </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>

@@ -633,15 +633,15 @@ namespace SPA_IE.Models.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetByIComment_Result>("GetByIComment", idCommentParameter);
         }
     
-        public virtual int InsertUpdateComment(Nullable<int> idComment, string idUserProfile, Nullable<int> idConsultation, string commentary, string action)
+        public virtual int InsertUpdateComment(Nullable<int> idComment, Nullable<int> idUserProfile, Nullable<int> idConsultation, string commentary, string action)
         {
             var idCommentParameter = idComment.HasValue ?
                 new ObjectParameter("IdComment", idComment) :
                 new ObjectParameter("IdComment", typeof(int));
     
-            var idUserProfileParameter = idUserProfile != null ?
+            var idUserProfileParameter = idUserProfile.HasValue ?
                 new ObjectParameter("IdUserProfile", idUserProfile) :
-                new ObjectParameter("IdUserProfile", typeof(string));
+                new ObjectParameter("IdUserProfile", typeof(int));
     
             var idConsultationParameter = idConsultation.HasValue ?
                 new ObjectParameter("IdConsultation", idConsultation) :
@@ -766,6 +766,42 @@ namespace SPA_IE.Models.Data
                 new ObjectParameter("Name", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Course>("SPGetByNameCourse", mergeOption, nameParameter);
+        }
+    
+        public virtual ObjectResult<SelectProfessorByUsername_Result> SelectProfessorByUsername(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectProfessorByUsername_Result>("SelectProfessorByUsername", usernameParameter);
+        }
+    
+        public virtual ObjectResult<SelectStudentByUsername_Result> SelectStudentByUsername(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectStudentByUsername_Result>("SelectStudentByUsername", usernameParameter);
+        }
+    
+        public virtual ObjectResult<SelectProfessorByUsername_Result> SPSelectProfessorByUsername(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectProfessorByUsername_Result>("SPSelectProfessorByUsername", usernameParameter);
+        }
+    
+        public virtual ObjectResult<SelectStudentByUsername_Result> SPSelectStudentByUsername(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectStudentByUsername_Result>("SPSelectStudentByUsername", usernameParameter);
         }
     }
 }

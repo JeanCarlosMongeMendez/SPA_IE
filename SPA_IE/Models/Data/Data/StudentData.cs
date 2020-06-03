@@ -231,5 +231,86 @@ namespace SPA_IE.Models.Data.Data
                 return resultToReturn;
             }
         }*/
+
+
+        ////TEST
+        //public Student GetStudentByUsername(string username)
+        //{
+        //    using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+        //    {
+        //        var studentResult = context.SPSelectStudentByUsername(username).Single();
+        //        var student = new Student();
+        //        try
+        //        {
+        //            student.IdStudent = studentResult.IdStudent;
+        //            student.IdentificationCard = studentResult.IdentificationCard;
+        //            student.IdUserProfile = studentResult.IdUserProfile;
+        //            student.IsASIP = studentResult.IsASIP;
+        //            student.IsActive = studentResult.IsActive;
+        //            student.CreateBy = studentResult.CreateBy;
+        //            student.CreationDate = studentResult.CreationDate;
+        //            student.UserProfile = new UserProfile
+        //            {
+        //                IdUserProfile = Convert.ToInt32(studentResult.IdUserProfile),
+        //                Username = studentResult.Username,
+        //                Password = studentResult.Password,
+        //                UserPhoto = studentResult.UserPhoto,
+        //                Interests = studentResult.Interests,
+        //                Email = studentResult.Email,
+        //                IsAdmin = studentResult.IsAdmin,
+        //                IsEnable = studentResult.IsEnable,
+        //                IdCanton = studentResult.IdCanton,
+        //                IdProvince = studentResult.IdProvince,
+        //                IdDistrict = studentResult.IdDistrict,
+        //                CreateBy = studentResult.CreateBy,
+        //                CreationDate = studentResult.CreationDate
+        //            };
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            Console.WriteLine(e.GetType());
+        //        }
+
+        //        return student;
+        //    }
+        //}
+
+        public StudentDTO GetByUsername(string username)
+        {
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            {
+                var studentToReturn = (from student in context.Student
+                                       join userProfile in context.UserProfile on student.IdUserProfile equals userProfile.IdUserProfile
+                                       join province in context.Province on userProfile.IdProvince equals province.IdProvince
+                                       join canton in context.Canton on userProfile.IdCanton equals canton.IdCanton
+                                       join district in context.District on userProfile.IdDistrict equals district.IdDistrict
+                                       select new StudentDTO
+                                       {
+                                           IdStudent = student.IdStudent,
+                                           IdentificationCard = student.IdentificationCard,
+                                           IdUserProfile = userProfile.IdUserProfile,
+                                           isASIP = student.IsASIP,
+                                           isActive = student.IsActive,
+                                           CreateBy = student.CreateBy,
+                                           CreationDate = student.CreationDate,
+                                           Username = userProfile.Username,
+                                           Password = userProfile.Password,
+                                           UserPhoto = userProfile.UserPhoto,
+                                           Interests = userProfile.Interests,
+                                           Email = userProfile.Email,
+                                           IsAdmin = userProfile.IsAdmin,
+                                           IsEnable = userProfile.IsEnable,
+                                           IdProvince = userProfile.IdProvince,
+                                           NameProvince = province.Name,
+                                           IdCanton = userProfile.IdCanton,
+                                           NameCanton = canton.Name,
+                                           IdDistrict = userProfile.IdDistrict,
+                                           NameDistrict = district.Name,
+
+                                       }).Where(x => x.Username == username && x.IsEnable == true && x.isActive == true).Single();
+                return studentToReturn;
+            }
+        }
+
     }
 }
