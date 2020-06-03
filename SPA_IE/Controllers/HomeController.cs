@@ -14,6 +14,7 @@ namespace SPA_IE.Controllers
         private ProvinceData provinceData = new ProvinceData();
         private StudentData studentData = new StudentData();
         private CantonData cantonData = new CantonData();
+        private DistrictData districtData = new DistrictData();
 
         public ActionResult Index()
         {
@@ -32,6 +33,18 @@ namespace SPA_IE.Controllers
             try
             {
                 return Json(cantonData.GetByIdProvince(id), JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public JsonResult GetDistrictsByCanton(int id)
+        {
+            try
+            {
+                return Json(districtData.GetByIdCanton(id), JsonRequestBehavior.AllowGet);
             }
             catch
             {

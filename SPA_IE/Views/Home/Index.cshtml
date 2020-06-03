@@ -833,6 +833,8 @@
                 $('#addStudentSubmit').show();
                 $('#deleteStudentSubmit').hide();
                 $('#studentContent').html(data);
+                $("#IdCanton").attr('disabled', 'disabled');
+                $("#IdDistrict").attr('disabled', 'disabled');
             });
         });
 
@@ -980,6 +982,28 @@
                 contentType: "application/json;charset=utf-8",
                 dataType: "json",
                 success: function (result) {
+                    $("#IdCanton").prop("disabled", false);  
+                    $.each(result, function (index, object) {
+                        optionList.add(new Option(object.Name, object.IdCanton))
+                    })
+                },
+                error: function (errorMessage) {
+                    alert(errorMessage.responseText);
+                }
+            })
+        };
+
+        function ddlCanton(value) {
+            $("#IdDistrict").empty();
+            let optionList = document.getElementById('IdDistrict').options;
+            optionList.add(new Option("-- Seleccionar Distrito --", -1))
+            $.ajax({
+                url: "/Home/GetCantonsByProvince/" + value,
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    $("#IdDistrict").prop("disabled", false);  
                     $.each(result, function (index, object) {
                         optionList.add(new Option(object.Name, object.IdCanton))
                     })

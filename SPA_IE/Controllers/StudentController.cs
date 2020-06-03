@@ -46,7 +46,7 @@ namespace SPA_IE.Controllers
             var provinces = new SelectList(provinceData.ListAllProvince(), "IdProvince", "Name");
             ViewBag.provinces = provinces;
 
-            var cantons = new SelectList(cantonData.GetByIdProvince(Convert.ToInt32(provinces.First().Value)), "IdCanton", "Name");
+            var cantons = new SelectList(cantonData.ListAllCanton(), "IdCanton", "Name");
             ViewBag.cantons = cantons;
 
             var districts = new SelectList(districtData.ListAllDistrict(), "IdDistrict", "Name");
