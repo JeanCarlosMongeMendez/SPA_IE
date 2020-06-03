@@ -146,8 +146,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CommentAPIController.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\ConsultationController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -189,6 +191,8 @@
     </Compile>
     <Compile Include="Models\Data\Data\AppointmentData.cs" />
     <Compile Include="Models\Data\Data\CantonData.cs" />
+    <Compile Include="Models\Data\Data\CommentData.cs" />
+    <Compile Include="Models\Data\Data\ConsultationData.cs" />
     <Compile Include="Models\Data\Data\CourseData.cs" />
     <Compile Include="Models\Data\Data\DistrictData.cs" />
     <Compile Include="Models\Data\Data\ProfessorData.cs" />
@@ -275,7 +279,9 @@
     </Compile>
     <Compile Include="Models\Domain\DTO\AppoitmentDTO.cs" />
     <Compile Include="Models\Domain\DTO\CantonDTO.cs" />
+    <Compile Include="Models\Domain\DTO\CommentAPIDTO.cs" />
     <Compile Include="Models\Domain\DTO\CommentDTO.cs" />
+    <Compile Include="Models\Domain\DTO\ConsultationDTO.cs" />
     <Compile Include="Models\Domain\DTO\CourseDTO.cs" />
     <Compile Include="Models\Domain\DTO\DistrictDTO.cs" />
     <Compile Include="Models\Domain\DTO\NewsDTO.cs" />
@@ -396,13 +402,20 @@
     <Content Include="Views\News\List.cshtml" />
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\News\Create.cshtml" />
-    <Content Include="Views\Comment\List.cshtml" />
-    <Content Include="Views\Comment\Edit.cshtml" />
+    <Content Include="Views\CommentAPI\List.cshtml" />
+    <Content Include="Views\CommentAPI\Edit.cshtml" />
+    <Content Include="Views\CommentAPI\Create.cshtml" />
+    <Content Include="Views\Consultation\GetAll.cshtml" />
+    <Content Include="Views\Consultation\Create.cshtml" />
+    <Content Include="Views\Consultation\Edit.cshtml" />
+    <Content Include="Views\Comment\GetAll.cshtml" />
     <Content Include="Views\Comment\Create.cshtml" />
+    <Content Include="Views\Comment\Edit.cshtml" />
     <Content Include="Views\Appointment\Create.cshtml" />
     <Content Include="Views\Appointment\GetAll.cshtml" />
     <Content Include="Views\Appointment\GetRequest.cshtml" />
     <Content Include="Views\Student\GetById.cshtml" />
+    <Content Include="Views\Professor\GetAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

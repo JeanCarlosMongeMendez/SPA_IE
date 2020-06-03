@@ -32,6 +32,14 @@ namespace SPA_IE.Models.Data.Data
             }
         }
 
+        public void RejectRequest(int idStudent)
+        {
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            {
+                context.RejectRequest(idStudent);
+            }
+        }
+
         public int Add(StudentDTO student)
         {
             int resultToReturn;

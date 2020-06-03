@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SPA_IE.Models.Domain.DTO.CommentDTO>
+﻿@model IEnumerable<SPA_IE.Models.Domain.DTO.CommentAPIDTO>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -42,7 +42,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IdComment}) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdComment}) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdComment }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.IdComment })
         </td>
     </tr>
