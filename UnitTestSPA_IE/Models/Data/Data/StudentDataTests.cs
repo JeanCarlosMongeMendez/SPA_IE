@@ -50,9 +50,7 @@ namespace SPA_IE.Models.Data.Data.Tests
             {
                 //Arrange
                 StudentData studentData = new StudentData();
-                var student = new StudentDTO();
-
-                student = studentData.GetById(1);
+                var student = studentData.GetStudentByUsername("Valeria Leiva Quiroz");
 
                 Assert.AreEqual("B63817", student.IdentificationCard);
             }
@@ -63,21 +61,9 @@ namespace SPA_IE.Models.Data.Data.Tests
         {
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
-                //Arrange
                 StudentData studentData = new StudentData();
-                var student = new StudentDTO();
+                var student = studentData.GetStudentByUsername("User Test");
 
-                //Act
-
-                //Correct
-                student = studentData.GetByUsername("User Test");
-
-                //Fail
-                //student = studentData.GetStudentByUsername("User Non existent");
-
-                //Assert
-
-                Assert.AreEqual("User Test", student.Username);
                 Assert.AreEqual("B73145", student.IdentificationCard);
             }
         }

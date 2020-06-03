@@ -882,6 +882,7 @@
           </FunctionImport>
           <FunctionImport Name="SPDeleteComment">
             <Parameter Name="IdComment" Mode="In" Type="Int32" />
+		  </FunctionImport>
           <FunctionImport Name="SelectSchedule" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectSchedule_Result)" />
           <FunctionImport Name="SPSelectSchedule" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectSchedule_Result)" />
           <FunctionImport Name="GetByNameCourse" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.GetByNameCourse_Result)">
@@ -890,20 +891,21 @@
           <FunctionImport Name="SPGetByNameCourse" EntitySet="Course" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.Course)">
           <Parameter Name="Name" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SelectProfessorByUsername" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectProfessorByUsername_Result)">
-            <Parameter Name="Username" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="SelectStudentByUsername" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectStudentByUsername_Result)">
-            <Parameter Name="Username" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="SPSelectProfessorByUsername" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectProfessorByUsername_Result)">
-            <Parameter Name="Username" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="SPSelectStudentByUsername" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectStudentByUsername_Result)">
-            <Parameter Name="Username" Mode="In" Type="String" />
           <FunctionImport Name="RejectRequest">
             <Parameter Name="IdStudent" Mode="In" Type="Int32" />
           </FunctionImport>
+			<FunctionImport Name="SelectProfessorByUsername" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectProfessorByUsername_Result)">
+				<Parameter Name="Username" Mode="In" Type="String" />
+			</FunctionImport>
+			<FunctionImport Name="SelectStudentByUsername" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectStudentByUsername_Result)">
+				<Parameter Name="Username" Mode="In" Type="String" />
+			</FunctionImport>
+			<FunctionImport Name="SPSelectProfessorByUsername" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectProfessorByUsername_Result)">
+				<Parameter Name="Username" Mode="In" Type="String" />
+			</FunctionImport>
+			<FunctionImport Name="SPSelectStudentByUsername" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectStudentByUsername_Result)">
+				<Parameter Name="Username" Mode="In" Type="String" />
+			</FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetByIdCourse_Result">
           <Property Type="Int32" Name="idCourse" Nullable="false" />
