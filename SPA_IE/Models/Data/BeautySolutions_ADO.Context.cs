@@ -889,14 +889,15 @@ namespace SPA_IE.Models.Data
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectProfessorByUsername_Result>("SPSelectProfessorByUsername", usernameParameter);
         }
-    
+
         public virtual ObjectResult<SelectStudentByUsername_Result> SPSelectStudentByUsername(string username)
         {
             var usernameParameter = username != null ?
                 new ObjectParameter("Username", username) :
                 new ObjectParameter("Username", typeof(string));
-    
+
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectStudentByUsername_Result>("SPSelectStudentByUsername", usernameParameter);
+        }
         public virtual int RejectRequest(Nullable<int> idStudent)
         {
             var idStudentParameter = idStudent.HasValue ?
