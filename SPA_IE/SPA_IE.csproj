@@ -199,6 +199,7 @@
     <Compile Include="Models\Data\Data\ProvinceData.cs" />
     <Compile Include="Models\Data\Data\ScheduleData.cs" />
     <Compile Include="Models\Data\Data\StudentData.cs" />
+    <Compile Include="Models\Data\Data\UserProfileData.cs" />
     <Compile Include="Models\Data\District.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
@@ -410,6 +411,7 @@
     <Content Include="Views\Appointment\GetRequest.cshtml" />
     <Content Include="Views\Student\GetById.cshtml" />
     <Content Include="Views\Professor\GetAll.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

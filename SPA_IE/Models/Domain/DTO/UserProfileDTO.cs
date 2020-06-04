@@ -20,5 +20,7 @@ namespace SPA_IE.Models.Domain.DTO
         public string NameDistrict { get; set; }
         public Nullable<int> CreateBy { get; set; }
         public Nullable<System.DateTime> CreationDate { get; set; }
+
+
     }
 }

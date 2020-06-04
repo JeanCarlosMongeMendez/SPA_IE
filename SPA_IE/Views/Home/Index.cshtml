@@ -5,7 +5,7 @@
 }
 
 <!-- MENU -->
-<section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+<section id="MenuBar" class="navbar custom-navbar navbar-fixed-top" role="navigation">
     <div class="container">
 
         <div class="navbar-header">
@@ -28,6 +28,7 @@
                 <li><a href="#students" data="@Url.Action("GetAll", "Student")" id="studentLink" class="smoothScroll">Estudiantes Registrados</a></li>
                 <li><a href="#requests" data="@Url.Action("GetRequest", "Student")" id="requestLink" class="smoothScroll">Solicitudes de Estudiantes</a></li>
                 <li><a href="#professors" data="@Url.Action("GetAll", "Professor")" id="professorLink" class="smoothScroll">Profesores Registrados</a></li>
+                
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -53,12 +54,12 @@
             </div>
 
             <div class="container">
-                <input type="text" placeholder="Enter Username" name="uname" class="inputLogin" required>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <input type="text"  id=usernameLogin placeholder="Enter Username" name="uname" class="inputLogin" required>
+                <input type="password" id=passwordLogin placeholder="Enter Password" name="psw" required>
             </div>
 
             <div class="modal-footer">
-                <button type="submit" class="button">Ingresar</button>
+                <button type="button"  id="loginSubmit" class="button">Ingresar</button>
                 <button type="button" class="cancelbtn" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
@@ -817,6 +818,8 @@
             });
         });
 
+          
+
         $('#addStudentLink').on('click', function () {
             var url = $(this).attr('data');
             $.get(url, function (data) {
@@ -858,6 +861,27 @@
                 }
             });
         });
+
+         $('#loginSubmit').on('click', function () {
+            var data = new FormData();
+            var username = $("#usernameLogin").val();
+            data.append("username", username);
+            var password = $("#passwordLogin").val();
+            data.append("password", password);
+            $.ajax({
+                url: '@Url.Action("Login", "Home")',
+                type: 'POST',
+                data:  data,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $('#loginModal').hide();
+                    $('#MenuBar').html("");
+                    $('#MenuBar').html(data);
+                }
+            });
+        });
+
 
         function editStudent(link) {
             var url = $(link).attr('data');

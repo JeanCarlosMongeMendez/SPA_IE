@@ -1,0 +1,49 @@
+﻿@model SPA_IE.Models.Domain.DTO.UserProfileDTO
+
+
+
+
+@{
+    if (Model.IsAdmin == true)
+    {
+
+        <!-- MENU -->
+        <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon icon-bar"></span>
+                        <span class="icon icon-bar"></span>
+                        <span class="icon icon-bar"></span>
+                    </button>
+
+                    <!-- lOGO TEXT HERE -->
+                    <a href="#" class="navbar-brand">UCR</a>
+                </div>
+
+                <!-- MENU LINKS -->
+                <div class="collapse navbar-collapse">
+
+                    <ul class="nav navbar-nav navbar-nav-first">
+                        <li><a href="#home" class="smoothScroll">¿Quiénes somos?</a></li>
+                        <li><a href="#about" class="smoothScroll">Beneficios</a></li>
+                        <li><a href="#students" data="@Url.Action("GetAll", "Student")" id="studentLink" class="smoothScroll">Estudiantes Registrados</a></li>
+                        <li><a href="#requests" data="@Url.Action("GetRequest", "Student")" id="requestLink" class="smoothScroll">Solicitudes de Estudiantes</a></li>
+                        <li><a href="#professors" data="@Url.Action("GetAll", "Professor")" id="professorLink" class="smoothScroll">Profesores Registrados</a></li>
+
+                    </ul>
+
+                    <div class="nav navbar-nav navbar-right">
+                        <label>@Model.Username </label>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    }
+
+
+
+}
