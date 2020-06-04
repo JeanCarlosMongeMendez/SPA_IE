@@ -14,53 +14,39 @@ namespace SPA_IE.Controllers
         ProvinceData provinceData = new ProvinceData();
         CantonData cantonData = new CantonData();
         DistrictData districtData = new DistrictData();
-
-        public PartialViewResult GetAll()
+        public ActionResult Index()
         {
             IEnumerable<SelectProfessor_Result> professors = professorData.ListAllSP();
-            return PartialView("GetAll", professors);
+            return View(professors);
         }
-
-        public PartialViewResult Create()
+        public ActionResult Create()
         {
             var provinces = new SelectList(provinceData.ListAllProvince(), "IdProvince", "Name");
-            ViewBag.provinces = provinces;
+            ViewData["provinces"] = provinces;
 
             var cantons = new SelectList(cantonData.ListAllCanton(), "IdCanton", "Name");
-            ViewBag.cantons = cantons;
-
+            ViewData["cantons"] = cantons;
             var districts = new SelectList(districtData.ListAllDistrict(), "IdDistrict", "Name");
-            ViewBag.districts = districts;
+            ViewData["districts"] = districts;
 
-            return PartialView("Create");
+            return View();
         }
 
         [HttpPost]
-        public PartialViewResult Create(ProfessorDTO professor)
+        public ActionResult Create(ProfessorDTO professor)
         {
-            professor.IsEnable = true;
             professorData.Add(professor);
-            IEnumerable<SelectProfessor_Result> students = professorData.ListAllSP();
-            return PartialView("GetAll", students);
+           
+
+            return View("Index", professorData.ListAllSP().AsEnumerable());
         }
-
-        public PartialViewResult GetById(int id)
+        public ActionResult Edit(int id)
         {
-            var provinces = new SelectList(provinceData.ListAllProvince(), "IdProvince", "Name");
-            ViewBag.provinces = provinces;
 
-            var cantons = new SelectList(cantonData.ListAllCanton(), "IdCanton", "Name");
-            ViewBag.cantons = cantons;
-
-            var districts = new SelectList(districtData.ListAllDistrict(), "IdDistrict", "Name");
-            ViewBag.districts = districts;
-            var professor = professorData.GetById(id);
-            return PartialView("GetById", professor);
-        }
-
-        public PartialViewResult Edit(int id)
-        {
             ProfessorDTO professor = professorData.GetById(id);
+
+
+
             var provinces = new SelectList(provinceData.ListAllProvince(), "IdProvince", "Name");
             ViewData["provinces"] = provinces;
 
@@ -73,37 +59,24 @@ namespace SPA_IE.Controllers
             ViewData["idProvince"] = professor.IdProvince;
             ViewData["idCanton"] = professor.IdDistrict;
             ViewData["idDistrict"] = professor.IdDistrict;
-            return PartialView("Edit", professor);
+
+            return View(professor);
+
         }
 
         [HttpPost]
-        public PartialViewResult Edit(ProfessorDTO professor)
+        public ActionResult Edit(ProfessorDTO professor)
         {
-            try
-            {
-                professorData.Update(professor);
-                IEnumerable<SelectProfessor_Result> professors = professorData.ListAllSP();
-                return PartialView("GetAll", professors);
-            }
-            catch
-            {
-                throw;
-            }
+            professorData.Update(professor);
+
+            return View("Index", professorData.ListAllSP().AsEnumerable());
+        }
+        public ActionResult Delete(int id)
+        {
+            professorData.Delete(id);
+            return View("Index", professorData.ListAllSP().AsEnumerable());
         }
 
-        [HttpPost]
-        public PartialViewResult Delete(int id)
-        {
-            try
-            {
-                professorData.Delete(id);
-                IEnumerable<SelectProfessor_Result> professors = professorData.ListAllSP();
-                return PartialView("GetAll", professors);
-            }
-            catch
-            {
-                throw;
-            }
-        }
+
     }
 }

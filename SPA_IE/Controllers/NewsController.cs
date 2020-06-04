@@ -23,8 +23,7 @@ namespace SPA_IE.Controllers
         public IEnumerable<NewsDTO> newsList()
         { 
             IEnumerable<NewsDTO> news = null;
-            
-                using (var client = new HttpClient())
+            using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44357/api/News/");
                 try

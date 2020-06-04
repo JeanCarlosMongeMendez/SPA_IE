@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SPA_IE.Models.Data.SelectRequestStudent_Result>
 
 <table class="table">
-    <tr class="title">
+    <tr>
         <th>
             @Html.DisplayNameFor(model => model.IdentificationCard)
         </th>
@@ -53,7 +53,6 @@
         </td>
         <td>
             <a data="@Url.Action("AproveRequest", "Student", routeValues: new {id = item.IdStudent})" id="aproveRequestLink" class="btn btn-primary" onclick="aprove(this)">Aprobar</a>
-            <a data="@Url.Action("RejectRequest", "Student", routeValues: new {id = item.IdStudent})" id="rejectRequestLink" class="btn btn-danger" onclick="reject(this)">Rechazar</a>
         </td>
     </tr>
 }

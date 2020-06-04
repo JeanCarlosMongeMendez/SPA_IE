@@ -1,5 +1,12 @@
 ﻿@model IEnumerable<SPA_IE.Models.Data.Course>
 
+@{
+    ViewBag.Title = "Index";
+   Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -59,9 +66,9 @@
             @Html.DisplayFor(modelItem => item.CreationDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdCourse}) |
+            @Html.ActionLink("Edit", "Edit", new {  id=item.IdCourse }) |
             @Html.ActionLink("Details", "Details", new { id=item.IdCourse }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdCourse })
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdCourse})
         </td>
     </tr>
 }
