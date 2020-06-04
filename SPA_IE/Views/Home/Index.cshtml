@@ -32,7 +32,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a data-toggle="modal" data-target="#loginModal"> Iniciar sesión</a></li>
+                <li><a id="loginLink" > Iniciar sesión</a></li>
                 <li><a data-toggle="modal" data-target="#registerModal"> Registrarme</a></li>
             </ul>
         </div>
@@ -831,6 +831,14 @@
             });
         });
 
+          $('#loginLink').on('click', function () {
+            var url = $(this).attr('data');
+            $.get(url, function (data) {
+                 $('#loginModal').modal('toggle');
+                
+            });
+        });
+
         $('#addStudentSubmit').on('click', function () {
             var data = new FormData();
             var username = $("#Username").val();
@@ -875,7 +883,7 @@
                 processData: false,
                 contentType: false,
                 success: function (data) {
-                    $('#loginModal').hide();
+                    $('#loginModal').modal('toggle');
                     $('#MenuBar').html("");
                     $('#MenuBar').html(data);
                 }

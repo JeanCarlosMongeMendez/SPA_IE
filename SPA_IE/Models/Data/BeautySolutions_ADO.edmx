@@ -876,6 +876,7 @@
           </FunctionImport>
           <FunctionImport Name="SPDeleteComment">
             <Parameter Name="IdComment" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="SelectSchedule" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectSchedule_Result)" />
           <FunctionImport Name="SPSelectSchedule" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.SelectSchedule_Result)" />
           <FunctionImport Name="GetByNameCourse" ReturnType="Collection(IF4101_BeatySolutions_ISem_2020Model1.GetByNameCourse_Result)">
