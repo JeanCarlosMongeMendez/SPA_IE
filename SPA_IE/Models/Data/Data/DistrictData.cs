@@ -47,7 +47,7 @@ namespace SPA_IE.Models.Data.Data
 
             }
         }
-        public DistrictDTO GetByIdCanton(int id)
+        public IEnumerable<DistrictDTO> GetByIdCanton(int id)
         {
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
@@ -58,12 +58,10 @@ namespace SPA_IE.Models.Data.Data
                                             IdDistrict = districtItem.IdDistrict,
                                             Name = districtItem.Name,
                                             IdCantonDistrict = districtItem.IdCantonDistrict,
-                                        }).Where(x => x.IdCantonDistrict == id).Single();
+                                        }).Where(x => x.IdCantonDistrict == id).ToList();
 
 
                 return districtToReturn;
-
-
             }
         }
     }

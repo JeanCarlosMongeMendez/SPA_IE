@@ -24,9 +24,18 @@
 
             <ul class="nav navbar-nav navbar-nav-first">
                 <li><a href="#home" class="smoothScroll">¿Quiénes somos?</a></li>
-                <li><a href="#requests" data="@Url.Action("GetRequest", "Student")" id="requestLink" class="smoothScroll">Solicitudes de Estudiantes</a></li>
-                <li><a href="#students" data="@Url.Action("GetAll", "Student")" id="studentLink" class="smoothScroll">Estudiantes Registrados</a></li>
-                <li><a href="#professors" data="@Url.Action("GetAll", "Professor")" id="professorLink" class="smoothScroll">Profesores Registrados</a></li>
+                <li><a href="#about" class="smoothScroll">Beneficios</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Estudiantes
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#students" data="@Url.Action("GetAll", "Student")" id="studentLink" class="smoothScroll">Registrados</a></li>
+                        <li><a href="#requests" data="@Url.Action("GetRequest", "Student")" id="requestLink" class="smoothScroll">Solicitudes</a></li>
+                    </ul>
+                </li>
+                <li><a href="#professors" data="@Url.Action("GetAll", "Professor")" id="professorLink" class="smoothScroll">Profesores</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -900,8 +909,48 @@
                 $('#addStudentSubmit').show();
                 $('#deleteStudentSubmit').hide();
                 $('#studentContent').html(data);
+                $("#IdCanton").attr('disabled', 'disabled');
+                $("#IdDistrict").attr('disabled', 'disabled');
             });
         });
+
+        function editStudent(link) {
+            var url = $(link).attr('data');
+            $.get(url, function (data) {
+                $('#studentModalTitle').html('Actuaizar');
+                $('#updateStudentSubmit').show();
+                $('#addStudentSubmit').hide();
+                $('#deleteStudentSubmit').hide();
+                $('#studentContent').html(data);
+                $('#studentModal').modal('toggle');
+            });
+        };
+
+        function detailsStudent(link) {
+            var url = $(link).attr('data');
+            $.get(url, function (data) {
+                $('#studentModalTitle').html('Detalles');
+                $('#updateStudentSubmit').hide();
+                $('#addStudentSubmit').hide();
+                $('#deleteStudentSubmit').hide();
+                $('#studentModal').modal('toggle');
+                $('#studentContent').html(data);
+                UnableForm();
+            });
+        };
+
+        function deleteStudent(link) {
+            var url = $(link).attr('data');
+            $.get(url, function (data) {
+                $('#studentModalTitle').html('Eliminar');
+                $('#updateStudentSubmit').hide();
+                $('#addStudentSubmit').hide();
+                $('#deleteStudentSubmit').show();
+                $('#studentModal').modal('toggle');
+                $('#studentContent').html(data);
+                UnableForm();
+            });
+        };
 
         $('#addStudentSubmit').on('click', function () {
             var data = new FormData();
@@ -933,44 +982,6 @@
                 }
             });
         });
-
-        function editStudent(link) {
-            var url = $(link).attr('data');
-            $.get(url, function (data) {
-                $('#studentModalTitle').html('Actuaizar');
-                $('#updateStudentSubmit').show();
-                $('#addStudentSubmit').hide();
-                $('#deleteStudentSubmit').hide();
-                $('#studentModal').modal('toggle');
-                $('#studentContent').html(data);
-            });
-        };
-
-        function detailsStudent(link) {
-            var url = $(link).attr('data');
-            $.get(url, function (data) {
-                $('#studentModalTitle').html('Detalles');
-                $('#updateStudentSubmit').hide();
-                $('#addStudentSubmit').hide();
-                $('#deleteStudentSubmit').hide();
-                $('#studentModal').modal('toggle');
-                $('#studentContent').html(data);
-                UnableForm();
-            });
-        };
-
-        function deleteStudent(link) {
-            var url = $(link).attr('data');
-            $.get(url, function (data) {
-                $('#studentModalTitle').html('Eliminar');
-                $('#updateStudentSubmit').hide();
-                $('#addStudentSubmit').hide();
-                $('#deleteStudentSubmit').show();
-                $('#studentModal').modal('toggle');
-                $('#studentContent').html(data);
-                UnableForm();
-            });
-        };
 
         $('#updateStudentSubmit').on('click', function () {
             var data = new FormData();
@@ -1036,6 +1047,197 @@
                 }
             });
         });
+
+
+        $('#addProfessorLink').on('click', function () {
+            var url = $(this).attr('data');
+            $.get(url, function (data) {
+                $('#professorModalTitle').html('Agregar');
+                $('#updateProfessorSubmit').hide();
+                $('#addProfessorSubmit').show();
+                $('#deleteProfessorSubmit').hide();
+                $('#professorContent').html(data);
+                $("#IdCanton").attr('disabled', 'disabled');
+                $("#IdDistrict").attr('disabled', 'disabled');
+            });
+        });
+
+         function editProfessor(link) {
+            var url = $(link).attr('data');
+            $.get(url, function (data) {
+                $('#professorModalTitle').html('Actuaizar');
+                $('#updateProfessorSubmit').show();
+                $('#addProfessorSubmit').hide();
+                $('#deleteProfessorSubmit').hide();
+                $('#professorContent').html(data);
+                $('#professorModal').modal('toggle');
+            });
+        };
+
+        function detailsProfessor(link) {
+            var url = $(link).attr('data');
+            $.get(url, function (data) {
+                $('#professorModalTitle').html('Detalles');
+                $('#updateProfessorSubmit').hide();
+                $('#addProfessorSubmit').hide();
+                $('#deleteProfessorSubmit').hide();
+                $('#professorModal').modal('toggle');
+                $('#professorContent').html(data);
+                UnableForm();
+            });
+        };
+
+        function deleteProfessor(link) {
+            var url = $(link).attr('data');
+            $.get(url, function (data) {
+                $('#professorModalTitle').html('Eliminar');
+                $('#updateProfessorSubmit').hide();
+                $('#addProfessorSubmit').hide();
+                $('#deleteProfessorSubmit').show();
+                $('#professorModal').modal('toggle');
+                $('#professorContent').html(data);
+                UnableForm();
+            });
+        };
+
+        $('#addProfessorSubmit').on('click', function () {
+            var data = new FormData();
+            var username = $("#Username").val();
+            data.append("Username", username);
+            var password = $("#Password").val();
+            data.append("Password", password);
+            var interest = $("#Interests").val();
+            data.append("Interests", interest);
+            var email = $("#Email").val();
+            data.append("Email", email);
+            var idcard = $("#Degree").val();
+            data.append("Degree", idcard);
+            var province = $("#IdProvince").val();
+            data.append("IdProvince", province);
+            var canton = $("#IdCanton").val();
+            data.append("IdCanton", canton);
+            var district = $("#IdDistrict").val();
+            data.append("IdDistrict", district);
+            $.ajax({
+                url: '@Url.Action("Create", "Professor")',
+                type: 'POST',
+                data:  data,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $('#professorModal').modal('toggle');
+                    $('#professorsContent').html(data);
+                }
+            });
+        });
+
+        $('#updateStudentSubmit').on('click', function () {
+            var data = new FormData();
+
+            var id = $("#IdStudent").val();
+            data.append("IdStudent", id);
+            var idUser = $("#IdUserProfile").val();
+            data.append("IdUserProfile", idUser);
+            var username = $("#Username").val();
+            data.append("Username", username);
+            var password = $("#Password").val();
+            data.append("Password", password);
+            var interest = $("#Interests").val();
+            data.append("Interests", interest);
+            var email = $("#Email").val();
+            data.append("Email", email);
+            var idcard = $("#IdentificationCard").val();
+            data.append("IdentificationCard", idcard);
+            var province = $("#IdProvince").val();
+            data.append("IdProvince", province);
+            var canton = $("#IdCanton").val();
+            data.append("IdCanton", canton);
+            var district = $("#IdDistrict").val();
+            data.append("IdDistrict", district);
+            var isAsip = $("#isASIP").val();
+            data.append("IsASIP", isAsip);
+            var createBy = $("#CreateBy").val();
+            data.append("CreateBy", createBy);
+            var creationDate = $("#CreationDate").val();
+            data.append("CreationDate", creationDate);
+            data.append("IsActive", true);
+            data.append("IsEnable", true);
+            data.append("IsAdmin", false);
+            $.ajax({
+                url: '@Url.Action("Edit", "Student")',
+                type: 'POST',
+                data:  data,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $('#studentModal').modal('toggle');
+                    var url = $('#studentLink').attr('data');
+                    $.get(url, function (data) {
+                        $('#studentsContent').html(data);
+                    });
+                }
+            });
+        });
+
+        $('#deleteStudentSubmit').on('click', function () {
+            var idUser = $('#IdUserProfile').val();
+            $.ajax({
+                url: '/Student/Delete/' + idUser,
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $('#studentModal').modal('toggle');
+                    var url = $('#studentLink').attr('data');
+                    $.get(url, function (data) {
+                        $('#studentsContent').html(data);
+                    });
+                }
+            });
+        });
+
+
+        function ddlProvince(value) {
+            $("#IdCanton").empty();
+            let optionList = document.getElementById('IdCanton').options;
+            optionList.add(new Option("-- Seleccionar Canton --", -1))
+            $.ajax({
+                url: "/Home/GetCantonsByProvince/" + value,
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    $("#IdCanton").prop("disabled", false);  
+                    $.each(result, function (index, object) {
+                        optionList.add(new Option(object.Name, object.IdCanton))
+                    })
+                },
+                error: function (errorMessage) {
+                    alert(errorMessage.responseText);
+                }
+            })
+        };
+
+        function ddlCanton(value) {
+            $("#IdDistrict").empty();
+            let optionList = document.getElementById('IdDistrict').options;
+            optionList.add(new Option("-- Seleccionar Distrito --", -1))
+            $.ajax({
+                url: "/Home/GetDistrictsByCanton/" + value,
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    $("#IdDistrict").prop("disabled", false);  
+                    $.each(result, function (index, object) {
+                        optionList.add(new Option(object.Name, object.IdDistrict))
+                    })
+                },
+                error: function (errorMessage) {
+                    alert(errorMessage.responseText);
+                }
+            })
+        };
 
         function UnableForm() {
             $("#IdCanton").attr('disabled', 'disabled');
