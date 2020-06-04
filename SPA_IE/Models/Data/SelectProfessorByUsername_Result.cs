@@ -11,13 +11,11 @@ namespace SPA_IE.Models.Data
 {
     using System;
     
-    public partial class SelectRequestStudent_Result
+    public partial class SelectProfessorByUsername_Result
     {
-        public int IdStudent { get; set; }
-        public string IdentificationCard { get; set; }
+        public int IdProfessor { get; set; }
+        public string Degree { get; set; }
         public Nullable<int> IdUserProfile { get; set; }
-        public Nullable<bool> IsASIP { get; set; }
-        public Nullable<bool> IsActive { get; set; }
         public Nullable<int> CreateBy { get; set; }
         public Nullable<System.DateTime> CreationDate { get; set; }
         public string Username { get; set; }

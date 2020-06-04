@@ -44,22 +44,20 @@ namespace SPA_IE.Models.Data.Data
         }
         public SelectProfessorById_Result GetByIdProfessorSP(int id)
         {
-
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 var professor= context.SPSelectProfessorById(id).Single();
 
                 return professor;
             }
-
-
         }
+
         public int Delete(int id)
         {
 
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
-                var resultToReturn = context.SPDeleteStudent(id);
+                var resultToReturn = context.SPDeleteProfessor(id);
 
                 return resultToReturn;
             }
@@ -221,5 +219,52 @@ namespace SPA_IE.Models.Data.Data
                 return resultToReturn;
             }
         }*/
+
+        ////TEST
+        public SelectProfessorByUsername_Result GetProfessorByUsername(string username)
+        {
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            {
+
+                return context.SPSelectProfessorByUsername(username).Single();
+            }
+        }
+
+
+        //public ProfessorDTO GetByUsername(string username)
+        //{
+        //    using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+        //    {
+        //        var professorToReturn = (from professor in context.Professor
+        //                                 join userProfile in context.UserProfile on professor.IdUserProfile equals userProfile.IdUserProfile
+        //                                 join province in context.Province on userProfile.IdProvince equals province.IdProvince
+        //                                 join canton in context.Canton on userProfile.IdCanton equals canton.IdCanton
+        //                                 join district in context.District on userProfile.IdDistrict equals district.IdDistrict
+        //                                 select new ProfessorDTO
+        //                                 {
+        //                                     IdProfessor = professor.IdProfessor,
+        //                                     Degree = professor.Degree,
+        //                                     IdUserProfile = userProfile.IdUserProfile,
+        //                                     CreateBy = professor.CreateBy,
+        //                                     CreationDate = professor.CreationDate,
+        //                                     Username = userProfile.Username,
+        //                                     Password = userProfile.Password,
+        //                                     UserPhoto = userProfile.UserPhoto,
+        //                                     Interests = userProfile.Interests,
+        //                                     Email = userProfile.Email,
+        //                                     IsAdmin = userProfile.IsAdmin,
+        //                                     IsEnable = userProfile.IsEnable,
+        //                                     IdProvince = userProfile.IdProvince,
+        //                                     NameProvince = province.Name,
+        //                                     IdCanton = userProfile.IdCanton,
+        //                                     NameCanton = canton.Name,
+        //                                     IdDistrict = userProfile.IdDistrict,
+        //                                     NameDistrict = district.Name,
+
+        //                                 }).Where(x => x.Username == username ).Single();
+        //        return professorToReturn;
+        //    }
+        //}
+
     }
 }
