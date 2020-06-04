@@ -11,7 +11,7 @@ namespace SPA_IE.Models.Data
 {
     using System;
     
-    public partial class SelectRequestStudent_Result
+    public partial class SelectStudentByUsername_Result
     {
         public int IdStudent { get; set; }
         public string IdentificationCard { get; set; }

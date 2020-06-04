@@ -11,7 +11,7 @@ namespace SPA_IE.Models.Data
 {
     using System;
     
-    public partial class SelectAppointment_Result
+    public partial class GetAppointmentByReason_Result
     {
         public int IdAppointment { get; set; }
         public int IdProfessor { get; set; }
