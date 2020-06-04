@@ -34,6 +34,13 @@ namespace SPA_IE.Controllers
             return PartialView("GetRequest", students);
         }
 
+        public PartialViewResult RejectRequest(int id)
+        {
+            studentData.RejectRequest(id);
+            IEnumerable<SelectRequestStudent_Result> students = studentData.ListAllRequestSP();
+            return PartialView("GetRequest", students);
+        }
+
         public PartialViewResult Create()
         {
             var provinces = new SelectList(provinceData.ListAllProvince(), "IdProvince", "Name");

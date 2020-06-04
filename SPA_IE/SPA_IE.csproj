@@ -195,11 +195,7 @@
     <Compile Include="Models\Data\Data\ProvinceData.cs" />
     <Compile Include="Models\Data\Data\ScheduleData.cs" />
     <Compile Include="Models\Data\Data\StudentData.cs" />
-    <Compile Include="Models\Data\Data\UserProfileData.cs" />
     <Compile Include="Models\Data\District.cs">
-      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Data\GetAppointmentByReason_Result.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\GetByIComment_Result.cs">
@@ -247,9 +243,6 @@
     <Compile Include="Models\Data\SelectProfessorById_Result.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Data\SelectProfessorByUsername_Result.cs">
-      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Data\SelectProfessor_Result.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
@@ -263,9 +256,6 @@
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\SelectStudentById_Result.cs">
-      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Data\SelectStudentByUsername_Result.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\SelectStudent_Result.cs">
@@ -407,6 +397,7 @@
     <Content Include="Views\Appointment\GetAll.cshtml" />
     <Content Include="Views\Appointment\GetRequest.cshtml" />
     <Content Include="Views\Student\GetById.cshtml" />
+    <Content Include="Views\Professor\GetAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
