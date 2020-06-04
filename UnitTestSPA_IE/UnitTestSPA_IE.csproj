@@ -100,7 +100,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Data\Data\AppointmentDataTests.cs" />
     <Compile Include="Models\Data\Data\CourseDataTests.cs" />
+    <Compile Include="Models\Data\Data\ProfessorDataTests.cs" />
     <Compile Include="Models\Data\Data\StudentDataTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -239,39 +239,6 @@ namespace SPA_IE.Models.Data.Data
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                return context.SPSelectStudentByUsername(username).Single();
-                //var student = new Student();
-                //try
-                //{
-                //    student.IdStudent = studentResult.IdStudent;
-                //    student.IdentificationCard = studentResult.IdentificationCard;
-                //    student.IdUserProfile = studentResult.IdUserProfile;
-                //    student.IsASIP = studentResult.IsASIP;
-                //    student.IsActive = studentResult.IsActive;
-                //    student.CreateBy = studentResult.CreateBy;
-                //    student.CreationDate = studentResult.CreationDate;
-                //    student.UserProfile = new UserProfile
-                //    {
-                //        IdUserProfile = Convert.ToInt32(studentResult.IdUserProfile),
-                //        Username = studentResult.Username,
-                //        Password = studentResult.Password,
-                //        UserPhoto = studentResult.UserPhoto,
-                //        Interests = studentResult.Interests,
-                //        Email = studentResult.Email,
-                //        IsAdmin = studentResult.IsAdmin,
-                //        IsEnable = studentResult.IsEnable,
-                //        IdCanton = studentResult.IdCanton,
-                //        IdProvince = studentResult.IdProvince,
-                //        IdDistrict = studentResult.IdDistrict,
-                //        CreateBy = studentResult.CreateBy,
-                //        CreationDate = studentResult.CreationDate
-                //    };
-                //}
-                //catch (Exception e)
-                //{
-                //    Console.WriteLine(e.GetType());
-                //}
-
-                //return student;
             }
         }
 

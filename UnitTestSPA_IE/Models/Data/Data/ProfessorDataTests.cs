@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SPA_IE.Models.Data.Data;
-using SPA_IE.Models.Data.DTO;
+using SPA_IE.Models.Domain.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,21 +10,21 @@ using System.Threading.Tasks;
 namespace SPA_IE.Models.Data.Data.Tests
 {
     [TestClass()]
-    public class StudentDataTests
+    public class ProfessorDataTests
     {
         [TestMethod()]
-        public void AddStudentTest()
+        public void AddProfessorTest()
         {
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 //Arrange
-                StudentData studentData = new StudentData();
+                ProfessorData professorData = new ProfessorData();
                 UserProfileData userProfileData = new UserProfileData();
-                var student = new StudentDTO();
+                var professor = new ProfessorDTO();
 
                 try
                 {
-                    userProfileData.Delete("User Test");
+                    userProfileData.Delete("User Test Prof");
                     Assert.Fail("no exception thrown");
                 }
                 catch (Exception ex)
@@ -33,46 +33,45 @@ namespace SPA_IE.Models.Data.Data.Tests
                 }
 
                 //Create UserProfile
-                student.Username = "User Test";
-                student.Password = "123";
-                student.Interests = "Nada";
-                student.Email = "test@mail.com";
-                student.IdDistrict = 1;
-                student.IdCanton = 1;
-                student.IdProvince = 1;
-                student.IsAdmin = false;
-                student.IsEnable = true;
+                professor.Username = "User Test Prof";
+                professor.Password = "123";
+                professor.Interests = "Nada";
+                professor.Email = "test@mail.com";
+                professor.IdDistrict = 1;
+                professor.IdCanton = 1;
+                professor.IdProvince = 1;
+                professor.IsAdmin = false;
+                professor.IsEnable = true;
 
-                //Create Student
-                student.IdentificationCard = "B00000";
-                student.isASIP = false;
-                student.isActive = true;
+                //Create Professor
+                professor.Degree = "Bach in test";
 
                 //Act
-                studentData.Add(student);
+                professorData.Add(professor);
 
                 //Assert
-                Assert.IsNotNull(student.IdStudent);
+                Assert.IsNotNull(professor.IdProfessor);
 
             }
         }
 
         [TestMethod()]
-        public void GetByNameStudentTest()
+        public void GetByIdProfessorTest()
         {
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 //Arrange
-                StudentData studentData = new StudentData();
+                ProfessorData professorData = new ProfessorData();
 
                 //Act
-                var student = studentData.GetStudentByUsername("User Test");
-                var studentById = studentData.GetByIdStudentSP(Convert.ToInt32(student.IdUserProfile)); 
+                var professor = professorData.GetProfessorByUsername("User Test Prof");
+                var professorById = professorData.GetByIdProfessorSP(Convert.ToInt32(professor.IdUserProfile));
 
                 //Assert
-                Assert.AreEqual("B00000", studentById.IdentificationCard);
+                Assert.AreEqual("Bach in test", professorById.Degree);
             }
         }
+
 
         [TestMethod()]
         public void GetTestAndDeleteTest()
@@ -80,20 +79,19 @@ namespace SPA_IE.Models.Data.Data.Tests
             using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
             {
                 //Arrange
-                StudentData studentData = new StudentData();
+                ProfessorData professorData = new ProfessorData();
 
                 //Act
 
                 //get and delete this course
-                var student = studentData.GetByUsername("User Test");
-                studentData.Delete(student.IdUserProfile);
+                var professor = professorData.GetProfessorByUsername("User Test Prof");
+                professorData.Delete(Convert.ToInt32(professor.IdUserProfile));           
 
                 //Assert
-
                 //get deleted course
                 try
                 {
-                    student = studentData.GetByUsername("User Test");
+                    var professorGet = professorData.GetProfessorByUsername("User Test Prof");
                     Assert.Fail("no exception thrown");
                 }
                 catch (Exception ex)
@@ -112,7 +110,7 @@ namespace SPA_IE.Models.Data.Data.Tests
                 UserProfileData userProfileData = new UserProfileData();
 
                 //Act
-                userProfileData.Delete("User Test");
+                userProfileData.Delete("User Test Prof");
 
                 //Assert
                 Assert.IsTrue(true);

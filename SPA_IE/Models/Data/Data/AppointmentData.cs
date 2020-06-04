@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Web;
 
 namespace SPA_IE.Models.Data.Data
@@ -89,6 +90,15 @@ namespace SPA_IE.Models.Data.Data
 
                                            }).Where(x => x.IdAppointment == id).Single();
                                                         return appointmentToReturn;
+            }
+        }
+
+        public GetAppointmentByReason_Result GetAppointmentByReasonSP(string reason)
+        {
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            {
+                var appointment = context.GetAppointmentByReason(reason).Single();
+                return appointment;
             }
         }
 

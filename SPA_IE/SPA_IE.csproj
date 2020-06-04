@@ -195,7 +195,11 @@
     <Compile Include="Models\Data\Data\ProvinceData.cs" />
     <Compile Include="Models\Data\Data\ScheduleData.cs" />
     <Compile Include="Models\Data\Data\StudentData.cs" />
+    <Compile Include="Models\Data\Data\UserProfileData.cs" />
     <Compile Include="Models\Data\District.cs">
+      <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Data\GetAppointmentByReason_Result.cs">
       <DependentUpon>BeautySolutions_ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\GetByIComment_Result.cs">

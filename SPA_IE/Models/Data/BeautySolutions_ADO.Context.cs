@@ -731,6 +731,24 @@ namespace SPA_IE.Models.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectAppointment_Result>("SelectAppointment");
         }
     
+        public virtual ObjectResult<GetByIComment_Result> SPGetByIComment(Nullable<int> idComment)
+        {
+            var idCommentParameter = idComment.HasValue ?
+                new ObjectParameter("IdComment", idComment) :
+                new ObjectParameter("IdComment", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetByIComment_Result>("SPGetByIComment", idCommentParameter);
+        }
+    
+        public virtual int SPDeleteComment(Nullable<int> idComment)
+        {
+            var idCommentParameter = idComment.HasValue ?
+                new ObjectParameter("IdComment", idComment) :
+                new ObjectParameter("IdComment", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPDeleteComment", idCommentParameter);
+        }
+    
         public virtual ObjectResult<SelectSchedule_Result> SelectSchedule()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectSchedule_Result>("SelectSchedule");
@@ -768,6 +786,15 @@ namespace SPA_IE.Models.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Course>("SPGetByNameCourse", mergeOption, nameParameter);
         }
     
+        public virtual int RejectRequest(Nullable<int> idStudent)
+        {
+            var idStudentParameter = idStudent.HasValue ?
+                new ObjectParameter("IdStudent", idStudent) :
+                new ObjectParameter("IdStudent", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RejectRequest", idStudentParameter);
+        }
+    
         public virtual ObjectResult<SelectProfessorByUsername_Result> SelectProfessorByUsername(string username)
         {
             var usernameParameter = username != null ?
@@ -802,6 +829,42 @@ namespace SPA_IE.Models.Data
                 new ObjectParameter("Username", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectStudentByUsername_Result>("SPSelectStudentByUsername", usernameParameter);
+        }
+    
+        public virtual int DeleteUserProfile(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteUserProfile", usernameParameter);
+        }
+    
+        public virtual int SPDeleteUserProfile(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPDeleteUserProfile", usernameParameter);
+        }
+    
+        public virtual ObjectResult<GetAppointmentByReason_Result> GetAppointmentByReason(string reason)
+        {
+            var reasonParameter = reason != null ?
+                new ObjectParameter("Reason", reason) :
+                new ObjectParameter("Reason", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAppointmentByReason_Result>("GetAppointmentByReason", reasonParameter);
+        }
+    
+        public virtual ObjectResult<GetAppointmentByReason_Result> SPGetAppointmentByReason(string reason)
+        {
+            var reasonParameter = reason != null ?
+                new ObjectParameter("Reason", reason) :
+                new ObjectParameter("Reason", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAppointmentByReason_Result>("SPGetAppointmentByReason", reasonParameter);
         }
     }
 }
