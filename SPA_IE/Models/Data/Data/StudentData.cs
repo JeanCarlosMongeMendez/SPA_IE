@@ -32,6 +32,14 @@ namespace SPA_IE.Models.Data.Data
             }
         }
 
+        public void RejectRequest(int idStudent)
+        {
+            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
+            {
+                context.RejectRequest(idStudent);
+            }
+        }
+
         public int Add(StudentDTO student)
         {
             int resultToReturn;
@@ -231,53 +239,5 @@ namespace SPA_IE.Models.Data.Data
                 return resultToReturn;
             }
         }*/
-
-
-        ////TEST
-        public SelectStudentByUsername_Result GetStudentByUsername(string username)
-        {
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
-            {
-               return context.SPSelectStudentByUsername(username).Single();
-            }
-        }
-
-        public StudentDTO GetByUsername(string username)
-        {
-            using (var context = new IF4101_BeatySolutions_ISem_2020Entities1())
-            {
-                var studentToReturn = (from student in context.Student
-                                       join userProfile in context.UserProfile on student.IdUserProfile equals userProfile.IdUserProfile
-                                       join province in context.Province on userProfile.IdProvince equals province.IdProvince
-                                       join canton in context.Canton on userProfile.IdCanton equals canton.IdCanton
-                                       join district in context.District on userProfile.IdDistrict equals district.IdDistrict
-                                       select new StudentDTO
-                                       {
-                                           IdStudent = student.IdStudent,
-                                           IdentificationCard = student.IdentificationCard,
-                                           IdUserProfile = userProfile.IdUserProfile,
-                                           isASIP = student.IsASIP,
-                                           isActive = student.IsActive,
-                                           CreateBy = student.CreateBy,
-                                           CreationDate = student.CreationDate,
-                                           Username = userProfile.Username,
-                                           Password = userProfile.Password,
-                                           UserPhoto = userProfile.UserPhoto,
-                                           Interests = userProfile.Interests,
-                                           Email = userProfile.Email,
-                                           IsAdmin = userProfile.IsAdmin,
-                                           IsEnable = userProfile.IsEnable,
-                                           IdProvince = userProfile.IdProvince,
-                                           NameProvince = province.Name,
-                                           IdCanton = userProfile.IdCanton,
-                                           NameCanton = canton.Name,
-                                           IdDistrict = userProfile.IdDistrict,
-                                           NameDistrict = district.Name,
-
-                                       }).Where(x => x.Username == username && x.IsEnable == true && x.isActive == true).Single();
-                return studentToReturn;
-            }
-        }
-
     }
 }

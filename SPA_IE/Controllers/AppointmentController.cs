@@ -19,6 +19,14 @@ namespace SPA_IE.Controllers
         ScheduleData scheduleData = new ScheduleData();
         AppoitmentDTO appoitmentDTO = new AppoitmentDTO();
 
+        // GET: Appointment
+        public ActionResult Index()
+        {
+            IEnumerable<SelectAppointment_Result> appointments = appointmentData.ListAllSP();
+            return View(appointments);
+        }
+
+
         public PartialViewResult GetAll()
         {
             IEnumerable<SelectAppointment_Result> appointments = appointmentData.ListAllSP();
@@ -63,7 +71,7 @@ namespace SPA_IE.Controllers
             return PartialView("GetRequest", appointments);
         }
 
-        public PartialViewResult Edit(int id)
+        public ActionResult Edit(int id)
         {
             AppoitmentDTO appoitment = appointmentData.GetById(id);
 
@@ -91,41 +99,22 @@ namespace SPA_IE.Controllers
             ViewData["IdSchedule"] = appoitment.IdSchedule;
 
 
-            return PartialView("Edit", appoitment);
-
+            return View(appoitment);
         }
 
         [HttpPost]
-        public PartialViewResult Edit(AppoitmentDTO appoitment)
+        public ActionResult Edit(AppoitmentDTO appoitment)
         {
-            try
-            {
-                appointmentData.Update(appoitment);
-                IEnumerable<SelectAppointment_Result> appoitments = appointmentData.ListAllSP();
-
-                return PartialView("GetAll", appoitments);
-            }
-            catch
-            {
-                throw;
-            }
+            appointmentData.Update(appoitment);
+            return View("Index", appointmentData.ListAllSP().AsEnumerable());
         }
 
-        public PartialViewResult Delete(int id)
+        public ActionResult Delete(int id)
         {
-            try
-            {
-                appointmentData.Delete(id);
-            IEnumerable<SelectAppointment_Result> appoitments = appointmentData.ListAllSP();
-
-            return PartialView("GetRequest", appoitments);
-
-            }
-            catch
-            {
-                throw;
-            }
+            appointmentData.Delete(id);
+            return View("Index", appointmentData.ListAllSP().AsEnumerable());
         }
+
 
     }
 }

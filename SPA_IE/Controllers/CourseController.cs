@@ -10,47 +10,47 @@ namespace SPA_IE.Controllers
     {
         // GET: Course
         CourseData courseData = new CourseData();
-        public ActionResult Index()
+        public PartialViewResult Index()
         {
             IEnumerable<Course> courses = courseData.ListAllCourseSP();
 
-            return View(courses);
+            return PartialView(courses);
 
         }
-        public ActionResult Create()
+        public PartialViewResult Create()
         {
 
-            return View();
+            return PartialView();
         }
 
         [HttpPost]
-        public ActionResult Create(Course course)
+        public PartialViewResult Create(Course course)
         {
             courseData.Add(course);
 
-            return View("Index", courseData.ListAllCourseSP().AsEnumerable());
+            return PartialView("Index", courseData.ListAllCourseSP().AsEnumerable());
         }
-        public ActionResult Edit(int id)
+        public PartialViewResult Edit(int id)
         {
 
             Course course = courseData.GetByIdCourse(id);
 
 
 
-            return View(course);
+            return PartialView(course);
         }
 
         [HttpPost]
-        public ActionResult Edit(Course course)
+        public PartialViewResult Edit(Course course)
         {
             courseData.Update(course);
-            return View("Index", courseData.ListAllCourseSP().AsEnumerable());
+            return PartialView("Index", courseData.ListAllCourseSP().AsEnumerable());
         }
 
         public ActionResult Delete(int id)
         {
             courseData.Delete(id);
-            return View("Index", courseData.ListAllCourseSP().AsEnumerable());
+            return PartialView("Index", courseData.ListAllCourseSP().AsEnumerable());
         }
 
     }
